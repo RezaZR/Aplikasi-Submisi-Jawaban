@@ -1,62 +1,71 @@
 .login,
 .login__wrapper,
 .login__wrapper__logo,
-.login__wrapper__form {
+.login__wrapper__form,
+.register,
+.register__wrapper,
+.register__wrapper__logo,
+.register__wrapper__form {
     display: block;
     overflow: hidden;
 }
 
-.login__wrapper {
+.login__wrapper,
+.register__wrapper {
     background-color: #fff;
     width: 80%;
-    margin: 0 auto;
+    margin: 3em auto;
     padding: 2em;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    vertical-align: middle;
 }
 
-.login__wrapper__logo img {
+.login__wrapper__logo img,
+.register__wrapper__logo img {
     width: 150px;
     object-fit: contain;
     display: block;
     margin: .5em auto;
 }
 
-.login__wrapper__form {}
-
-div.wrap div {
+.field {
     position: relative;
-    margin: 50px 0;
+    margin: 1.5em 0;
 }
 
-label {
+.field label {
     position: absolute;
-    top: 0;
-    font-size: 30px;
+    cursor: initial;
+    top: 5px;
+    left: -15px;
+    font-size: 17px;
     margin: 10px;
     padding: 0 10px;
-    background-color: teal;
+    background-color: transparent;
     -webkit-transition: top .2s ease-in-out, font-size .2s ease-in-out;
     transition: top .2s ease-in-out, font-size .2s ease-in-out;
 }
 
-.active {
+.field label:focus {
+    outline: none;
+}
+
+.field .active {
     top: -25px;
-    font-size: 20px;
+    font-size: 12px;
 }
 
-input[type=text] {
+.field input,
+.field textarea,
+.field select {
     width: 100%;
-    padding: 20px;
-    border: 1px solid white;
-    font-size: 20px;
-    background-color: teal;
-    color: white;
+    padding: .75em;
+    border: none;
+    border-bottom: 1px solid #000;
+    font-size: 17px;
+    color: #000;
 }
 
-input[type=text]:focus {
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
     outline: none;
 }

@@ -20,31 +20,41 @@
     <script src="{{asset('assets/js/login-register.js')}}"></script>
 </head>
 <body>
-    <section class="login">
+    <section class="register">
         <div class="container">
             <div class="row">
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-8">
-                    <div class="login__wrapper shadow--outset">
-                        <div class="login__wrapper__logo">
+                    <div class="register__wrapper shadow--outset">
+                        <div class="register__wrapper__logo">
                             <img src="{{asset('assets/images/logo-main.jpg')}}" alt="Logo Informatika UNPAR">
                         </div>
-                        <div class="login__wrapper__form">
+                        <div class="register__wrapper__form">
                             <form action="">
+                                <div class="field">
+                                    <label for="name">Nama Lengkap</label>
+                                    <input id="name" type="text" required/>
+                                </div>
+                                <div class="field">
+                                    <label for="address">Alamat</label>
+                                    <input id="address" type="text" required/>
+                                </div>
                                 <div class="field">
                                     <label for="email">Email</label>
                                     <input id="email" type="email" required/>
                                 </div>
                                 <div class="field">
+                                    <label for="phone">No. Telepon</label>
+                                    <input id="phone" type="text" required/>
+                                </div>
+                                <div class="field">
                                     <label for="password">Password</label>
                                     <input id="password" type="password" required/>
                                 </div>                    
-                                <div class="field">
-                                    <div class="col-md-12">
-                                        <div class="d-flex justify-content-center">
-                                            <button class="btn btn-standard--primary" type="submit">Login</button>
-                                        </div>
+                                <div class="col-md-12">
+                                    <div class="d-flex justify-content-center">
+                                        <button class="btn btn-standard--primary" type="submit">Register</button>
                                     </div>
                                 </div>
                             </form>

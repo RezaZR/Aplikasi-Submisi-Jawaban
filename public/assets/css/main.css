@@ -1,4 +1,6 @@
-*, :after, :before {
+*,
+ :after,
+ :before {
     box-sizing: border-box;
 }
 
@@ -23,7 +25,10 @@ a {
     text-decoration: none;
 }
 
-a:active, a:hover, a:link, a:visited {
+a:active,
+a:hover,
+a:link,
+a:visited {
     background: transparent;
     text-decoration: none;
 }
@@ -37,7 +42,14 @@ li {
     list-style-type: none;
 }
 
-p, h1, h2, h3, h4, h5, h6, hr {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr {
     -webkit-margin-before: 0;
     -webkit-margin-after: 0;
     margin-block-end: 0;
@@ -91,15 +103,15 @@ textarea {
 }
 
 .btn-standard--primary {
-    background: #008e88;
-    background: linear-gradient(-180deg, #16b3ac 0%, #008e88 90%);
+    background: #243359;
+    background: linear-gradient(-180deg, #2c4fa9 0%, #243359 90%);
     color: #fff;
     /* border: none; */
 }
 
 .btn-standard--primary:hover {
-    background: #026b66;
-    background: linear-gradient(-180deg, #139a94 0%, #026b66 90%);
+    background: #0d1936;
+    background: linear-gradient(-180deg, #0e3490 0%, #0d1936 90%)
 }
 
 .btn-standard--delete {
