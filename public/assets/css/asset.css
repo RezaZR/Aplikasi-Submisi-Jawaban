@@ -5,7 +5,8 @@
 .register,
 .register__wrapper,
 .register__wrapper__logo,
-.register__wrapper__form {
+.register__wrapper__form,
+.home {
     display: block;
     overflow: hidden;
 }
@@ -49,6 +50,7 @@
 }
 
 .field .active {
+    color: #0e3490;
     top: -25px;
     font-size: 12px;
 }
@@ -68,4 +70,71 @@
 .field textarea:focus,
 .field select:focus {
     outline: none;
+}
+
+.header {
+    background-color: #0e3490;
+}
+
+.header__wrapper {
+    padding: 1em 2em;
+    width: 100%;
+    color: #fff;
+}
+
+.header__wrapper__info {
+    display: block;
+    width: 100%;
+}
+
+.header__wrapper button svg {
+    font-size: 18px;
+    margin-right: .25em;
+    pointer-events: all;
+}
+
+.header__wrapper__info p:first-child {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.header__wrapper__info p:last-child {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.footer {
+    background-color: #0b0b0b;
+}
+
+.footer__wrapper {
+    padding: .65em 2em;
+}
+
+.footer__wrapper p {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.home__wrapper {
+    margin: .5em 0;
+    padding: .5em 0;
+}
+
+.home__wrapper__box {
+    background-color: #fff;
+}
+
+.home__wrapper__box:hover {
+    background-color: #fafafa;
+}
+
+.home__wrapper__box__info {
+    padding: 1em;
+    color: #000;
+}
+
+.home__wrapper__box__info p:last-child {
+    font-size: 14px;
 }

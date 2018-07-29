@@ -28,7 +28,7 @@
                 <div class="col-md-8">
                     <div class="register__wrapper shadow--outset">
                         <div class="register__wrapper__logo">
-                            <img src="{{asset('assets/images/logo-main.jpg')}}" alt="Logo Informatika UNPAR">
+                            <img src="{{asset('assets/images/logo-main.jpg')}}" alt="Logo Informatika UNPAR"/>
                         </div>
                         <div class="register__wrapper__form">
                             <form action="">
@@ -54,7 +54,7 @@
                                 </div>                    
                                 <div class="col-md-12">
                                     <div class="d-flex justify-content-center">
-                                        <button class="btn btn-standard--primary" type="submit">Register</button>
+                                        <button class="btn btn-standard--primary" type="submit">Daftarkan</button>
                                     </div>
                                 </div>
                             </form>

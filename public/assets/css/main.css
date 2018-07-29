@@ -17,7 +17,7 @@ body {
     text-rendering: optimizeSpeed;
     overflow-x: hidden;
     line-height: 1.5;
-    background-color: #fff;
+    background-color: #f2f2f2;
 }
 
 a {
@@ -126,6 +126,13 @@ textarea {
     background: linear-gradient(-180deg, #e84141 0%, #ad0606 90%);
 }
 
+.btn-standard--transparent {
+    background: transparent;
+    color: #fff;
+    padding: 0;
+    /* border: none; */
+}
+
 .color {
     color: #fff;
 }
@@ -135,5 +142,11 @@ textarea {
 }
 
 .color--primary {
-    color: #fb2424;
+    color: #0e3490;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 600;
+    padding: 1em 0;
 }
