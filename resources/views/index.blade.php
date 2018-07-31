@@ -1,7 +1,7 @@
-@include('header')
+@extends('base')
+@section('content')
 
-<section class="home">
-    <div class="container-fluid">
+    <section class="home">
         <div class="row">
             <div class="col-md-12">
                 <div class="home__wrapper">
@@ -38,7 +38,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-@include('footer')
+@endsection

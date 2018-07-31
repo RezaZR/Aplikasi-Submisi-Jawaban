@@ -29,14 +29,14 @@
                         <div class="col-md-6">
                             <div class="d-flex justify-content-start">
                                 <div class="header__wrapper__info">
-                                    <p>Reza Zacky Ramadan / 2013730068</p>
+                                    <p>{{Session::get('name')}} / 2013730068</p>
                                     <p>Asisten Dosen / Mahasiswa</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex justify-content-end">
-                                <button class="btn btn-standard--transparent" type="button" title="Keluar"><i class="fas fa-sign-out-alt"></i></button>
+                                <a href="/logout" class="btn btn-standard--transparent" title="Keluar"><i class="fas fa-sign-out-alt"></i></button>
                             </div>
                         </div>
                     </div>
@@ -45,3 +45,22 @@
         </div>
     </header>
 
+    <main class="container-fluid">
+        @yield('content')
+    </main>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer__wrapper">
+                        <div class="d-flex justify-content-end">
+                            <p>Aplikasi Submisi Jawaban</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

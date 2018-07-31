@@ -30,31 +30,39 @@
                         <div class="register__wrapper__logo">
                             <img src="{{asset('assets/images/logo-main.jpg')}}" alt="Logo Informatika UNPAR"/>
                         </div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="register__wrapper__form">
-                            <form action="">
-                                <div class="field">
+                            <form action="{{ url('/registerPost') }}" method="post">
+                                {{ csrf_field() }}
+                                <div class="field form-group">
                                     <label for="name">Nama Lengkap</label>
-                                    <input id="name" type="text" required/>
+                                    <input class="form-control" id="name" name="name" type="text"/>
                                 </div>
-                                <div class="field">
-                                    <label for="address">Alamat</label>
-                                    <input id="address" type="text" required/>
-                                </div>
-                                <div class="field">
+                                <div class="field form-group">
                                     <label for="email">Email</label>
-                                    <input id="email" type="email" required/>
+                                    <input class="form-control" id="email" name="email" type="email"/>
                                 </div>
-                                <div class="field">
-                                    <label for="phone">No. Telepon</label>
-                                    <input id="phone" type="text" required/>
-                                </div>
-                                <div class="field">
+                                <div class="field form-group">
                                     <label for="password">Password</label>
-                                    <input id="password" type="password" required/>
+                                    <input class="form-control" id="password" name="password" type="password"/>
                                 </div>                    
-                                <div class="col-md-12">
-                                    <div class="d-flex justify-content-center">
-                                        <button class="btn btn-standard--primary" type="submit">Daftarkan</button>
+                                <div class="field form-group">
+                                    <label for="conf_password">Ulangi Password</label>
+                                    <input class="form-control" id="conf_password" name="conf_password" type="password"/>
+                                </div>   
+                                <div class="field form-group">                 
+                                    <div class="col-md-12">
+                                        <div class="d-flex justify-content-center">
+                                            <button class="btn btn-standard--primary" type="submit">Daftar</button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
