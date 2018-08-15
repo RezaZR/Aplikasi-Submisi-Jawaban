@@ -82,6 +82,10 @@
     color: #fff;
 }
 
+.header__wrapper a:hover {
+    color: #ccc !important;
+}
+
 .header__wrapper__info {
     display: block;
     width: 100%;
@@ -117,9 +121,14 @@
     color: #fff;
 }
 
-.home__wrapper {
+.home {
     margin: .5em 0;
     padding: .5em 0;
+}
+
+.home__wrapper {
+    margin: .25em 0;
+    padding: .25em 0;
 }
 
 .home__wrapper__box {

@@ -42,7 +42,7 @@ class UserController extends Controller
 
     public function logout() {
         Session::flush();
-        return redirect('login')->with('alert', 'Berhasil keluar!');
+        return redirect('login')->with('alert-success', 'Berhasil keluar!');
     }
 
     public function register() {
@@ -50,22 +50,9 @@ class UserController extends Controller
     }
 
     public function registerPost(Request $request) {
-        // $this->validate($request,[
-        //     'name' => 'required',
-        //     'email' => 'required|min:3|email|unique:uesrs',
-        //     'password' => 'required',
-        //     'confirmation' => 'required|same:password'
-        // ]);
-
-        // $data = new ModelUser();
-        // $data->name = $request->name;
-        // $data->email = $request->email;
-        // $data->password = $request->password;
-        // $data->save();
-        // return redirect('login');
         $this->validate($request, [
             'name' => 'required|min:4',
-            'email' => 'required|min:4|email|unique:users',
+            'email' => 'required|min:4|email|unique:user',
             'password' => 'required',
             'conf_password' => 'required|same:password',
         ]);
@@ -74,6 +61,6 @@ class UserController extends Controller
         $data->email = $request->email;
         $data->password = bcrypt($request->password);
         $data->save();
-        return redirect('login')->with('alert-success','Kamu berhasil Register');
+        return redirect('login')->with('alert-success','Kamu Berhasil Register');
     }
 }

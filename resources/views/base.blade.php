@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex justify-content-end">
-                                <a href="/logout" class="btn btn-standard--transparent" title="Keluar"><i class="fas fa-sign-out-alt"></i></button>
+                                <a href="/logout" class="btn btn-standard--transparent"><i class="fas fa-sign-out-alt fa-fw"></i> Logout</a>
                             </div>
                         </div>
                     </div>

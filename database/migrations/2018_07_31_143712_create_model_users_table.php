@@ -13,7 +13,7 @@ class CreateModelUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('user', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email')->unique();
             $table->string('password');
@@ -21,6 +21,7 @@ class CreateModelUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+        DB::update("ALTER TABLE user AUTO_INCREMENT = 2013730001;");
     }
 
     /**
@@ -30,6 +31,6 @@ class CreateModelUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('user');
     }
 }
