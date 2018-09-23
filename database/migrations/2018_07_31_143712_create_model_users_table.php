@@ -15,13 +15,16 @@ class CreateModelUsersTable extends Migration
     {
         Schema::create('user', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('name');
+            $table->enum('level', ['ADMIN', 'LECTURER', 'STUDENT', 'ASSISTANT']);
+            $table->string('address');
+            $table->date('birth_date');
+            $table->enum('sex', ['MALE', 'FEMALE']);
             $table->rememberToken();
             $table->timestamps();
         });
-        DB::update("ALTER TABLE user AUTO_INCREMENT = 2013730001;");
     }
 
     /**
