@@ -60,8 +60,6 @@
 .field select {
     width: 100%;
     padding: .75em;
-    border: none;
-    border-bottom: 1px solid #000;
     font-size: 17px;
     color: #000;
 }

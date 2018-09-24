@@ -52,14 +52,24 @@ class UserController extends Controller
     public function registerPost(Request $request) {
         $this->validate($request, [
             'name' => 'required|min:4',
+            'unique_number' => 'required|unique:user',
             'email' => 'required|min:4|email|unique:user',
             'password' => 'required',
             'conf_password' => 'required|same:password',
+            'level' => 'required',
+            'address' => 'required',
+            'sex' => 'required',
+            'birth_date' => 'required',
         ]);
         $data =  new ModelUser();
         $data->name = $request->name;
+        $data->unique_number = $request->unique_number;
         $data->email = $request->email;
         $data->password = bcrypt($request->password);
+        $data->level = $request->level;
+        $data->address = $request->address;
+        $data->sex = $request->sex;
+        $data->birth_date = $request->birth_date;
         $data->save();
         return redirect('login')->with('alert-success','Kamu Berhasil Register');
     }

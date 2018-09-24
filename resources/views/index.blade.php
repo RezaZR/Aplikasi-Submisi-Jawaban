@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="home__wrapper">
-                    <p class="title">Mata Kuliah yang Diikuti Sebagai Asisten Dosen</p>
+                    <p class="title">Mata Kuliah yang Diikuti Sebagai Mahasiswa</p>
                     <div class="col-md-3">
                         <a href="">
                             <div class="home__wrapper__box">

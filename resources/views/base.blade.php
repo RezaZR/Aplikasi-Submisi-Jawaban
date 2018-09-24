@@ -29,8 +29,8 @@
                         <div class="col-md-6">
                             <div class="d-flex justify-content-start">
                                 <div class="header__wrapper__info">
-                                    <p>{{Session::get('name')}} / 2013730068</p>
-                                    <p>Asisten Dosen / Mahasiswa</p>
+                                    <p>{{Session::get('name')}} / {{Session::get('unique_number')}}</p>
+                                    <p>{{Session::get('level')}}</p>
                                 </div>
                             </div>
                         </div>

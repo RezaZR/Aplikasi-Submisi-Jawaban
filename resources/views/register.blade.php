@@ -47,6 +47,10 @@
                                     <input class="form-control" id="name" name="name" type="text"/>
                                 </div>
                                 <div class="field form-group">
+                                    <label for="unique_number">NPM/NIK</label>
+                                    <input class="form-control" id="unique_number" name="unique_number" type="text"/>
+                                </div>
+                                <div class="field form-group">
                                     <label for="email">Email</label>
                                     <input class="form-control" id="email" name="email" type="email"/>
                                 </div>
@@ -58,10 +62,34 @@
                                     <label for="conf_password">Ulangi Password</label>
                                     <input class="form-control" id="conf_password" name="conf_password" type="password"/>
                                 </div>   
+                                <div class="form-group">
+                                    <label for="level">Level</label>
+                                    <select class="form-control" id="level" name="level">    
+                                        <option value="ADMIN">Tata Usaha</option>
+                                        <option value="LECTURER">Dosen</option>
+                                        <option value="STUDENT">Mahasiswa</option>
+                                        <option value="ASSISTANT">Asisten</option>
+                                    </select>
+                                </div>   
+                                <div class="field form-group">
+                                    <label for="address">Alamat</label>
+                                    <input class="form-control" id="address" name="address" type="text"/>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="sex">Jenis Kelamin</label>
+                                    <select class="form-control" id="sex" name="sex">    
+                                        <option value="MALE">Laki-Laki</option>
+                                        <option value="FEMALE">Perempuan</option>
+                                    </select>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="birth_date">Tanggal Lahir</label>
+                                    <input class="form-control" id="birth_date" name="birth_date" type="date"/>
+                                </div> 
                                 <div class="field form-group">                 
                                     <div class="col-md-12">
                                         <div class="d-flex justify-content-center">
-                                            <button class="btn btn-standard--primary" type="submit">Daftar</button>
+                                            <button class="btn btn-standard--primary" type="submit">Daftarkan</button>
                                         </div>
                                     </div>
                                 </div>
