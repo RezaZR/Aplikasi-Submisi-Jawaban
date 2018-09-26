@@ -16,6 +16,7 @@ class CreateModelCoursesTable extends Migration
         Schema::create('course', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code')->unique();
+            $table->string('name');
             $table->integer('lecturer_id')->unsigned();
             $table->foreign('lecturer_id')->references('id')->on('user');
             $table->timestamps();

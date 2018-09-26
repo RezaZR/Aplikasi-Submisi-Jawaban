@@ -18,3 +18,6 @@ Route::get('/register', 'UserController@register');
 Route::post('/registerPost', 'UserController@registerPost');
 
 Route::get('/logout', 'UserController@logout');
+
+Route::get('/course', 'CourseController@create');
+Route::post('/coursePost', 'CourseController@createPost');

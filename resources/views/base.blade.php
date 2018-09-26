@@ -19,6 +19,7 @@
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/js/fontawesome-all.js')}}"></script>
     <script src="{{asset('assets/js/login-register.js')}}"></script>
+    <script src="{{asset('assets/js/all.js')}}"></script>
 </head>
 <body>
     <header class="header shadow">
@@ -30,7 +31,18 @@
                             <div class="d-flex justify-content-start">
                                 <div class="header__wrapper__info">
                                     <p>{{Session::get('name')}} / {{Session::get('unique_number')}}</p>
-                                    <p>{{Session::get('level')}}</p>
+                                    @if(\Session::get('level') == 'ADMIN')
+                                        <p>Tata Usaha</p>
+                                    @endif
+                                    @if(\Session::get('level') == 'LECTURER')
+                                        <p>Dosen</p>
+                                    @endif
+                                    @if(\Session::get('level') == 'STUDENT')
+                                        <p>Mahasiswa</p>
+                                    @endif
+                                    @if(\Session::get('level') == 'ASSISTANT')
+                                        <p>Asisten</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -45,7 +57,7 @@
         </div>
     </header>
 
-    <main class="container-fluid">
+    <main class="container-fluid main">
         @yield('content')
     </main>
 

@@ -29,6 +29,8 @@ class UserController extends Controller
         if(count($data) > 0) {
             if(Hash::check($password, $data->password)) {
                 Session::put('name', $data->name);
+                Session::put('unique_number', $data->unique_number);
+                Session::put('level', $data->level);
                 Session::put('email', $data->email);
                 Session::put('login', TRUE);
                 return redirect('/');
@@ -61,7 +63,7 @@ class UserController extends Controller
             'sex' => 'required',
             'birth_date' => 'required',
         ]);
-        $data =  new ModelUser();
+        $data = new ModelUser();
         $data->name = $request->name;
         $data->unique_number = $request->unique_number;
         $data->email = $request->email;
