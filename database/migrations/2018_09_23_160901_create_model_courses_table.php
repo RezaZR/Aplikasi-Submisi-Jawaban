@@ -13,12 +13,11 @@ class CreateModelCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('course', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code')->unique();
             $table->string('name');
-            $table->integer('lecturer_id')->unsigned();
-            $table->foreign('lecturer_id')->references('id')->on('user');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateModelCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course');
+        Schema::dropIfExists('courses');
     }
 }
