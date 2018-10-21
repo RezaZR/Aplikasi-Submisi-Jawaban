@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 class CourseController extends Controller
 {
 
-    public function create() {
+    public function new() {
         return view('create');
     }
 
-    public function createPost(Request $request) {
+    public function create(Request $request) {
         $this->validate($request, [
             'code' => 'required|unique:course',
             'name' => 'required'
@@ -22,6 +22,6 @@ class CourseController extends Controller
         $data->name = $request->name;
         $data->lecturer_id = 1;
         $data->save();
-        return redirect('/')->with('alert-success','Berhasil membuat mata kuliah');
+        return redirect('/')->with('alert-success','Berhasil membuat mata kuliah baru');
     }
 }

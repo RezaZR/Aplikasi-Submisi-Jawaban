@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function index() {
         if (!Session::get('login')) {
-            return redirect('login')->with('alert', 'Harus login terlebih dahulu!');
+            return redirect('login')->with('alert', 'Harus login terlebih dahulu');
         } else {
             return view('index');
         }
@@ -44,7 +44,7 @@ class UserController extends Controller
 
     public function logout() {
         Session::flush();
-        return redirect('login')->with('alert-success', 'Berhasil keluar!');
+        return redirect('login')->with('alert-success', 'Berhasil eluar');
     }
 
     public function register() {
@@ -53,15 +53,16 @@ class UserController extends Controller
 
     public function registerPost(Request $request) {
         $this->validate($request, [
-            'name' => 'required|min:4',
             'unique_number' => 'required|unique:user',
+            'name' => 'required|min:4',
             'email' => 'required|min:4|email|unique:user',
             'password' => 'required',
             'conf_password' => 'required|same:password',
             'level' => 'required',
+            'phone_number' => 'required',
             'address' => 'required',
-            'sex' => 'required',
             'birth_date' => 'required',
+            'sex' => 'required',
         ]);
         $data = new ModelUser();
         $data->name = $request->name;
@@ -69,10 +70,11 @@ class UserController extends Controller
         $data->email = $request->email;
         $data->password = bcrypt($request->password);
         $data->level = $request->level;
+        $data->phone_number = $request->phone_number;
         $data->address = $request->address;
         $data->sex = $request->sex;
         $data->birth_date = $request->birth_date;
         $data->save();
-        return redirect('login')->with('alert-success','Kamu Berhasil Register');
+        return redirect('login')->with('alert-success','Berhasil registrasi pengguna baru');
     }
 }
