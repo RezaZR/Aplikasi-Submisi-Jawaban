@@ -19,6 +19,7 @@ class CreateModelAssistantCoursesTable extends Migration
             $table->foreign('assistant_name')->references('id')->on('users');
             $table->integer('course_name')->unsigned();
             $table->foreign('course_name')->references('id')->on('courses');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

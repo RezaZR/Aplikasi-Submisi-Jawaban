@@ -19,6 +19,7 @@ class CreateModelLecturerCoursesTable extends Migration
             $table->foreign('lecturer_name')->references('id')->on('users');
             $table->integer('course_name')->unsigned();
             $table->foreign('course_name')->references('id')->on('courses');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
