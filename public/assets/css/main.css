@@ -91,44 +91,55 @@ textarea {
 }
 
 .btn-standard {
-    background: #eff3f6;
-    background: linear-gradient(-180deg, #fafbfc 0%, #eff3f6 90%);
+    background: #eff3f6 !important;
+    background: linear-gradient(-180deg, #fafbfc 0%, #eff3f6 90%) !important;
     color: #000;
     border: 1px solid #9c9c9c;
 }
 
 .btn-standard:hover {
-    background: #e6ebf1;
-    background: linear-gradient(-180deg, #f0f3f6 0%, #e6ebf1 90%);
+    background: #e6ebf1 !important;
+    background: linear-gradient(-180deg, #f0f3f6 0%, #e6ebf1 90%) !important;
 }
 
 .btn-standard--primary {
-    background: #243359;
-    background: linear-gradient(-180deg, #2c4fa9 0%, #243359 90%);
-    color: #fff;
+    background: #243359 !important;
+    background: linear-gradient(-180deg, #2c4fa9 0%, #243359 90%) !important;
+    color: #fff !important;
     /* border: none; */
 }
 
 .btn-standard--primary:hover {
-    background: #0d1936;
-    background: linear-gradient(-180deg, #0e3490 0%, #0d1936 90%)
+    background: #0d1936 !important;
+    background: linear-gradient(-180deg, #0e3490 0%, #0d1936 90%) !important;
+}
+
+.btn-standard--secondary {
+    background: #353535 !important;
+    background: linear-gradient(-180deg, #000000 0%, #353535 90%) !important;
+    color: #fff !important;
+}
+
+.btn-standard--secondary:hover {
+    background: #0d1936 !important;
+    background: linear-gradient(-180deg, #353535 0%, #000000 90%) !important;
 }
 
 .btn-standard--delete {
-    background: #fb2424;
-    background: linear-gradient(-180deg, #fb2424 0%, #b50000 90%);
-    color: #fff;
+    background: #fb2424 !important;
+    background: linear-gradient(-180deg, #fb2424 0%, #b50000 90%) !important;
+    color: #fff !important;
     /* border: none; */
 }
 
 .btn-standard--delete:hover {
-    background: #ad0606;
-    background: linear-gradient(-180deg, #e84141 0%, #ad0606 90%);
+    background: #ad0606 !important;
+    background: linear-gradient(-180deg, #e84141 0%, #ad0606 90%) !important;
 }
 
 .btn-standard--transparent {
-    background: transparent;
-    color: #fff;
+    background: transparent !important;
+    color: #fff !important;
     padding: 0;
     /* border: none; */
 }
@@ -145,18 +156,14 @@ textarea {
     color: #0e3490;
 }
 
-.title {
-    font-size: 20px;
-    font-weight: 600;
-    margin: 1em 0;
-    padding: 0 0 .5em 0;
-    border-bottom: 1px solid #d0d0d0;
-}
-
 input,
 select,
 textarea {
     border: none !important;
     border-bottom: 1px solid #cbcbcb !important;
     border-radius: 0 !important;
+}
+
+a svg {
+    margin-right: .25em;
 }

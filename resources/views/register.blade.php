@@ -47,8 +47,12 @@
                                     {{ Form::text('name', ['class' => 'form-control']) }}
                                 </div>
                                 <div class="field form-group">
-                                    {{ Form::label('unique_number', 'NPM/NIK') }}
-                                    {{ Form::text('unique_number', ['class' => 'form-control']) }}
+                                    {{ Form::label('npm', 'NPM') }}
+                                    {{ Form::text('nik', ['class' => 'form-control']) }}
+                                </div>
+                                <div class="field form-group">
+                                    {{ Form::label('nik', 'NIK') }}
+                                    {{ Form::text('nik', ['class' => 'form-control']) }}
                                 </div>
                                 <div class="field form-group">
                                     {{ Form::label('email', 'Email') }}
@@ -64,7 +68,7 @@
                                 </div>   
                                 <div class="form-group">
                                     {{ Form::label('level', 'Level') }}
-                                    {{ Form::select('level', ['Admin' => 'Tata Usaha', 'Lecturer' => 'Dosen', 'Student' => 'Mahasiswa', 'Assistant' => 'Asisten'], null, ['class' => 'form-control']) }}
+                                    {{ Form::select('level', ['Admin' => 'Tata Usaha', 'Lecturer' => 'Dosen', 'Assistant' => 'Asisten', 'Student' => 'Mahasiswa'], null, ['class' => 'form-control']) }}
                                 </div>   
                                 <div class="field form-group">
                                     {{ Form::label('address', 'Alamat') }}
@@ -74,13 +78,13 @@
                                     {{ Form::label('sex', 'Jenis Kelamin') }}
                                     {{ Form::select('sex', ['Male' => 'Pria', 'Female' => 'Wanita'], null, ['class' => 'form-control']) }}
                                 </div> 
-                                <div class="form-group">
-                                    {{ Form::label('birth_date', 'Tanggal Lahir') }}
-                                    {{ Form::date('birth_date', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
-                                </div> 
-                                <div class="form-group">
+                                <div class="field form-group">
                                     {{ Form::label('phone_number', 'Nomor Telepon') }}
                                     {{ Form::text('phone_number', ['class' => 'form-control']) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ Form::label('birth_date', 'Tanggal Lahir') }}
+                                    {{ Form::date('birth_date', \Carbon\Carbon::now()->setDate(2000, 1, 1), ['class' => 'form-control']) }}
                                 </div> 
                                 <div class="field form-group">                 
                                     <div class="col-md-12">

@@ -13,7 +13,8 @@
 .register__wrapper,
 .register__wrapper__logo,
 .register__wrapper__form,
-.home {
+.home,
+.home__wrapper__table {
     display: block;
     overflow: hidden;
 }
@@ -141,6 +142,52 @@
 .home__wrapper {
     margin: .25em 0;
     padding: .25em 0;
+}
+
+.home__wrapper__title {
+    margin: 1em 0 0 0;
+    padding: 0 0 .5em 0;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.home__wrapper__title p {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.home__wrapper__title a:not(:last-child) {
+    margin-right: .5em;
+}
+
+.home__wrapper__table {
+    width: 100%;
+    padding: 1em;
+}
+
+.home__wrapper__table p {
+    font-weight: 600;
+    margin: 1em 0;
+}
+
+.home__wrapper__table table {
+    width: 100%;
+}
+
+.home__wrapper__table table thead {
+    border-bottom: 1px solid rgba(14, 52, 144, .3);
+    color: #0e3490;
+}
+
+.home__wrapper__table table tbody {
+    color: #000;
+}
+
+.home__wrapper__table table tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.home__wrapper__table table tbody tr:nth-child(even) {
+    background-color: #eaeaea;
 }
 
 .home__wrapper__box {

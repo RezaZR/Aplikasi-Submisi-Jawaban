@@ -17,7 +17,7 @@
     <script src="{{asset('assets/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('assets/js/tether.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('assets/js/fontawesome-all.js')}}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"></script>
     <script src="{{asset('assets/js/login-register.js')}}"></script>
     <script src="{{asset('assets/js/all.js')}}"></script>
 </head>
@@ -30,17 +30,25 @@
                         <div class="col-md-6">
                             <div class="d-flex justify-content-start">
                                 <div class="header__wrapper__info">
-                                    <p>{{Session::get('name')}} / {{Session::get('unique_number')}}</p>
-                                    @if(\Session::get('level') == 'ADMIN')
+                                    <p>{{Session::get('name')}} /   
+                                        <span>
+                                            @if(Session::get('level') == 'Admin' || Session::get('level') == 'Lecturer')
+                                                <span>{{ Session::get('nik') }}</span>
+                                            @else
+                                                <span>{{ Session::get('npm') }}</span>
+                                            @endif
+                                        </span>
+                                    </p>
+                                    @if(Session::get('level') == 'Admin')
                                         <p>Tata Usaha</p>
                                     @endif
-                                    @if(\Session::get('level') == 'LECTURER')
+                                    @if(Session::get('level') == 'Lecturer')
                                         <p>Dosen</p>
                                     @endif
-                                    @if(\Session::get('level') == 'STUDENT')
+                                    @if(Session::get('level') == 'Student')
                                         <p>Mahasiswa</p>
                                     @endif
-                                    @if(\Session::get('level') == 'ASSISTANT')
+                                    @if(Session::get('level') == 'Assistant')
                                         <p>Asisten</p>
                                     @endif
                                 </div>

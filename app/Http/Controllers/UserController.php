@@ -6,6 +6,7 @@ use App\ModelUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -13,7 +14,10 @@ class UserController extends Controller
         if (!Session::get('login')) {
             return redirect('login')->with('alert', 'Harus login terlebih dahulu');
         } else {
-            return view('index');
+            $i = 0;
+            $j = 0;
+            $users = DB::table('users')->get();
+            return view('index', ['users' => $users])->with('i', $i)->with('j', $j);
         }
     }
 
@@ -29,10 +33,12 @@ class UserController extends Controller
         if(count($data) > 0) {
             if(Hash::check($password, $data->password)) {
                 Session::put('name', $data->name);
-                Session::put('unique_number', $data->unique_number);
+                Session::put('npm', $data->npm);
+                Session::put('nik', $data->nik);
                 Session::put('level', $data->level);
                 Session::put('email', $data->email);
                 Session::put('login', TRUE);
+                Session::put('i', 0);
                 return redirect('/');
             } else {
                 return redirect('login')->with('alert', 'Password salah');
@@ -44,16 +50,19 @@ class UserController extends Controller
 
     public function logout() {
         Session::flush();
-        return redirect('login')->with('alert-success', 'Berhasil eluar');
+        return redirect('login')->with('alert-success', 'Berhasil keluar');
     }
 
     public function register() {
-        return view('register');
+        if (!Session::get('login')) {
+            return redirect('login')->with('alert', 'Harus login terlebih dahulu');
+        } else {
+            return view('register');
+        }
     }
 
     public function createUser(Request $request) {
         $this->validate($request, [
-            'unique_number' => 'required',
             'name' => 'required|min:4',
             'email' => 'required|min:4|email',
             'password' => 'required',
@@ -66,7 +75,8 @@ class UserController extends Controller
         ]);
         $data = new ModelUser();
         $data->name = $request->name;
-        $data->unique_number = $request->unique_number;
+        $data->npm = $request->npm;
+        $data->nik = $request->nik;
         $data->email = $request->email;
         $data->password = bcrypt($request->password);
         $data->level = $request->level;
