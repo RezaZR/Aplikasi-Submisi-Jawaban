@@ -13,7 +13,7 @@ class CreateModelStudentCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('model_student_courses', function (Blueprint $table) {
+        Schema::create('student_courses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('student_name')->unsigned();
             $table->foreign('student_name')->references('id')->on('users');
@@ -30,6 +30,6 @@ class CreateModelStudentCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('model_student_courses');
+        Schema::dropIfExists('student_courses');
     }
 }

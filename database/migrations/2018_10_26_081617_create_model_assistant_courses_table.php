@@ -30,6 +30,6 @@ class CreateModelAssistantCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('model_assistant_courses');
+        Schema::dropIfExists('assistant_courses');
     }
 }
