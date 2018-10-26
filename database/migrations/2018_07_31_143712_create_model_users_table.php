@@ -19,11 +19,11 @@ class CreateModelUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('level', ['ADMIN', 'LECTURER', 'STUDENT', 'ASSISTANT']);
+            $table->enum('level', ['Admin', 'Lecturer', 'Assistant', 'Student']);
             $table->string('phone_number');
-            $table->string('address');
+            $table->text('address');
             $table->date('birth_date');
-            $table->enum('sex', ['MALE', 'FEMALE']);
+            $table->enum('sex', ['Male', 'Female']);
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

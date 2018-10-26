@@ -49,7 +49,9 @@
     padding: 0 10px;
     background-color: transparent;
     -webkit-transition: top .2s ease-in-out, font-size .2s ease-in-out;
-    transition: top .2s ease-in-out, font-size .2s ease-in-out;
+    -moz-transition: top .2s ease-in-out, font-size .2s ease-in-out;
+    -ms-transition: top .2s ease-in-out, font-size .2s ease-in-out;
+    -o-transition: top .2s ease-in-out, font-size .2s ease-in-out;
 }
 
 .field label:focus {
@@ -62,6 +64,12 @@
     font-size: 12px;
 }
 
+.field .active + input,
+.field .active + textarea,
+.field .active + select {
+    border-color: #000 !important;
+}
+
 .field input,
 .field textarea,
 .field select {
@@ -69,6 +77,10 @@
     padding: .75em;
     font-size: 17px;
     color: #000;
+    -webkit-transition: border-color .5s ease-in;
+    -moz-transition: border-color .5s ease-in;
+    -ms-transition: border-color .5s ease-in;
+    -o-transition: border-color .5s ease-in;
 }
 
 .field input:focus,

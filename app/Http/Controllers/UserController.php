@@ -21,7 +21,7 @@ class UserController extends Controller
         return view('login');
     }
 
-    public function loginPost(Request $request) {
+    public function session(Request $request) {
         $email = $request->email;
         $password = $request->password;
 
@@ -51,11 +51,11 @@ class UserController extends Controller
         return view('register');
     }
 
-    public function registerPost(Request $request) {
+    public function createUser(Request $request) {
         $this->validate($request, [
-            'unique_number' => 'required|unique:user',
+            'unique_number' => 'required',
             'name' => 'required|min:4',
-            'email' => 'required|min:4|email|unique:user',
+            'email' => 'required|min:4|email',
             'password' => 'required',
             'conf_password' => 'required|same:password',
             'level' => 'required',

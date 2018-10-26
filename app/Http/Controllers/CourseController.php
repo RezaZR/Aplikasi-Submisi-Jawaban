@@ -14,8 +14,8 @@ class CourseController extends Controller
 
     public function create(Request $request) {
         $this->validate($request, [
-            'code' => 'required|unique:course',
-            'name' => 'required'
+            'code' => 'required|unique:course|max:6',
+            'name' => 'required|max:255'
         ]);
         $data = new ModelCourse();
         $data->code = $request->code;

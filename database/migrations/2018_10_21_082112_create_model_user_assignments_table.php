@@ -15,8 +15,8 @@ class CreateModelUserAssignmentsTable extends Migration
     {
         Schema::create('user_assignments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('student')->unsigned();
-            $table->foreign('student')->references('id')->on('users');
+            $table->integer('student_name')->unsigned();
+            $table->foreign('student_name')->references('id')->on('users');
             $table->text('file_name');
             $table->dateTime('submission_time');
             $table->integer('grader')->unsigned();

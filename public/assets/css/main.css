@@ -157,6 +157,6 @@ input,
 select,
 textarea {
     border: none !important;
-    border-bottom: 1px solid #000 !important;
+    border-bottom: 1px solid #cbcbcb !important;
     border-radius: 0 !important;
 }
