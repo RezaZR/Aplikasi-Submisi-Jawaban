@@ -4,23 +4,27 @@ namespace App\Http\Controllers;
 
 use App\ModelCourse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CourseController extends Controller
 {
 
     public function new() {
-        return view('create');
+        if (!Session::get('login')) {
+            return redirect('login')->with('alert', 'Harus login terlebih dahulu');
+        } else {
+            return view('create');
+        }
     }
 
     public function create(Request $request) {
         $this->validate($request, [
-            'code' => 'required|unique:course|max:6',
-            'name' => 'required|max:255'
+            'code' => 'required|unique:courses|max:6',
+            'name' => 'required|max:50',
         ]);
         $data = new ModelCourse();
         $data->code = $request->code;
         $data->name = $request->name;
-        $data->lecturer_id = 1;
         $data->save();
         return redirect('/')->with('alert-success','Berhasil membuat mata kuliah baru');
     }

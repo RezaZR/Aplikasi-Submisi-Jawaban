@@ -190,6 +190,14 @@
     background-color: #eaeaea;
 }
 
+.home__wrapper__table table tbody tr td a {
+    color: #000;
+}
+
+.home__wrapper__table table tbody tr td a svg:not(:last-child) {
+    margin-right: .25em;
+}
+
 .home__wrapper__box {
     background-color: #fff;
 }

@@ -43,16 +43,28 @@
                                             <th>Nama Mata Kuliah</th>
                                             <th>Tanggal Dibuat</th>
                                             <th>Tanggal Diubah</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            <td><td>
-                                            <td><td>
-                                            <td><td>
-                                            <td><td>
-                                        </tr> 
+                                        @forelse($courses as $course)
+                                            <tr>
+                                                <td>{{ ++$i }}</td>
+                                                <td>{{ $course->code }}</td>
+                                                <td>{{ $course->name }}</td>
+                                                <td>{{ $course->created_at }}</td>
+                                                <td>{{ $course->updated_at }}</td>
+                                                <td>
+                                                    <a href=""><i class="fas fa-eye" title="Detail"></i></a>
+                                                    <a href=""><i class="fas fa-pencil-alt" title="Ubah"></i></a>
+                                                    <a href=""><i class="fas fa-trash" title="Hapus"></i></a>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="6">Kolom kosong</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -62,21 +74,24 @@
                                 <p>List Pengguna</p>
                                 <table cellpadding="10">
                                     <thead>
-                                        <th>ID</th>
-                                        <th>NPM</th>
-                                        <th>NIK</th>
-                                        <th>Nama Pengguna</th>
-                                        <th>Email</th>
-                                        <th>Level</th>
-                                        <th>Nomor Telepon</th>
-                                        <th>Alamat</th>
-                                        <th>Tanggal Lahir</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>Tanggal Dibuat</th>
-                                        <th>Tanggal Diubah</th>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>NPM</th>
+                                            <th>NIK</th>
+                                            <th>Nama Pengguna</th>
+                                            <th>Email</th>
+                                            <th>Level</th>
+                                            <th>Nomor Telepon</th>
+                                            <th>Alamat</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Tanggal Dibuat</th>
+                                            <th>Tanggal Diubah</th>
+                                            <th>Aksi</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($users as $user)
+                                        @forelse($users as $user)
                                             <tr>
                                                 <td>{{ ++$j }}</td>
                                                 <td>{{ $user->npm }}</td>
@@ -90,8 +105,17 @@
                                                 <td>{{ $user->sex }}</td>
                                                 <td>{{ $user->created_at }}</td>
                                                 <td>{{ $user->updated_at }}</td>
-                                            </tr> 
-                                        @endforeach
+                                                <td>
+                                                    <a href=""><i class="fas fa-eye" title="Detail"></i></a>
+                                                    <a href=""><i class="fas fa-pencil-alt" title="Ubah"></i></a>
+                                                    <a href=""><i class="fas fa-trash" title="Hapus"></i></a>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="13">Kolom kosong</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

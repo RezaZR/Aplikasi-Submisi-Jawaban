@@ -21,7 +21,7 @@
                             </div>
                         @endif
                         <div class="register__wrapper__form">
-                            <form action="{{ url('/coursePost') }}" method="post">
+                            <form action="{{ url('/createCourse') }}" method="post">
                                 {{ csrf_field() }}
                                 <div class="field form-group">
                                     <label for="name">Nama Mata Kuliah</label>
@@ -30,14 +30,6 @@
                                 <div class="field form-group">
                                     <label for="code">Kode Mata Kuliah</label>
                                     <input class="form-control" id="code" name="code" type="text"/>
-                                </div>
-                                <div class="field form-group">
-                                    <label for="lecturer-1">Dosen Pengajar 1</label>
-                                    <input class="form-control" id="lecturer-1" name="lecturer-1" type="lecturer-1"/>
-                                </div>
-                                <div class="field form-group">
-                                    <label for="lecturer-2">Dosen Pengajar 2</label>
-                                    <input class="form-control" id="lecturer-2" name="lecturer-2" type="lecturer-2"/>
                                 </div>
                                 <div class="field form-group">                 
                                     <div class="col-md-12">

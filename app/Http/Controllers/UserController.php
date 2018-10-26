@@ -16,8 +16,13 @@ class UserController extends Controller
         } else {
             $i = 0;
             $j = 0;
+            // $userAsistant = DB::table('users')->get();
+            // $userLecturer = DB::table('users')->get();
+            // $userStudent = DB::table('users')->get();
+            // $userAdmin = DB::table('users')->get();
             $users = DB::table('users')->get();
-            return view('index', ['users' => $users])->with('i', $i)->with('j', $j);
+            $courses = DB::table('courses')->get();
+            return view('index', ['users' => $users, 'courses' => $courses])->with('i', $i)->with('j', $j);
         }
     }
 
