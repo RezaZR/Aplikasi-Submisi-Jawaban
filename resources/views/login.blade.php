@@ -54,7 +54,7 @@
                         @endif
                         <div class="login__wrapper__form">
                             <form action="{{ url('/session') }}" method="post">
-                                {{ csrf_field() }}
+                                @csrf
                                 <div class="field form-group">
                                     <label class="active" for="email">Email</label>
                                     <input class="form-control" id="email" name="email" type="email" required/>

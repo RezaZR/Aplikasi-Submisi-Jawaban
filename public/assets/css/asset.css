@@ -199,6 +199,10 @@
     color: #000;
 }
 
+.home__wrapper__table table tbody tr td form {
+    display: inline;
+}
+
 .home__wrapper__table table tbody tr td a svg:not(:last-child) {
     margin-right: .25em;
 }

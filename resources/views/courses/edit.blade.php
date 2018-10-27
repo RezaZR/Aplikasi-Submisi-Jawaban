@@ -21,15 +21,16 @@
                             </div>
                         @endif
                         <div class="register__wrapper__form">
-                            <form action="{{ url('/createCourse') }}" method="post">
-                                {{ csrf_field() }}
+                            <form action="{{ route('courses.update', $course->id) }}" method="post">
+                                @method('PATCH')
+                                @csrf
                                 <div class="field form-group">
-                                    <label for="name">Nama Mata Kuliah</label>
-                                    <input class="form-control" id="name" name="name" type="text"/>
+                                    <label for="name" class="active">Nama Mata Kuliah</label>
+                                    <input class="form-control" id="name" name="name" type="text" value="{{ $course->name }}" />
                                 </div>
                                 <div class="field form-group">
-                                    <label for="code">Kode Mata Kuliah</label>
-                                    <input class="form-control" id="code" name="code" type="text"/>
+                                    <label for="code" class="active">Kode Mata Kuliah</label>
+                                    <input class="form-control" id="code" name="code" type="text" value="{{ $course->code }}" />
                                 </div>
                                 <div class="field form-group">                 
                                     <div class="col-md-12">

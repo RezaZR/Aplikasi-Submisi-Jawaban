@@ -41,7 +41,7 @@
                         @endif
                         <div class="register__wrapper__form">
                             {!! Form::open(['url' => '/createUser', 'method' => 'post']) !!}
-                                {{ csrf_field() }}
+                                @csrf
                                 <div class="field form-group">
                                     {{ Form::label('name', 'Nama Lengkap') }}
                                     {{ Form::text('name', ['class' => 'form-control']) }}

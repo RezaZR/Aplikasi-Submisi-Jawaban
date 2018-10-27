@@ -17,5 +17,6 @@ Route::get('/register', 'UserController@register');
 // Route::post('/createUser', 'UserController@createUser')->middleware('auth');
 Route::post('/createUser', 'UserController@createUser');
 
-Route::get('/course', 'CourseController@new');
-Route::post('/createCourse', 'CourseController@create');
+Route::resource('courses', 'CourseController');
+// Route::get('/course', 'CourseController@new');
+// Route::post('/createCourse', 'CourseController@create');

@@ -20,7 +20,6 @@ class UserController extends Controller
             $userLecturer = DB::table('users')->where('level', '=', 'Lecturer')->get();
             $userStudent = DB::table('users')->where('level', '=', 'Student')->get();
             $userAdmin = DB::table('users')->where('level', '=', 'Admin')->get();
-            // $users = DB::table('users')->get();
             $courses = DB::table('courses')->get();
             return view('index', ['userAssistant' => $userAssistant, 'userLecturer' => $userLecturer, 'userStudent' => 
         $userStudent, 'userAdmin' => $userAdmin, 'courses' => $courses])->with('i', $i)->with('j', $j);

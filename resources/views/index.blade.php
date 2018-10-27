@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="d-flex justify-content-end">
-                                        <a href="/course" class="btn btn-standard--secondary"><i class="fas fa-plus fa-fw"></i>Mata Kuliah Baru</a></a>
+                                        <a href="{{ route('courses.create')}}" class="btn btn-standard--secondary"><i class="fas fa-plus fa-fw"></i>Mata Kuliah Baru</a></a>
                                         <a href="/register" class="btn btn-standard--secondary"><i class="fas fa-plus fa-fw"></i>Pengguna Baru</a></a>
                                         <a href="/course" class="btn btn-standard--secondary"><i class="fas fa-clipboard-list fa-fw"></i>Tugaskan Pengguna Ke Dalam MK</a></a>
                                     </div>
@@ -55,9 +55,13 @@
                                                 <td>{{ $course->created_at }}</td>
                                                 <td>{{ $course->updated_at }}</td>
                                                 <td>
-                                                    <a href=""><i class="fas fa-eye" title="Detail"></i></a>
-                                                    <a href=""><i class="fas fa-pencil-alt" title="Ubah"></i></a>
-                                                    <a href=""><i class="fas fa-trash" title="Hapus"></i></a>
+                                                    <a href="{{ route('courses.show', $course->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
+                                                    <a href="{{ route('courses.edit', $course->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
+                                                    <form action="{{ route('courses.destroy', $course->id)}}" method="post">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button class="fas fa-trash" title="Hapus"></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @empty
@@ -240,7 +244,7 @@
                                         @forelse($userAdmin as $user)
                                             <tr>
                                                 <td>{{ ++$j }}</td>
-                                                <td>{{ $user->npm }}</td>
+                                                <td>{{ $user->nik }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user->level }}</td>
