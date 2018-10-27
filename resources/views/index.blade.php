@@ -62,7 +62,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="6">Kolom kosong</td>
+                                                <td class="empty" colspan="6">Kolom kosong</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -71,12 +71,11 @@
                         </div>
                         <div class="col-md-12">
                             <div class="home__wrapper__table">
-                                <p>List Pengguna</p>
+                                <p>List Dosen</p>
                                 <table cellpadding="10">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>NPM</th>
                                             <th>NIK</th>
                                             <th>Nama Pengguna</th>
                                             <th>Email</th>
@@ -91,10 +90,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($users as $user)
+                                        @forelse($userLecturer as $user)
                                             <tr>
                                                 <td>{{ ++$j }}</td>
-                                                <td>{{ $user->npm }}</td>
                                                 <td>{{ $user->nik }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
@@ -113,7 +111,154 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="13">Kolom kosong</td>
+                                                <td class="empty" colspan="12">Kolom kosong</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="home__wrapper__table">
+                                <p>List Asisten</p>
+                                <table cellpadding="10">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>NPM</th>
+                                            <th>Nama Pengguna</th>
+                                            <th>Email</th>
+                                            <th>Level</th>
+                                            <th>Nomor Telepon</th>
+                                            <th>Alamat</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Tanggal Dibuat</th>
+                                            <th>Tanggal Diubah</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse($userAssistant as $user)
+                                            <tr>
+                                                <td>{{ ++$j }}</td>
+                                                <td>{{ $user->npm }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->level }}</td>
+                                                <td>{{ $user->phone_number }}</td>
+                                                <td>{{ $user->address }}</td>
+                                                <td>{{ $user->birth_date }}</td>
+                                                <td>{{ $user->sex }}</td>
+                                                <td>{{ $user->created_at }}</td>
+                                                <td>{{ $user->updated_at }}</td>
+                                                <td>
+                                                    <a href=""><i class="fas fa-eye" title="Detail"></i></a>
+                                                    <a href=""><i class="fas fa-pencil-alt" title="Ubah"></i></a>
+                                                    <a href=""><i class="fas fa-trash" title="Hapus"></i></a>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td class="empty" colspan="12">Kolom kosong</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="home__wrapper__table">
+                                <p>List Mahasiswa</p>
+                                <table cellpadding="10">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>NPM</th>
+                                            <th>Nama Pengguna</th>
+                                            <th>Email</th>
+                                            <th>Level</th>
+                                            <th>Nomor Telepon</th>
+                                            <th>Alamat</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Tanggal Dibuat</th>
+                                            <th>Tanggal Diubah</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse($userStudent as $user)
+                                            <tr>
+                                                <td>{{ ++$j }}</td>
+                                                <td>{{ $user->npm }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->level }}</td>
+                                                <td>{{ $user->phone_number }}</td>
+                                                <td>{{ $user->address }}</td>
+                                                <td>{{ $user->birth_date }}</td>
+                                                <td>{{ $user->sex }}</td>
+                                                <td>{{ $user->created_at }}</td>
+                                                <td>{{ $user->updated_at }}</td>
+                                                <td>
+                                                    <a href=""><i class="fas fa-eye" title="Detail"></i></a>
+                                                    <a href=""><i class="fas fa-pencil-alt" title="Ubah"></i></a>
+                                                    <a href=""><i class="fas fa-trash" title="Hapus"></i></a>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td class="empty" colspan="12">Kolom kosong</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="home__wrapper__table">
+                                <p>List Admin</p>
+                                <table cellpadding="10">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>NIK</th>
+                                            <th>Nama Pengguna</th>
+                                            <th>Email</th>
+                                            <th>Level</th>
+                                            <th>Nomor Telepon</th>
+                                            <th>Alamat</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Tanggal Dibuat</th>
+                                            <th>Tanggal Diubah</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse($userAdmin as $user)
+                                            <tr>
+                                                <td>{{ ++$j }}</td>
+                                                <td>{{ $user->npm }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->level }}</td>
+                                                <td>{{ $user->phone_number }}</td>
+                                                <td>{{ $user->address }}</td>
+                                                <td>{{ $user->birth_date }}</td>
+                                                <td>{{ $user->sex }}</td>
+                                                <td>{{ $user->created_at }}</td>
+                                                <td>{{ $user->updated_at }}</td>
+                                                <td>
+                                                    <a href=""><i class="fas fa-eye" title="Detail"></i></a>
+                                                    <a href=""><i class="fas fa-pencil-alt" title="Ubah"></i></a>
+                                                    <a href=""><i class="fas fa-trash" title="Hapus"></i></a>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td class="empty" colspan="12">Kolom kosong</td>
                                             </tr>
                                         @endforelse
                                     </tbody>

@@ -17,7 +17,7 @@
     <script src="{{asset('assets/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('assets/js/tether.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"></script>
     <script src="{{asset('assets/js/login-register.js')}}"></script>
     <script src="{{asset('assets/js/all.js')}}"></script>
 </head>

@@ -16,13 +16,14 @@ class UserController extends Controller
         } else {
             $i = 0;
             $j = 0;
-            // $userAsistant = DB::table('users')->get();
-            // $userLecturer = DB::table('users')->get();
-            // $userStudent = DB::table('users')->get();
-            // $userAdmin = DB::table('users')->get();
-            $users = DB::table('users')->get();
+            $userAssistant = DB::table('users')->where('level', '=', 'Assistant')->get();
+            $userLecturer = DB::table('users')->where('level', '=', 'Lecturer')->get();
+            $userStudent = DB::table('users')->where('level', '=', 'Student')->get();
+            $userAdmin = DB::table('users')->where('level', '=', 'Admin')->get();
+            // $users = DB::table('users')->get();
             $courses = DB::table('courses')->get();
-            return view('index', ['users' => $users, 'courses' => $courses])->with('i', $i)->with('j', $j);
+            return view('index', ['userAssistant' => $userAssistant, 'userLecturer' => $userLecturer, 'userStudent' => 
+        $userStudent, 'userAdmin' => $userAdmin, 'courses' => $courses])->with('i', $i)->with('j', $j);
         }
     }
 
@@ -90,6 +91,6 @@ class UserController extends Controller
         $data->sex = $request->sex;
         $data->birth_date = $request->birth_date;
         $data->save();
-        return redirect('login')->with('alert-success','Berhasil registrasi pengguna baru');
+        return redirect('/')->with('alert-success','Berhasil registrasi pengguna baru');
     }
 }

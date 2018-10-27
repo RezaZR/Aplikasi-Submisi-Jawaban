@@ -13,7 +13,7 @@ class CourseController extends Controller
         if (!Session::get('login')) {
             return redirect('login')->with('alert', 'Harus login terlebih dahulu');
         } else {
-            return view('create');
+            return view('course/create');
         }
     }
 

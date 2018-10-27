@@ -174,7 +174,7 @@
 }
 
 .home__wrapper__table table thead {
-    border-bottom: 1px solid rgba(14, 52, 144, .3);
+    border-bottom: 1px solid rgba(14, 52, 144, .5);
     color: #0e3490;
 }
 
@@ -188,6 +188,11 @@
 
 .home__wrapper__table table tbody tr:nth-child(even) {
     background-color: #eaeaea;
+}
+
+.home__wrapper__table table tbody tr .empty {
+    text-align: center;
+    font-weight: 600;
 }
 
 .home__wrapper__table table tbody tr td a {
