@@ -1,15 +1,15 @@
 @extends('base')
 @section('content')
 
-    <section class="register">
+    <section class="crud">
         <div class="container">
             <div class="row">
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-8">
-                    <div class="register__wrapper shadow--outset">
-                        <div class="register__wrapper__logo">
-                            <img src="{{asset('assets/images/logo-main.jpg')}}" alt="Logo Informatika UNPAR"/>
+                    <div class="crud__wrapper shadow--outset">
+                        <div class="crud__wrapper__title">
+                            <p>Ubah Detail {{ $course->name }}</p>
                         </div>
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -20,7 +20,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <div class="register__wrapper__form">
+                        <div class="crud__wrapper__form">
                             <form action="{{ route('courses.update', $course->id) }}" method="post">
                                 @method('PATCH')
                                 @csrf
@@ -33,9 +33,16 @@
                                     <input class="form-control" id="code" name="code" type="text" value="{{ $course->code }}" />
                                 </div>
                                 <div class="field form-group">                 
-                                    <div class="col-md-12">
-                                        <div class="d-flex justify-content-center">
-                                            <button class="btn btn-standard--primary" type="submit">Daftarkan</button>
+                                    <div class="d-flex align-items-center">
+                                        <div class="col-md-6">
+                                            <div class="d-flex justify-content-end">
+                                                <a class="btn btn-standard--primary "href="/">Kembali</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="d-flex justify-content-start">
+                                                <button class="btn btn-standard--primary" type="submit">Ubah</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

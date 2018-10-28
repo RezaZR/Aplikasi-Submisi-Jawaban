@@ -14,13 +14,18 @@
 .register__wrapper__logo,
 .register__wrapper__form,
 .home,
-.home__wrapper__table {
+.home__wrapper__table,
+.crud,
+.crud__wrapper,
+.login__wrapper__title,
+.login__wrapper__form, {
     display: block;
     overflow: hidden;
 }
 
 .login__wrapper,
-.register__wrapper {
+.register__wrapper,
+.crud__wrapper {
     background-color: #fff;
     width: 80%;
     margin: 3em auto;
@@ -68,12 +73,17 @@
 .field .active + input,
 .field .active + textarea,
 .field .active + select {
-    border-color: #000 !important;
+    border-color: rgba(0, 0, 0, .25) !important;
+}
+
+.field .active + p {
+    border-bottom: 1px solid rgba(0, 0, 0, .25) !important;
 }
 
 .field input,
 .field textarea,
-.field select {
+.field select,
+.field p {
     width: 100%;
     padding: .75em;
     font-size: 17px;
@@ -151,7 +161,7 @@
 }
 
 .home__wrapper__title p {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
 }
 
@@ -165,6 +175,7 @@
 }
 
 .home__wrapper__table p {
+    font-size: 18px;
     font-weight: 600;
     margin: 1em 0;
 }
@@ -222,4 +233,26 @@
 
 .home__wrapper__box__info p:last-child {
     font-size: 14px;
+}
+
+.crud__wrapper__title {
+    padding: .5em;
+    border-bottom: 1px solid rgba(0, 0, 0, .25); 
+}
+
+.crud__wrapper__title a {
+    border-radius: 50%;
+    padding: .5em;
+    background-color: #000;
+}
+
+.crud__wrapper__title a svg {
+    color: #fff;
+    margin-right: 0;
+}
+
+.crud__wrapper__title p {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
 }
