@@ -101,6 +101,9 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+            $course = ModelCourse::find($id);
+            $course->delete();
+           
+            return redirect('/')->with('alert-success','Berhasil dihapus');
     }
 }

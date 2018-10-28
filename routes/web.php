@@ -7,16 +7,10 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
 
 Route::get('/', 'UserController@index');
 
-Route::get('/logout', 'UserController@logout');
+Route::get('/login', ['as' => 'login', 'uses' => 'SessionController@session']);
+Route::post('/session', 'SessionController@store');
+Route::get('/logout', 'SessionController@logout');
 
-Route::get('/login', ['as' => 'login', 'uses' => 'UserController@login']);
-Route::post('/session', 'UserController@session');
-
-// Route::get('/register', 'UserController@register')->middleware('auth');
-Route::get('/register', 'UserController@register');
-// Route::post('/createUser', 'UserController@createUser')->middleware('auth');
-Route::post('/createUser', 'UserController@createUser');
+Route::resource('registers', 'RegisterController');
 
 Route::resource('courses', 'CourseController');
-// Route::get('/course', 'CourseController@new');
-// Route::post('/createCourse', 'CourseController@create');

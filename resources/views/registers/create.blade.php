@@ -40,7 +40,7 @@
                             </div>
                         @endif
                         <div class="register__wrapper__form">
-                            {!! Form::open(['url' => '/createUser', 'method' => 'post']) !!}
+                            {!! Form::open(['route' => 'registers.store', 'method' => 'post']) !!}
                                 @csrf
                                 <div class="field form-group">
                                     {{ Form::label('name', 'Nama Lengkap') }}
@@ -87,9 +87,16 @@
                                     {{ Form::date('birth_date', \Carbon\Carbon::now()->setDate(2000, 1, 1), ['class' => 'form-control']) }}
                                 </div> 
                                 <div class="field form-group">                 
-                                    <div class="col-md-12">
-                                        <div class="d-flex justify-content-center">
-                                            <button class="btn btn-standard--primary" type="submit">Daftarkan</button>
+                                    <div class="d-flex align-items-center">
+                                        <div class="col-md-6">
+                                            <div class="d-flex justify-content-end">
+                                                <a class="btn btn-standard--primary "href="/">Kembali</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="d-flex justify-content-start">
+                                                <button class="btn btn-standard--primary" type="submit">Daftarkan</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
