@@ -20,10 +20,10 @@ class UserController extends Controller
         } else {
             $i = 0;
             $j = 0;
-            $userAssistant = DB::table('users')->where('level', '=', 'Assistant')->orWhereNotNull('deleted_at')->get();
-            $userLecturer = DB::table('users')->where('level', '=', 'Lecturer')->orWhereNotNull('deleted_at')->get();
-            $userStudent = DB::table('users')->where('level', '=', 'Student')->orWhereNotNull('deleted_at')->get();
-            $userAdmin = DB::table('users')->where('level', '=', 'Admin')->orWhereNotNull('deleted_at')->get();
+            $userAssistant = DB::table('users')->where('level', '=', 'Assistant')->get();
+            $userLecturer = DB::table('users')->where('level', '=', 'Lecturer')->get();
+            $userStudent = DB::table('users')->where('level', '=', 'Student')->get();
+            $userAdmin = DB::table('users')->where('level', '=', 'Admin')->get();
             $courses = DB::table('courses')->whereNull('deleted_at')->get();
             return view('index', ['userAssistant' => $userAssistant, 'userLecturer' => $userLecturer, 'userStudent' => 
         $userStudent, 'userAdmin' => $userAdmin, 'courses' => $courses])->with('i', $i)->with('j', $j);

@@ -108,9 +108,13 @@
                                                 <td>{{ $user->created_at }}</td>
                                                 <td>{{ $user->updated_at }}</td>
                                                 <td>
-                                                    <a href=""><i class="fas fa-eye" title="Detail"></i></a>
-                                                    <a href=""><i class="fas fa-pencil-alt" title="Ubah"></i></a>
-                                                    <a href=""><i class="fas fa-trash" title="Hapus"></i></a>
+                                                    <a href="{{ route('registers.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
+                                                    <a href="{{ route('registers.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
+                                                    <form action="{{ route('registers.destroy', $user->id)}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-standard--transparent" type="submit"><i class="fas fa-trash" title="Hapus"></i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @empty
@@ -157,9 +161,13 @@
                                                 <td>{{ $user->created_at }}</td>
                                                 <td>{{ $user->updated_at }}</td>
                                                 <td>
-                                                    <a href=""><i class="fas fa-eye" title="Detail"></i></a>
-                                                    <a href=""><i class="fas fa-pencil-alt" title="Ubah"></i></a>
-                                                    <a href=""><i class="fas fa-trash" title="Hapus"></i></a>
+                                                    <a href="{{ route('registers.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
+                                                    <a href="{{ route('registers.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
+                                                    <form action="{{ route('registers.destroy', $user->id)}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-standard--transparent" type="submit"><i class="fas fa-trash" title="Hapus"></i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @empty
@@ -206,9 +214,13 @@
                                                 <td>{{ $user->created_at }}</td>
                                                 <td>{{ $user->updated_at }}</td>
                                                 <td>
-                                                    <a href=""><i class="fas fa-eye" title="Detail"></i></a>
-                                                    <a href=""><i class="fas fa-pencil-alt" title="Ubah"></i></a>
-                                                    <a href=""><i class="fas fa-trash" title="Hapus"></i></a>
+                                                    <a href="{{ route('registers.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
+                                                    <a href="{{ route('registers.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
+                                                    <form action="{{ route('registers.destroy', $user->id)}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-standard--transparent" type="submit"><i class="fas fa-trash" title="Hapus"></i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @empty
@@ -255,9 +267,13 @@
                                                 <td>{{ $user->created_at }}</td>
                                                 <td>{{ $user->updated_at }}</td>
                                                 <td>
-                                                    <a href=""><i class="fas fa-eye" title="Detail"></i></a>
-                                                    <a href=""><i class="fas fa-pencil-alt" title="Ubah"></i></a>
-                                                    <a href=""><i class="fas fa-trash" title="Hapus"></i></a>
+                                                    <a href="{{ route('registers.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
+                                                    <a href="{{ route('registers.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
+                                                    <form action="{{ route('registers.destroy', $user->id)}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-standard--transparent" type="submit"><i class="fas fa-trash" title="Hapus"></i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @empty

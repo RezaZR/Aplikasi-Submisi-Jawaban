@@ -26,7 +26,6 @@ class SessionController extends Controller
                 Session::put('level', $data->level);
                 Session::put('email', $data->email);
                 Session::put('login', TRUE);
-                Session::put('i', 0);
                 return redirect('/');
             } else {
                 return redirect('login')->with('alert', 'Password salah');

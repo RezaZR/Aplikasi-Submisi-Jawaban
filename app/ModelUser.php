@@ -14,4 +14,7 @@ class ModelUser extends Model
 
     protected $dates = ['deleted_at'];
     protected $table = 'users';
+    protected $email = [
+        'email' => 'sometimes|required|email|unique:users',
+    ];
 }
