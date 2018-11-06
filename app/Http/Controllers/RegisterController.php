@@ -25,11 +25,7 @@ class RegisterController extends Controller
      */
     public function create()
     {
-        if (!Session::get('login')) {
-            return redirect('login')->with('alert', 'Harus login terlebih dahulu');
-        } else {
-            return view('registers.create');
-        }
+        return view('registers.create');
     }
 
     /**
@@ -74,13 +70,7 @@ class RegisterController extends Controller
      */
     public function show($id)
     {
-        if (!Session::get('login')) {
-            return redirect('login')->with('alert', 'Harus login terlebih dahulu');
-        } else {
-            $user = ModelUser::find($id);
-
-            return view('registers.show', compact('user'));
-        }
+        $user = ModelUser::find($id);
     }
 
     /**
@@ -91,15 +81,9 @@ class RegisterController extends Controller
      */
     public function edit($id)
     {
-        if (!Session::get('login')) {
-            return redirect('login')->with('alert', 'Harus login terlebih dahulu');
-        } else {
-            $user = ModelUser::find($id);
-            Session::put('level', $user->level);
-            Session::put('sex', $user->sex);
+        $user = ModelUser::find($id);
 
-            return view('registers.edit', compact('user'));
-        }
+        return view('registers.edit', compact('user'));
     }
 
     /**
@@ -123,8 +107,6 @@ class RegisterController extends Controller
             'sex' => 'required',
         ]);
         $data = new ModelUser();
-        // $email = ModelUser::$email;
-        // $email['email'] = $email['email'] . ',id,' . $id;
         $data->name = $request->name;
         $data->npm = $request->npm;
         $data->nik = $request->nik;

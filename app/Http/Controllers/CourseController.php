@@ -14,11 +14,7 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        if (!Session::get('login')) {
-            return redirect('login')->with('alert', 'Harus login terlebih dahulu');
-        } else {
-            return view('courses.create');
-        }
+        return view('courses.create');
     }
 
     /**
@@ -47,13 +43,9 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        if (!Session::get('login')) {
-            return redirect('login')->with('alert', 'Harus login terlebih dahulu');
-        } else {
-            $course = ModelCourse::find($id);
+        $course = ModelCourse::find($id);
 
-            return view('courses.show', compact('course'));
-        }
+        return view('courses.show', compact('course'));
     }
 
     /**
@@ -64,13 +56,9 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        if (!Session::get('login')) {
-            return redirect('login')->with('alert', 'Harus login terlebih dahulu');
-        } else {
-            $course = ModelCourse::find($id);
+        $course = ModelCourse::find($id);
 
-            return view('courses.edit', compact('course'));
-        }
+        return view('courses.edit', compact('course'));
     }
 
     /**

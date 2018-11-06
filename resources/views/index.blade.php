@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="home__wrapper">
-                    @if(Session::get('level') == 'Admin')
+                    @if(Auth::user()->level == 'Admin')
                         <div class="home__wrapper__title">
                             <div class="d-flex align-items-center">
                                 <div class="col-6">

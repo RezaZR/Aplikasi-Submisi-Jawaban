@@ -5,12 +5,15 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
     // error_reporting(E_ALL ^ E_WARNING);
 }
 
-Route::get('/', 'UserController@index');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/', 'UserController@index');
 
-Route::get('/login', ['as' => 'login', 'uses' => 'SessionController@session']);
+    Route::resource('registers', 'RegisterController');
+
+    Route::resource('courses', 'CourseController');
+});
+
+Route::get('/login', ['as' => 'login', 'uses' => 'SessionController@login']);
 Route::post('/session', 'SessionController@store');
 Route::get('/logout', 'SessionController@logout');
 
-Route::resource('registers', 'RegisterController');
-
-Route::resource('courses', 'CourseController');

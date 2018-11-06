@@ -30,25 +30,25 @@
                         <div class="col-md-6">
                             <div class="d-flex justify-content-start">
                                 <div class="header__wrapper__info">
-                                    <p>{{Session::get('name')}} /   
+                                    <p>{{ Auth::user()->name }} /   
                                         <span>
-                                            @if(Session::get('level') == 'Admin' || Session::get('level') == 'Lecturer')
-                                                <span>{{ Session::get('nik') }}</span>
+                                            @if(Auth::user()->level == 'Admin' || Auth::user()->level == 'Lecturer')
+                                                <span>{{ Auth::user()->nik }}</span>
                                             @else
-                                                <span>{{ Session::get('npm') }}</span>
+                                                <span>{{ Auth::user()->npm }}</span>
                                             @endif
                                         </span>
                                     </p>
-                                    @if(Session::get('level') == 'Admin')
+                                    @if(Auth::user()->level == 'Admin')
                                         <p>Tata Usaha</p>
                                     @endif
-                                    @if(Session::get('level') == 'Lecturer')
+                                    @if(Auth::user()->level == 'Lecturer')
                                         <p>Dosen</p>
                                     @endif
-                                    @if(Session::get('level') == 'Student')
+                                    @if(Auth::user()->level == 'Student')
                                         <p>Mahasiswa</p>
                                     @endif
-                                    @if(Session::get('level') == 'Assistant')
+                                    @if(Auth::user()->level == 'Assistant')
                                         <p>Asisten</p>
                                     @endif
                                 </div>

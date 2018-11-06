@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\ModelUser;
-use Illuminate\Http\Request;
+use App\ModelCourse;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -15,18 +14,13 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        if (!Session::get('login')) {
-            return redirect('login')->with('alert', 'Harus login terlebih dahulu');
-        } else {
-            $i = 0;
-            $j = 0;
-            $userAssistant = DB::table('users')->where('level', '=', 'Assistant')->get();
-            $userLecturer = DB::table('users')->where('level', '=', 'Lecturer')->get();
-            $userStudent = DB::table('users')->where('level', '=', 'Student')->get();
-            $userAdmin = DB::table('users')->where('level', '=', 'Admin')->get();
-            $courses = DB::table('courses')->whereNull('deleted_at')->get();
-            return view('index', ['userAssistant' => $userAssistant, 'userLecturer' => $userLecturer, 'userStudent' => 
-        $userStudent, 'userAdmin' => $userAdmin, 'courses' => $courses])->with('i', $i)->with('j', $j);
-        }
+        $i = 0;
+        $j = 0;
+        $userAssistant = ModelUser::all()->where('level', '=', 'Assistant')->take(5)->sortBy('created_at');
+        $userLecturer = ModelUser::all()->where('level', '=', 'Lecturer')->take(5)->sortBy('created_at');;
+        $userStudent = ModelUser::all()->where('level', '=', 'Student')->take(5)->sortBy('created_at');;
+        $userAdmin = ModelUser::all()->where('level', '=', 'Admin')->take(5)->sortBy('created_at');
+        $courses = ModelCourse::all()->take(5)->sortBy('created_at');;
+        return view('index', ['userAssistant' => $userAssistant, 'userLecturer' => $userLecturer, 'userStudent' => $userStudent, 'userAdmin' => $userAdmin, 'courses' => $courses, 'i' => $i, 'j' => $j]);
     }
 }
