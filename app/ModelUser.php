@@ -12,7 +12,23 @@ class ModelUser extends Authenticable
     use SoftDeletes;
     use FormAccessible;
 
-    protected $dates = ['deleted_at'];
+    protected $guard = [];
+    // protected $dates = ['deleted_at'];
     protected $table = 'users';
 
+    public function userAssignments() {
+        return $this->hasMany('App\ModelUserAssignment');
+    }
+
+    public function userAssistants() {
+        return $this->hasMany('App\ModelAssistantCourse');
+    }
+
+    public function userLecturers() {
+        return $this->hasMany('App\ModelLecturerCourse');
+    }
+
+    public function userStudents() {
+        return $this->hasMany('App\ModelStudentCourse');
+    }
 }

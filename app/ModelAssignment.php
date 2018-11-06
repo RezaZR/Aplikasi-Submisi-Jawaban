@@ -9,16 +9,14 @@ class ModelAssignment extends Model
 {
     use SoftDeletes;
 
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
     protected $table = 'assignments';
 
-    protected $modes = [
-        'assignment' => 'Tugas',
-        'quiz' => 'Kuis',
-        'exam' => 'Ujian'
-    ];
+    public function courses() {
+        return $this->belongsTo('App\ModelCourse');
+    }
 
-    public function getModes() {
-        return $this->modes;
+    public function userAssignments() {
+        return $this->hasMany('App\ModelUserAssignment');
     }
 }

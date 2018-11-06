@@ -10,6 +10,14 @@ class ModelAssistantCourse extends Model
     use SoftDeletes;
     use FormAccessible;
 
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
     protected $table = 'assistant_courses';
+
+    public function assistants() {
+        return $this->belongsTo('App\ModelUser');
+    }
+
+    public function courses() {
+        return $this->hasMany('App\ModelCourse');
+    }
 }

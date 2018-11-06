@@ -10,6 +10,14 @@ class ModelStudentCourse extends Model
     use SoftDeletes;
     use FormAccessible;
 
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
     protected $table = 'student_courses';
+
+    public function students() {
+        return $this->belongsTo('App\ModelUser');
+    }
+
+    public function courses() {
+        return $this->hasMany('App\ModelCourse');
+    }
 }
