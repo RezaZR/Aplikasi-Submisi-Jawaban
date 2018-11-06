@@ -1,4 +1,5 @@
 @extends('base')
+@section('title', ' - Home')
 @section('content')
 
     @if(\Session::has('alert'))

@@ -1,4 +1,5 @@
 @extends('base')
+@section('title', ' - Detail Pengguna: ' . $user->name)
 @section('content')
 
     <section class="register">

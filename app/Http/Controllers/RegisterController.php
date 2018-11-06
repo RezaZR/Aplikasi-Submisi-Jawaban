@@ -71,6 +71,8 @@ class RegisterController extends Controller
     public function show($id)
     {
         $user = ModelUser::find($id);
+        
+        return view('registers.show', compact('user'));
     }
 
     /**

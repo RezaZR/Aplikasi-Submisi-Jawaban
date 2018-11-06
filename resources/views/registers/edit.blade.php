@@ -1,4 +1,5 @@
 @extends('base')
+@section('title', ' - Ubah Detail Pengguna')
 @section('content')
 
     <section class="register">

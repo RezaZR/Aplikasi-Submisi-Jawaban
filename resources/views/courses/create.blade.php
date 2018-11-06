@@ -1,4 +1,5 @@
 @extends('base')
+@section('title', ' - Buat Mata Kuliah Baru')
 @section('content')
 
     <section class="crud">

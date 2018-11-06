@@ -1,4 +1,5 @@
 @extends('base')
+@section('title', ' - Detail Mata Kuliah: ' . $course->name)
 @section('content')
 
     <section class="crud">

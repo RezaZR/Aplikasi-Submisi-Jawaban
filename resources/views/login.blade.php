@@ -11,7 +11,7 @@
 
     <link rel="canonical" href="">
 
-    <title>Login | Aplikasi Submisi Jawaban</title>
+    <title>Aplikasi Submisi Jawaban | Login</title>
 
     <link rel="shortcut icon" href="{{asset('assets/images/logo-main.jpg')}}" type="image/x-icon">
     
