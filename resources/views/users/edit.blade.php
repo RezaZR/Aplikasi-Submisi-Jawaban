@@ -2,6 +2,17 @@
 @section('title', ' - Ubah Detail Pengguna')
 @section('content')
 
+    @if(\Session::has('alert'))
+        <div class="alert alert-danger">
+            <div>{{Session::get('alert')}}</div>
+        </div>
+    @endif
+    @if(\Session::has('alert-success'))
+        <div class="alert alert-success">
+            <div>{{Session::get('alert-success')}}</div>
+        </div>
+    @endif
+    
     <section class="register">
         <div class="container">
             <div class="row">
@@ -22,7 +33,7 @@
                             </div>
                         @endif
                         <div class="register__wrapper__form">
-                            <form action="{{ route('registers.update', $user->id) }}" method="post">
+                            <form action="{{ route('users.update', $user->id) }}" method="post">
                                 @method('PATCH')
                                 @csrf
                                 <div class="field form-group">

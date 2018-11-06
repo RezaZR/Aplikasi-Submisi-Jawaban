@@ -40,7 +40,7 @@
                             </div>
                         @endif
                         <div class="register__wrapper__form">
-                            {!! Form::open(['route' => 'registers.store', 'method' => 'post']) !!}
+                            {!! Form::open(['route' => 'users.store', 'method' => 'post']) !!}
                                 @csrf
                                 <div class="field form-group">
                                     {{ Form::label('name', 'Nama Lengkap') }}

@@ -15,7 +15,12 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        //
+        $userAssistant = ModelUser::all()->where('level', '=', 'Assistant')->take(5)->sortBy('created_at');
+        $userLecturer = ModelUser::all()->where('level', '=', 'Lecturer')->take(5)->sortBy('created_at');
+        $userStudent = ModelUser::all()->where('level', '=', 'Student')->take(5)->sortBy('created_at');
+        $userAdmin = ModelUser::all()->where('level', '=', 'Admin')->take(5)->sortBy('created_at');
+
+        return view('users.index', ['userAssistant' => $userAssistant, 'userLecturer' => $userLecturer, 'userStudent' => $userStudent, 'userAdmin' => $userAdmin]);
     }
 
     /**
@@ -25,7 +30,7 @@ class RegisterController extends Controller
      */
     public function create()
     {
-        return view('registers.create');
+        return view('users.create');
     }
 
     /**
@@ -72,7 +77,7 @@ class RegisterController extends Controller
     {
         $user = ModelUser::find($id);
         
-        return view('registers.show', compact('user'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -85,7 +90,7 @@ class RegisterController extends Controller
     {
         $user = ModelUser::find($id);
 
-        return view('registers.edit', compact('user'));
+        return view('users.edit', compact('user'));
     }
 
     /**

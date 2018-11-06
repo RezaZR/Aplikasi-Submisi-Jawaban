@@ -9,6 +9,18 @@ use Illuminate\Support\Facades\Session;
 class CourseController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    { 
+        $courses = ModelCourse::all()->take(5)->sortBy('created_at');
+
+        return view('courses.index', compact('courses'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

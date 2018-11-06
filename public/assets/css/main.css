@@ -164,6 +164,13 @@ textarea {
     border-radius: 0 !important;
 }
 
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+}
+
 a svg {
     margin-right: .25em;
 }

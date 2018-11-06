@@ -19,7 +19,7 @@
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"></script>
     <script src="{{asset('assets/js/login-register.js')}}"></script>
-    <script src="{{asset('assets/js/all.js')}}"></script>
+    <script src="{{asset('assets/js/layout.js')}}"></script>
 </head>
 <body>
     <header class="header shadow">
@@ -27,34 +27,45 @@
             <div class="row">
                 <div class="header__wrapper">
                     <div class="d-flex align-items-center">
-                        <div class="col-md-6">
-                            <div class="d-flex justify-content-start">
-                                <div class="header__wrapper__info">
-                                    <p>{{ Auth::user()->name }} /   
-                                        <span>
-                                            @if(Auth::user()->level == 'Admin' || Auth::user()->level == 'Lecturer')
-                                                <span>{{ Auth::user()->nik }}</span>
-                                            @else
-                                                <span>{{ Auth::user()->npm }}</span>
+                        <div class="col-md-8">
+                            <div class="d-flex align-items-center">
+                                <div class="col-md-4">
+                                    <div class="d-flex justify-content-start">
+                                        <div class="header__wrapper__info">
+                                            <p>{{ Auth::user()->name }} /   
+                                                <span>
+                                                    @if(Auth::user()->level == 'Admin' || Auth::user()->level == 'Lecturer')
+                                                        <span>{{ Auth::user()->nik }}</span>
+                                                    @else
+                                                        <span>{{ Auth::user()->npm }}</span>
+                                                    @endif
+                                                </span>
+                                            </p>
+                                            @if(Auth::user()->level == 'Admin')
+                                                <p>Tata Usaha</p>
                                             @endif
-                                        </span>
-                                    </p>
-                                    @if(Auth::user()->level == 'Admin')
-                                        <p>Tata Usaha</p>
-                                    @endif
-                                    @if(Auth::user()->level == 'Lecturer')
-                                        <p>Dosen</p>
-                                    @endif
-                                    @if(Auth::user()->level == 'Student')
-                                        <p>Mahasiswa</p>
-                                    @endif
-                                    @if(Auth::user()->level == 'Assistant')
-                                        <p>Asisten</p>
-                                    @endif
+                                            @if(Auth::user()->level == 'Lecturer')
+                                                <p>Dosen</p>
+                                            @endif
+                                            @if(Auth::user()->level == 'Student')
+                                                <p>Mahasiswa</p>
+                                            @endif
+                                            @if(Auth::user()->level == 'Assistant')
+                                                <p>Asisten</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="d-flex justify-content-start">
+                                        <a href="/">Beranda</a>
+                                        <a href="{{ route('courses.index')}}">Mata Kuliah</a>
+                                        <a href="{{ route('users.index')}}">Pengguna</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="d-flex justify-content-end">
                                 <a href="/logout" class="btn btn-standard--transparent"><i class="fas fa-sign-out-alt fa-fw"></i> Logout</a>
                             </div>
@@ -83,4 +94,5 @@
         </div>
     </footer>
 </body>
+<script src="{{asset('assets/js/main.js')}}"></script>
 </html>

@@ -8,12 +8,13 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/', 'UserController@index');
 
-    Route::resource('registers', 'RegisterController');
-
+    Route::resource('users', 'RegisterController');
+    
     Route::resource('courses', 'CourseController');
+
+    Route::resource('assignments', 'AssignmentController');
 });
 
 Route::get('/login', ['as' => 'login', 'uses' => 'SessionController@login']);
 Route::post('/session', 'SessionController@store');
 Route::get('/logout', 'SessionController@logout');
-
