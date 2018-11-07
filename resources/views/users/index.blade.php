@@ -59,7 +59,7 @@
                                                 <tbody>
                                                     @forelse($userAdmin as $user)
                                                         <tr>
-                                                            <td>{{ ++$j }}</td>
+                                                            <td>{{ ++$i }}</td>
                                                             <td>{{ $user->nik }}</td>
                                                             <td>{{ $user->name }}</td>
                                                             <td>{{ $user->email }}</td>
@@ -175,7 +175,7 @@
                                                 <tbody>
                                                     @forelse($userAssistant as $user)
                                                         <tr>
-                                                            <td>{{ ++$j }}</td>
+                                                            <td>{{ ++$k }}</td>
                                                             <td>{{ $user->npm }}</td>
                                                             <td>{{ $user->name }}</td>
                                                             <td>{{ $user->email }}</td>
@@ -233,7 +233,7 @@
                                                 <tbody>
                                                     @forelse($userStudent as $user)
                                                         <tr>
-                                                            <td>{{ ++$j }}</td>
+                                                            <td>{{ ++$l }}</td>
                                                             <td>{{ $user->npm }}</td>
                                                             <td>{{ $user->name }}</td>
                                                             <td>{{ $user->email }}</td>

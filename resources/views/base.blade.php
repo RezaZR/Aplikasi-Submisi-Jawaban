@@ -5,9 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <meta name="csrf-param" content="authenticity_token"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <meta name="keywords" content="UNPAR, Universitas Katolik Parahyangan, FTIS, IT, Teknologi Informasi, Informatika, Submisi, Submisi Jawaban, E-Learning"/>
+    <meta name="description" content="Website ini adalah website yang diperuntukan untuk kalangan FTIS khususnya jurusan Informatika Universitas Katolik Parahyangan yang berguna sebagai tempat submisi jawaban."/>
+    <meta name="subject" content="Website Aplikasi Submisi Jawaban">
+    <meta name="copyright"content="Reza Zacky Ramadan | 2013730068">
+    <meta name="language" content="EN IN">
+    <meta name="Classification" content="E-Learning">
+    <meta name="author" content="Reza Zacky Ramadan, rezazramadhan@gmail.com">
+    <meta name="designer" content="Reza Zacky Ramadan">
+    <meta name="owner" content="Reza Zacky Ramadan">
+    <meta name="coverage" content="Informatika, FTIS, Universitas Katolik Parahyangan">
+    <meta name="distribution" content="Informatika, FTIS, Universitas Katolik Parahyangan">
+    <!-- <meta name="url" content=""> -->
+    <!-- <meta name="identifier-URL" content=""> -->
+    <!-- <meta name="robots" content="index,follow" /> -->
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    
+
     <title>Aplikasi Submisi Jawaban @yield('title')</title>
 
     <link rel="shortcut icon" href="{{asset('assets/images/logo-main.jpg')}}" type="image/x-icon">
+    
     
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('assets/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('assets/css/bootstrap-mod.css')}}" />

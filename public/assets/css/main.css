@@ -174,3 +174,7 @@ select:focus {
 a svg {
     margin-right: .25em;
 }
+
+label {
+    margin: 0 !important;
+}

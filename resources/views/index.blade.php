@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="home__wrapper__table">
-                                <p>List Mata Kuliah</p>
+                                <p>List Mata Kuliah Terbaru</p>
                                 <table cellpadding="10" class="shadow--outset">
                                     <thead>
                                         <tr>
@@ -73,6 +73,13 @@
                                         @endforelse
                                     </tbody>
                                 </table>
+                                <div class="d-flex align-items-center">
+                                    <div class="col-md-12">
+                                        <div class="d-flex justify-content-end">
+                                            <p class="home__wrapper__table__link"><a href="{{ route('courses.index') }}">Lihat Semua <i class="fas fa-chevron-right"></i></a></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -126,6 +133,13 @@
                                         @endforelse
                                     </tbody>
                                 </table>
+                                <div class="d-flex align-items-center">
+                                    <div class="col-md-12">
+                                        <div class="d-flex justify-content-end">
+                                            <p class="home__wrapper__table__link"><a href="{{ route('users.index') }}">Lihat Semua <i class="fas fa-chevron-right"></i></a></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -151,7 +165,7 @@
                                     <tbody>
                                         @forelse($userAssistant as $user)
                                             <tr>
-                                                <td>{{ ++$j }}</td>
+                                                <td>{{ ++$k }}</td>
                                                 <td>{{ $user->npm }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
@@ -179,6 +193,13 @@
                                         @endforelse
                                     </tbody>
                                 </table>
+                                <div class="d-flex align-items-center">
+                                    <div class="col-md-12">
+                                        <div class="d-flex justify-content-end">
+                                            <p class="home__wrapper__table__link"><a href="{{ route('courses.index') }}">Lihat Semua <i class="fas fa-chevron-right"></i></a></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -204,7 +225,7 @@
                                     <tbody>
                                         @forelse($userStudent as $user)
                                             <tr>
-                                                <td>{{ ++$j }}</td>
+                                                <td>{{ ++$l }}</td>
                                                 <td>{{ $user->npm }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
@@ -232,6 +253,13 @@
                                         @endforelse
                                     </tbody>
                                 </table>
+                                <div class="d-flex align-items-center">
+                                    <div class="col-md-12">
+                                        <div class="d-flex justify-content-end">
+                                            <p class="home__wrapper__table__link"><a href="{{ route('courses.index') }}">Lihat Semua <i class="fas fa-chevron-right"></i></a></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -257,7 +285,7 @@
                                     <tbody>
                                         @forelse($userAdmin as $user)
                                             <tr>
-                                                <td>{{ ++$j }}</td>
+                                                <td>{{ ++$m }}</td>
                                                 <td>{{ $user->nik }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
@@ -285,6 +313,13 @@
                                         @endforelse
                                     </tbody>
                                 </table>
+                                <div class="d-flex align-items-center">
+                                    <div class="col-md-12">
+                                        <div class="d-flex justify-content-end">
+                                            <p class="home__wrapper__table__link"><a href="{{ route('courses.index') }}">Lihat Semua <i class="fas fa-chevron-right"></i></a></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @else

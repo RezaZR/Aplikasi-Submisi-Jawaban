@@ -15,12 +15,16 @@ class RegisterController extends Controller
      */
     public function index()
     {
+        $i = 0;
+        $j = 0;
+        $k = 0;
+        $l = 0;
         $userAssistant = ModelUser::all()->where('level', '=', 'Assistant')->take(5)->sortBy('created_at');
         $userLecturer = ModelUser::all()->where('level', '=', 'Lecturer')->take(5)->sortBy('created_at');
         $userStudent = ModelUser::all()->where('level', '=', 'Student')->take(5)->sortBy('created_at');
         $userAdmin = ModelUser::all()->where('level', '=', 'Admin')->take(5)->sortBy('created_at');
 
-        return view('users.index', ['userAssistant' => $userAssistant, 'userLecturer' => $userLecturer, 'userStudent' => $userStudent, 'userAdmin' => $userAdmin]);
+        return view('users.index', ['userAssistant' => $userAssistant, 'userLecturer' => $userLecturer, 'userStudent' => $userStudent, 'userAdmin' => $userAdmin, 'i' => $i, 'j' => $j, 'k' => $k, 'l' => $l]);
     }
 
     /**
