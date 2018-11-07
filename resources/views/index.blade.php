@@ -84,6 +84,66 @@
                         </div>
                         <div class="col-md-12">
                             <div class="home__wrapper__table">
+                                <p>List Admin</p>
+                                <table cellpadding="10" class="shadow--outset">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>NIK</th>
+                                            <th>Nama Pengguna</th>
+                                            <th>Email</th>
+                                            <th>Level</th>
+                                            <th>Nomor Telepon</th>
+                                            <th>Alamat</th>
+                                            <th>Tanggal Lahir</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Tanggal Dibuat</th>
+                                            <th>Tanggal Diubah</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse($userAdmin as $user)
+                                            <tr>
+                                                <td>{{ ++$m }}</td>
+                                                <td>{{ $user->nik }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->level }}</td>
+                                                <td>{{ $user->phone_number }}</td>
+                                                <td>{{ $user->address }}</td>
+                                                <td>{{ $user->birth_date }}</td>
+                                                <td>{{ $user->sex }}</td>
+                                                <td>{{ $user->created_at }}</td>
+                                                <td>{{ $user->updated_at }}</td>
+                                                <td>
+                                                    <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
+                                                    <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
+                                                    <form action="{{ route('users.destroy', $user->id)}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-standard--transparent" type="submit"><i class="fas fa-trash" title="Hapus"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td class="empty" colspan="12">Kolom kosong</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                                <div class="d-flex align-items-center">
+                                    <div class="col-md-12">
+                                        <div class="d-flex justify-content-end">
+                                            <p class="home__wrapper__table__link"><a href="{{ route('users.index') }}">Lihat Semua <i class="fas fa-chevron-right"></i></a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="home__wrapper__table">
                                 <p>List Dosen</p>
                                 <table cellpadding="10" class="shadow--outset">
                                     <thead>
@@ -196,7 +256,7 @@
                                 <div class="d-flex align-items-center">
                                     <div class="col-md-12">
                                         <div class="d-flex justify-content-end">
-                                            <p class="home__wrapper__table__link"><a href="{{ route('courses.index') }}">Lihat Semua <i class="fas fa-chevron-right"></i></a></p>
+                                            <p class="home__wrapper__table__link"><a href="{{ route('users.index') }}">Lihat Semua <i class="fas fa-chevron-right"></i></a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -256,67 +316,7 @@
                                 <div class="d-flex align-items-center">
                                     <div class="col-md-12">
                                         <div class="d-flex justify-content-end">
-                                            <p class="home__wrapper__table__link"><a href="{{ route('courses.index') }}">Lihat Semua <i class="fas fa-chevron-right"></i></a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="home__wrapper__table">
-                                <p>List Admin</p>
-                                <table cellpadding="10" class="shadow--outset">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>NIK</th>
-                                            <th>Nama Pengguna</th>
-                                            <th>Email</th>
-                                            <th>Level</th>
-                                            <th>Nomor Telepon</th>
-                                            <th>Alamat</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Tanggal Dibuat</th>
-                                            <th>Tanggal Diubah</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse($userAdmin as $user)
-                                            <tr>
-                                                <td>{{ ++$m }}</td>
-                                                <td>{{ $user->nik }}</td>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->level }}</td>
-                                                <td>{{ $user->phone_number }}</td>
-                                                <td>{{ $user->address }}</td>
-                                                <td>{{ $user->birth_date }}</td>
-                                                <td>{{ $user->sex }}</td>
-                                                <td>{{ $user->created_at }}</td>
-                                                <td>{{ $user->updated_at }}</td>
-                                                <td>
-                                                    <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
-                                                    <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
-                                                    <form action="{{ route('users.destroy', $user->id)}}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-standard--transparent" type="submit"><i class="fas fa-trash" title="Hapus"></i></button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @empty
-                                            <tr>
-                                                <td class="empty" colspan="12">Kolom kosong</td>
-                                            </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
-                                <div class="d-flex align-items-center">
-                                    <div class="col-md-12">
-                                        <div class="d-flex justify-content-end">
-                                            <p class="home__wrapper__table__link"><a href="{{ route('courses.index') }}">Lihat Semua <i class="fas fa-chevron-right"></i></a></p>
+                                            <p class="home__wrapper__table__link"><a href="{{ route('users.index') }}">Lihat Semua <i class="fas fa-chevron-right"></i></a></p>
                                         </div>
                                     </div>
                                 </div>

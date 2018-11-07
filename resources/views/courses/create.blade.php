@@ -1,17 +1,6 @@
 @extends('base')
 @section('title', ' - Buat Mata Kuliah Baru')
 @section('content')
-
-    @if(\Session::has('alert'))
-        <div class="alert alert-danger">
-            <div>{{Session::get('alert')}}</div>
-        </div>
-    @endif
-    @if(\Session::has('alert-success'))
-        <div class="alert alert-success">
-            <div>{{Session::get('alert-success')}}</div>
-        </div>
-    @endif
     
     <section class="crud">
         <div class="container">

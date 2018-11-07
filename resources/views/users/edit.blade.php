@@ -63,17 +63,18 @@
                                 <div class="form-group">
                                     <label for="level" class="active">Level</label>
                                     <select class="form-control" id="level" name="level" value="{{ $user->level }}">
-                                        @if(Session::get('level') == 'Admin')
+                                        dd(@if($user->level == 'Admin') @endif)
+                                        @if($user->level == 'Admin')
                                             <option value="Admin" selected>Tata Usaha</option>
                                             <option value="Lecturer">Dosen</option>
                                             <option value="Assistant">Asisten</option>
                                             <option value="Student">Mahasiswa</option>
-                                        @elseif(Session::get('level') == 'Lecturer')
+                                        @elseif($user->level == 'Lecturer')
                                             <option value="Admin">Tata Usaha</option>
                                             <option value="Lecturer" selected>Dosen</option>
                                             <option value="Assistant">Asisten</option>
                                             <option value="Student">Mahasiswa</option>
-                                        @elseif(Session::get('level') == 'Assistant')
+                                        @elseif($user->level == 'Assistant')
                                             <option value="Admin">Tata Usaha</option>
                                             <option value="Lecturer">Dosen</option>
                                             <option value="Assistant" selected>Asisten</option>
@@ -93,7 +94,7 @@
                                 <div class="form-group">
                                     <label for="sex" class="active">Jenis Kelamin</label>
                                     <select class="form-control" id="sex" name="sex" value="{{ $user->sex }}">
-                                        @if(Session::get('sex') == 'Male')
+                                        @if($user->sex == 'Male')
                                             <option value="Male" selected>Pria</option>
                                             <option value="Female">Wanita</option>
                                         @else
