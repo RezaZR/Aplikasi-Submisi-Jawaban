@@ -17,7 +17,7 @@ class Assignment extends Controller
     { 
         $courses = ModelAssignment::all()->take(5)->sortBy('created_at');
 
-        return view('courses.index', compact('courses'));
+        return view('assignments.index', compact('courses'));
     }
 
     /**

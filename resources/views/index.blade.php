@@ -332,17 +332,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <a href="">
-                                <div class="home__wrapper__box">
-                                    <img class="w-100" src="http://via.placeholder.com/346x148"/>
-                                    <div class="home__wrapper__box__info shadow--outset">
-                                        <p>{{Session::get('name')}}</p>
-                                        <p>AIF181101-03</p>
+                        @foreach ($lecturerCourseList as $courses)
+                            <div class="col-md-3">
+                                <a href="">
+                                    <div class="home__wrapper__box">
+                                        <img class="w-100" src="http://via.placeholder.com/346x148"/>
+                                        <div class="home__wrapper__box__info shadow--outset">
+                                            <p>{{ $courses->name }}</p>
+                                            <p>{{ $courses->code }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
+                        @endforeach
                     @endif
                 </div>
             </div>
