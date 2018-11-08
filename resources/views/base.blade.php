@@ -83,9 +83,15 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="d-flex justify-content-start">
-                                        <a href="/">Beranda</a>
-                                        <a href="{{ route('courses.index')}}">Mata Kuliah</a>
-                                        <a href="{{ route('users.index')}}">Pengguna</a>
+                                        @if(Auth::user()->level == 'Admin')
+                                            <a href="/">Beranda</a>
+                                            <a href="{{ route('courses.index')}}">Mata Kuliah</a>
+                                            <a href="{{ route('users.index')}}">Pengguna</a>
+                                        @endif
+                                        @if(Auth::user()->level == 'Lecturer')
+                                            <a href="/">Beranda</a>
+                                            <a href="{{ route('courses.index')}}">Mata Kuliah</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

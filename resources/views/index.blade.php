@@ -29,7 +29,7 @@
                                     <div class="d-flex justify-content-end">
                                         <a href="{{ route('courses.create')}}" class="btn btn-standard--secondary"><i class="fas fa-plus fa-fw"></i>Mata Kuliah Baru</a></a>
                                         <a href="{{ route('users.create')}}" class="btn btn-standard--secondary"><i class="fas fa-plus fa-fw"></i>Pengguna Baru</a></a>
-                                        <a href="/" class="btn btn-standard--secondary"><i class="fas fa-clipboard-list fa-fw"></i>Tugaskan Pengguna Ke Dalam MK</a></a>
+                                        <a href="{{ route('assigns.create') }}" class="btn btn-standard--secondary"><i class="fas fa-clipboard-list fa-fw"></i>Tugaskan Pengguna Ke Dalam MK</a></a>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="home__wrapper__table">
-                                <p>List Admin</p>
+                                <p>List Admin Terbaru</p>
                                 <table cellpadding="10" class="shadow--outset">
                                     <thead>
                                         <tr>
@@ -144,7 +144,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="home__wrapper__table">
-                                <p>List Dosen</p>
+                                <p>List Dosen Terbaru</p>
                                 <table cellpadding="10" class="shadow--outset">
                                     <thead>
                                         <tr>
@@ -204,7 +204,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="home__wrapper__table">
-                                <p>List Asisten</p>
+                                <p>List Asisten Terbaru</p>
                                 <table cellpadding="10" class="shadow--outset">
                                     <thead>
                                         <tr>
@@ -264,7 +264,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="home__wrapper__table">
-                                <p>List Mahasiswa</p>
+                                <p>List Mahasiswa Terbaru</p>
                                 <table cellpadding="10" class="shadow--outset">
                                     <thead>
                                         <tr>
@@ -328,13 +328,6 @@
                                 <div class="col-6">
                                     <div class="d-flex justify-content-start">
                                         <p class="title">Beranda</p>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="d-flex justify-content-end">
-                                        <a href="/register" class="btn btn-standard--secondary"><i class="fas fa-plus fa-fw"></i>Pengguna Baru</a></a>
-                                        <a href="/course" class="btn btn-standard--secondary"><i class="fas fa-plus fa-fw"></i>Mata Kuliah Baru</a></a>
-                                        <a href="/course" class="btn btn-standard--secondary"><i class="fas fa-clipboard-list fa-fw"></i>Tugaskan Pengguna Ke Dalam MK</a></a>
                                     </div>
                                 </div>
                             </div>
