@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ModelUser;
 use App\ModelCourse;
-use App\ModelAssitantCourse;
+use App\ModelAssistantCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -19,12 +19,12 @@ class AssistantCourseController extends Controller
      */
     public function store(Request $request) {
         $this->validate($request, [
-            'assistant_name' => 'required',
-            'course_name' => 'required',
+            'assistant_id' => 'required',
+            'course_id' => 'required',
         ]);
         $data = new ModelAssistantCourse();
-        $data->assistant_name = $request->assistant_name;
-        $data->course_name = $request->course_name;
+        $data->assistant_id = $request->assistant_id;
+        $data->course_id = $request->course_id;
         $data->save();
         return redirect('/')->with('alert-success','Berhasil menugaskan pengguna ke dalam mata kuliah');
     }
@@ -65,12 +65,12 @@ class AssistantCourseController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'assistant_name' => 'required',
-            'course_name' => 'required',
+            'assistant_id' => 'required',
+            'course_id' => 'required',
         ]);
-        $data = ModelAssistantCourse::find($id);
-        $data->assistant_name = $request->assistant_name;
-        $data->course_name = $request->course_name;
+        $data = ModelLecturerCourse::find($id);
+        $data->assistant_id = $request->assistant_id;
+        $data->course_id = $request->course_id;
         $data->save();
         return redirect('/')->with('alert-success','Berhasil mengubah');
     }

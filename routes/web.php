@@ -13,9 +13,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('courses', 'CourseController');
 
     Route::resource('assigns', 'AssignController');
-    Route::resource('lecturer_courses', 'LecturerCourseController');
+    Route::resource('lecturer_courses', 'LecturerCourseController', ['except' => ['index']]);
     Route::resource('assistant_courses', 'AssistantCourseController');
     Route::resource('student_courses', 'StudentCourseController');
+
+    Route::get('lecturer_courses/{id}/assignments/create', 'AssignmentController@create');
+    Route::resource('/assignments', 'AssignmentController');
 });
 
 Route::get('/login', ['as' => 'login', 'uses' => 'SessionController@login']);

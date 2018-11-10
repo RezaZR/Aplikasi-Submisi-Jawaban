@@ -117,7 +117,7 @@ class RegisterController extends Controller
             'birth_date' => 'required|date',
             'sex' => 'required',
         ]);
-        $data = new ModelUser();
+        $data = ModelUser::find($id);
         $data->name = $request->name;
         $data->npm = $request->npm;
         $data->nik = $request->nik;
@@ -129,7 +129,7 @@ class RegisterController extends Controller
         $data->sex = $request->sex;
         $data->birth_date = $request->birth_date;
         $data->save();
-        return redirect('/')->with('alert-success','Berhasil registrasi pengguna baru');
+        return redirect('/')->with('alert-success','Berhasil mengubah detail pengguna');
     }
 
     /**

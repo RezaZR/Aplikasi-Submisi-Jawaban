@@ -63,7 +63,6 @@
                                 <div class="form-group">
                                     <label for="level" class="active">Level</label>
                                     <select class="form-control" id="level" name="level" value="{{ $user->level }}">
-                                        dd(@if($user->level == 'Admin') @endif)
                                         @if($user->level == 'Admin')
                                             <option value="Admin" selected>Tata Usaha</option>
                                             <option value="Lecturer">Dosen</option>

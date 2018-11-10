@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="field form-group">
                                     {{ Form::label('npm', 'NPM') }}
-                                    {{ Form::text('nik', ['class' => 'form-control']) }}
+                                    {{ Form::text('npm', ['class' => 'form-control']) }}
                                 </div>
                                 <div class="field form-group">
                                     {{ Form::label('nik', 'NIK') }}

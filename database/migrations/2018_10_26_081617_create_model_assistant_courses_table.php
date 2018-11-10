@@ -15,10 +15,10 @@ class CreateModelAssistantCoursesTable extends Migration
     {
         Schema::create('assistant_courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('assistant_name')->unsigned();
-            $table->foreign('assistant_name')->references('id')->on('users');
-            $table->integer('course_name')->unsigned();
-            $table->foreign('course_name')->references('id')->on('courses');
+            $table->integer('assistant_id')->unsigned();
+            $table->foreign('assistant_id')->references('id')->on('users');
+            $table->integer('course_id')->unsigned();
+            $table->foreign('course_id')->references('id')->on('courses');
             $table->softDeletes();
             $table->timestamps();
         });

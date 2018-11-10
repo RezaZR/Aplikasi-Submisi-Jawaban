@@ -19,12 +19,12 @@ class StudentCourseController extends Controller
      */
     public function store(Request $request) {
         $this->validate($request, [
-            'student_name' => 'required',
-            'course_name' => 'required',
+            'student_id' => 'required',
+            'course_id' => 'required',
         ]);
         $data = new ModelStudentCourse();
-        $data->student_name = $request->student_name;
-        $data->course_name = $request->course_name;
+        $data->student_id = $request->student_id;
+        $data->course_id = $request->course_id;
         $data->save();
         return redirect('/')->with('alert-success','Berhasil menugaskan pengguna ke dalam mata kuliah');
     }
@@ -65,12 +65,12 @@ class StudentCourseController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'student_name' => 'required',
-            'course_name' => 'required',
+            'student_id' => 'required',
+            'course_id' => 'required',
         ]);
         $data = ModelStudentCourse::find($id);
-        $data->student_name= $request->student_name;
-        $data->course_name = $request->course_name;
+        $data->student_id = $request->student_id;
+        $data->course_id = $request->course_id;
         $data->save();
         return redirect('/')->with('alert-success','Berhasil mengubah');
     }

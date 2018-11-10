@@ -15,10 +15,10 @@ class CreateModelStudentCoursesTable extends Migration
     {
         Schema::create('student_courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('student_name')->unsigned();
-            $table->foreign('student_name')->references('id')->on('users');
-            $table->integer('course_name')->unsigned();
-            $table->foreign('course_name')->references('id')->on('courses');
+            $table->integer('student_id')->unsigned();
+            $table->foreign('student_id')->references('id')->on('users');
+            $table->integer('course_id')->unsigned();
+            $table->foreign('course_id')->references('id')->on('courses');
             $table->softDeletes();
             $table->timestamps();
         });

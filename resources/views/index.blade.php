@@ -51,7 +51,7 @@
                                     <tbody>
                                         @forelse($courses as $course)
                                             <tr>
-                                                <td>{{ ++$i }}</td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $course->code }}</td>
                                                 <td>{{ $course->name }}</td>
                                                 <td>{{ $course->created_at }}</td>
@@ -105,7 +105,7 @@
                                     <tbody>
                                         @forelse($userAdmin as $user)
                                             <tr>
-                                                <td>{{ ++$m }}</td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $user->nik }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
@@ -165,7 +165,7 @@
                                     <tbody>
                                         @forelse($userLecturer as $user)
                                             <tr>
-                                                <td>{{ ++$j }}</td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $user->nik }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
@@ -225,7 +225,7 @@
                                     <tbody>
                                         @forelse($userAssistant as $user)
                                             <tr>
-                                                <td>{{ ++$k }}</td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $user->npm }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
@@ -285,7 +285,7 @@
                                     <tbody>
                                         @forelse($userStudent as $user)
                                             <tr>
-                                                <td>{{ ++$l }}</td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $user->npm }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
@@ -332,19 +332,23 @@
                                 </div>
                             </div>
                         </div>
-                        @foreach ($lecturerCourseList as $courses)
-                            <div class="col-md-3">
-                                <a href="">
-                                    <div class="home__wrapper__box">
-                                        <img class="w-100" src="http://via.placeholder.com/346x148"/>
-                                        <div class="home__wrapper__box__info shadow--outset">
-                                            <p>{{ $courses->name }}</p>
-                                            <p>{{ $courses->code }}</p>
-                                        </div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                @foreach ($lecturerCourses as $course)
+                                    <div class="col-md-3">
+                                        <a href="{{ route('lecturer_courses.show', $course->course_id) }}">
+                                            <div class="home__wrapper__box">
+                                                <img class="w-100" src="http://via.placeholder.com/346x148"/>
+                                                <div class="home__wrapper__box__info shadow--outset">
+                                                    <p>{{ $course->course_name }}</p>
+                                                    <p>{{ $course->course_code }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
+                                @endforeach
                             </div>
-                        @endforeach
+                        </div>
                     @endif
                 </div>
             </div>

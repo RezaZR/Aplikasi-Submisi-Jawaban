@@ -3,30 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\ModelAssignment;
+use App\ModelCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class Assignment extends Controller
+class AssignmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    { 
-        $courses = ModelAssignment::all()->take(5)->sortBy('created_at');
-
-        return view('assignments.index', compact('courses'));
-    }
-
+    protected $course = '';
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
-        return view('courses.create');
+    public function create($id) {
+        $course = ModelCourse::find($id);
+        return view('assignments.create', ['course' => $course]);
     }
 
     /**
@@ -36,15 +27,28 @@ class Assignment extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+        // $course = ModelCourse::find($id);
+
         $this->validate($request, [
-            'code' => 'required|unique:courses|max:6',
-            'name' => 'required|max:50',
+            'title' => 'required',
+            'description' => 'required',
+            'mode' => 'required',
+            'is_on_time' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'course_id' => 'required',
         ]);
-        $data = new ModelCourse();
-        $data->code = $request->code;
-        $data->name = $request->name;
+
+        $data = new ModelAssignment();
+        $data->title = $request->title;
+        $data->description = $request->description;
+        $data->mode = $request->mode;
+        $data->is_on_time = $request->is_on_time;
+        $data->start_time = $request->start_time;
+        $data->end_time = $request->end_time;
+        $data->course_id = $request->course_id;
         $data->save();
-        return redirect('/')->with('alert-success','Berhasil membuat mata kuliah baru');
+        return redirect('/')->with('alert-success','Berhasil membuat tempat pengumpulan baru');
     }
 
     /**

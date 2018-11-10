@@ -31,8 +31,8 @@
                                             <form action="{{ route('lecturer_courses.store') }}" method="post">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="lecturer_name">Nama Dosen</label>
-                                                    <select class="form-control" name="lecturer_name" required id="lecturer_name">
+                                                    <label for="lecturer_id">Nama Dosen</label>
+                                                    <select class="form-control" name="lecturer_id" required id="lecturer_id">
                                                         <option value="" disabled selected>Pilih dosen</option>
                                                         @foreach($lecturers as $user)
                                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -40,8 +40,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="course_name">Nama Mata Kuliah</label>
-                                                    <select class="form-control" name="course_name" required id="course_name">
+                                                    <label for="course_id">Nama Mata Kuliah</label>
+                                                    <select class="form-control" name="course_id" required id="course_id">
                                                         <option value="" disabled selected>Pilih mata kuliah</option>
                                                         @foreach($courses as $course)
                                                             <option value="{{ $course->id }}">{{ $course->name }}</option>
@@ -76,8 +76,8 @@
                                             <form action="{{ route('assistant_courses.store') }}" method="post">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="assistant_name">Nama Asisten</label>
-                                                    <select class="form-control" name="assistant_name" required id="assistant_name">
+                                                    <label for="assistant_id">Nama Asisten</label>
+                                                    <select class="form-control" name="assistant_id" required id="assistant_id">
                                                         <option value="" disabled selected>Pilih asisten</option>
                                                         @foreach($assistants as $user)
                                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -85,8 +85,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="course_name">Nama Mata Kuliah</label>
-                                                    <select class="form-control" name="course_name" required id="course_name">
+                                                    <label for="course_id">Nama Mata Kuliah</label>
+                                                    <select class="form-control" name="course_id" required id="course_id">
                                                         <option value="" disabled selected>Pilih mata kuliah</option>
                                                         @foreach($courses as $course)
                                                             <option value="{{ $course->id }}">{{ $course->name }}</option>
@@ -121,8 +121,8 @@
                                             <form action="{{ route('student_courses.store') }}" method="post">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="student_name">Nama Mahasiswa</label>
-                                                    <select class="form-control" name="student_name" required id="student_name">
+                                                    <label for="student_id">Nama Mahasiswa</label>
+                                                    <select class="form-control" name="student_id" required id="student_id">
                                                         <option value="" disabled selected>Pilih mahasiswa</option>
                                                         @foreach($students as $user)
                                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -130,8 +130,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="course_name">Nama Mata Kuliah</label>
-                                                    <select class="form-control" name="course_name" required id="course_name">
+                                                    <label for="course_id">Nama Mata Kuliah</label>
+                                                    <select class="form-control" name="course_id" required id="course_id">
                                                         <option value="" disabled selected>Pilih mata kuliah</option>
                                                         @foreach($courses as $course)
                                                             <option value="{{ $course->id }}">{{ $course->name }}</option>

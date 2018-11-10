@@ -15,14 +15,15 @@ class CreateModelUserAssignmentsTable extends Migration
     {
         Schema::create('user_assignments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('student_name')->unsigned();
-            $table->foreign('student_name')->references('id')->on('users');
-            $table->text('file_name');
+            $table->integer('student_id')->unsigned();
+            $table->foreign('student_id')->references('id')->on('users');
+            $table->text('file_id');
             $table->dateTime('submission_time');
             $table->integer('grader')->unsigned();
             $table->foreign('grader')->references('id')->on('users');
             $table->dateTime('examine_time');
             $table->float('grade');
+            $table->enum('status', ['Not Submitted', 'Submitted', 'Graded']);
             $table->softDeletes();
             $table->timestamps();
         });

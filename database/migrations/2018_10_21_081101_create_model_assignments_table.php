@@ -18,12 +18,11 @@ class CreateModelAssignmentsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->enum('mode', ['Assignment', 'Test', 'Exam']);
-            $table->enum('status', ['Not Submitted', 'Submitted', 'Graded']);
             $table->boolean('is_on_time');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-            $table->integer('course_name')->unsigned();
-            $table->foreign('course_name')->references('id')->on('courses');
+            $table->integer('course_id')->unsigned();
+            $table->foreign('course_id')->references('id')->on('courses');
             $table->softDeletes();
             $table->timestamps();
         });
