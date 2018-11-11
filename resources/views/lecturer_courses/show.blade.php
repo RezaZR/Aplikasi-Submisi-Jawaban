@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="d-flex justify-content-end">
-                                        <a class="btn btn-standard--primary" href="{{ url('/lecturer_courses/' . $course->id . '/assignments/create') }}">Buat Tempat Pengumpulan</a>
+                                        <a class="btn btn-standard--primary" href="{{ route('assignments.create', $course->id) }}">Buat Tempat Pengumpulan</a>
                                     </div>  
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                         <div class="col-md-6 no-padding">
                                             <div class="d-flex justify-content-end">
                                                 <a class="color--black" href="{{ url('/lecturer_courses/' . $course->id . '/assignments/' . $assignment->id) }}"><i class="fas fa-eye" title="Detail"></i></a>
-                                                <a class="color--black" href="{{ url('/lecturer_courses/' . $course->id . '/assignments/edit/' . $assignment->id) }}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
+                                                <a class="color--black" href="{{ url('/lecturer_courses/' . $course->id . '/assignments/' . $assignment->id . '/edit') }}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
                                                 <form action="{{ url('/lecturer_courses/' . $course->id . '/assignments/' . $assignment->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
@@ -70,10 +70,11 @@
                                     <p>Status Telat: {{ $assignment->is_on_time }}</p>
                                     <p>Mode: {{ $assignment->mode }}</p>
                                 </div>
-                        @empty
-                                <p>Kosong</p>
                             </div>
+                        @empty
+                            <p>Kosong</p>
                         @endforelse
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>

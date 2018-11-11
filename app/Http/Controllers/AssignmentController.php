@@ -28,8 +28,6 @@ class AssignmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        // $course = ModelCourse::find($id);
-
         $this->validate($request, [
             'title' => 'required',
             'description' => 'required',
@@ -49,6 +47,7 @@ class AssignmentController extends Controller
         $data->end_time = $request->end_time;
         $data->course_id = $request->course_id;
         $data->save();
+
         return redirect('/')->with('alert-success','Berhasil membuat tempat pengumpulan baru');
     }
 
@@ -58,11 +57,15 @@ class AssignmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($course_id, $assignment_id)
     {
-        $course = ModelCourse::find($id);
+        $course = ModelCourse::find($course_id);
+        $assignment = ModelAssignment::find($assignment_id);
+        $lecturerAssignments = ModelAssignment::select('courses.id as course_id', 'courses.code as course_code','courses.name as course_name', 'assignments.*')
+                                                    ->leftjoin('courses', 'assignments.course_id', '=', 'courses.id')
+                                                    ->get()->sortBy('start_time');
         
-        return view('assignments.create', ['course' => $course]);
+        return view('assignments.show', ['course' => $course, 'assignment' => $assignment]);
     }
 
     /**
@@ -71,9 +74,13 @@ class AssignmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($course_id, $assignment_id)
     {
-        $course = ModelCourse::find($id);
+        $course = ModelCourse::find($course_id);
+        $assignment = ModelAssignment::find($assignment_id);
+        $lecturerAssignments = ModelAssignment::select('courses.id as course_id', 'courses.code as course_code','courses.name as course_name', 'assignments.*')
+                                                    ->leftjoin('courses', 'assignments.course_id', '=', 'courses.id')
+                                                    ->get()->sortBy('start_time');
 
         return view('courses.edit', compact('course'));
     }

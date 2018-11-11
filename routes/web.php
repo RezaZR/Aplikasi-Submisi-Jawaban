@@ -17,8 +17,30 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('assistant_courses', 'AssistantCourseController');
     Route::resource('student_courses', 'StudentCourseController');
 
-    Route::get('lecturer_courses/{id}/assignments/create', 'AssignmentController@create');
-    Route::resource('/assignments', 'AssignmentController');
+    Route::get('lecturer_courses/{id}/assignments/create', [
+        'as' => 'assignments.create', 
+        'uses' => 'AssignmentController@create'
+    ]);
+    Route::post('assignments', [
+        'as' => 'assignments.store', 
+        'uses' => 'AssignmentController@store'
+    ]);
+    Route::get('lecturer_courses/{course_id}/assignments/{assignment_id}', [
+        'as' => 'assignments.show', 
+        'uses' => 'AssignmentController@show'
+    ]);
+    Route::get('lecturer_courses/{course_id}/assignments/{assignment_id}/edit', [
+        'as' => 'assignments.edit', 
+        'uses' => 'AssignmentController@edit'
+    ]);
+    Route::put('lecturer_courses/{course_id}/assignments/{assignment_id}', [
+        'as' => 'assignments.update', 
+        'uses' => 'AssignmentController@update'
+    ]);
+    Route::delete('lecturer_courses/{course_id}/assignments/{assignment_id}', [
+        'as' => 'assignments.destroy', 
+        'uses' => 'AssignmentController@destroy'
+    ]);
 });
 
 Route::get('/login', ['as' => 'login', 'uses' => 'SessionController@login']);

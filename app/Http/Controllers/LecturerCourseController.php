@@ -56,7 +56,7 @@ class LecturerCourseController extends Controller
         $course = ModelCourse::find($id);
         $lecturerAssignments = ModelAssignment::select('courses.id as course_id', 'courses.code as course_code','courses.name as course_name', 'assignments.*')
                                                     ->leftjoin('courses', 'assignments.course_id', '=', 'courses.id')
-                                                    ->get()->sortBy('');
+                                                    ->get()->sortBy('start_time');
 
         return view('lecturer_courses.show', compact('lecturerAssignments', 'course'));
     }
