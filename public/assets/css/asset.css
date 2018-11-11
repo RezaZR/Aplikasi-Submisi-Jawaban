@@ -86,7 +86,7 @@
 .field select,
 .field p {
     width: 100%;
-    padding: .25em .75em;
+    padding: .5em .75em;
     font-size: 17px;
     color: #000;
     -webkit-transition: border-color .5s ease-in;
@@ -294,6 +294,37 @@
     text-align: center;
     font-size: 22px;
     font-weight: 600;
+}
+
+.crud__wrapper__form--md {
+    padding: .5em 1em;
+}
+
+.crud__wrapper__form--md:hover {
+    background-color: #fafafa;
+}
+
+.crud__wrapper__form--md__title {
+    padding: .5em;
+    border-bottom: 1px solid rgba(0, 0, 0, .25);
+}
+
+.crud__wrapper__form--md__title p {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.crud__wrapper__form--md__title a {
+    margin-right: .25em;
+}
+
+.crud__wrapper__form--md__body {
+    padding: .5em 1em;
+}
+
+.crud__wrapper__form--md__body p {
+    font-size: 13px;
+    line-height: 25px;
 }
 
 .crud__wrapper__form .form-group label {

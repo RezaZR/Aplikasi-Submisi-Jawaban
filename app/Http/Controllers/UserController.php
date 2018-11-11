@@ -35,7 +35,7 @@ class UserController extends Controller
                                                     ->leftjoin('courses', 'lecturer_courses.course_id', '=', 'courses.id')
                                                     ->leftjoin('users', 'lecturer_courses.lecturer_id', '=', 'users.id')
                                                     ->where('lecturer_id', '=', $loggedInUser->id)
-                                                    ->get();
+                                                    ->get()->sortBy('course_name');
 
         return view('index', ['userAssistant' => $userAssistant, 'userLecturer' => $userLecturer, 'userStudent' => $userStudent, 'userAdmin' => $userAdmin, 'courses' => $courses, 'lecturerCourses' => $lecturerCourses]);
     }

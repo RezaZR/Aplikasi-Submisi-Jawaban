@@ -22,12 +22,12 @@
                             <div class="d-flex align-items-center">
                                 <div class="col-md-6">
                                     <div class="d-flex justify-content-start">
-                                        <p>{{ $lecturerCourse->code }} - {{ $lecturerCourse->name }}</p>
+                                        <p>{{ $course->code }} - {{ $course->name }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="d-flex justify-content-end">
-                                        <a class="btn btn-standard--primary" href="{{ url('/lecturer_courses/' . $lecturerCourse->id . '/assignments/create') }}">Buat Tempat Pengumpulan</a>
+                                        <a class="btn btn-standard--primary" href="{{ url('/lecturer_courses/' . $course->id . '/assignments/create') }}">Buat Tempat Pengumpulan</a>
                                     </div>  
                                 </div>
                             </div>
@@ -41,25 +41,39 @@
                                 </ul>
                             </div>
                         @endif
-                        <div class="crud__wrapper__form">
-                            <div class="field form-group">
-                                <label for="name" class="active">Nama Mata Kuliah</label>
-                                <p>{{ $lecturerCourse->name }}</p>
-                            </div>
-                            <div class="field form-group">
-                                <label for="code" class="active">Kode Mata Kuliah</label>
-                                <p>{{ $lecturerCourse->code }}</p>
-                            </div>
-                            <div class="field form-group">                 
-                                <div class="d-flex align-items-center">
-                                    <div class="col-md-12">
-                                        <div class="d-flex justify-content-center">
-                                            <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
+                        @forelse($lecturerAssignments as $assignment)
+                            <div class="crud__wrapper__form--md">
+                                <div class="crud__wrapper__form--md__title">
+                                    <div class="d-flex align-items-center">
+                                        <div class="col-md-6 no-padding">
+                                            <div class="d-flex justify-content-start">
+                                                <p>{{ $assignment->title }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 no-padding">
+                                            <div class="d-flex justify-content-end">
+                                                <a class="color--black" href="{{ url('/lecturer_courses/' . $course->id . '/assignments/' . $assignment->id) }}"><i class="fas fa-eye" title="Detail"></i></a>
+                                                <a class="color--black" href="{{ url('/lecturer_courses/' . $course->id . '/assignments/edit/' . $assignment->id) }}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
+                                                <form action="{{ url('/lecturer_courses/' . $course->id . '/assignments/' . $assignment->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-standard--transparent color--black" type="submit"><i class="fas fa-trash" title="Hapus"></i></button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="crud__wrapper__form--md__body">
+                                    <p>Deskripsi: {{ $assignment->description }}</p>
+                                    <p>Tanggal dan Waktu Mulai: {{ $assignment->start_time }}</p>
+                                    <p>Tanggal dan Waktu Selesai: {{ $assignment->end_time }}</p>
+                                    <p>Status Telat: {{ $assignment->is_on_time }}</p>
+                                    <p>Mode: {{ $assignment->mode }}</p>
+                                </div>
+                        @empty
+                                <p>Kosong</p>
                             </div>
-                        </div>
+                        @endforelse
                     </div>
                 </div>
             </div>

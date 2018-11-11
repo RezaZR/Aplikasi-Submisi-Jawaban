@@ -17,6 +17,7 @@ class AssignmentController extends Controller
      */
     public function create($id) {
         $course = ModelCourse::find($id);
+
         return view('assignments.create', ['course' => $course]);
     }
 
@@ -60,8 +61,8 @@ class AssignmentController extends Controller
     public function show($id)
     {
         $course = ModelCourse::find($id);
-
-        return view('courses.show', compact('course'));
+        
+        return view('assignments.create', ['course' => $course]);
     }
 
     /**
