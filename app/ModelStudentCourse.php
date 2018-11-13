@@ -11,6 +11,7 @@ class ModelStudentCourse extends Model
 
     // protected $dates = ['deleted_at'];
     protected $table = 'student_courses';
+    protected $guarded = [];
 
     public function students() {
         return $this->belongsTo('App\ModelUser');

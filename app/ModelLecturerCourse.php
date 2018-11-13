@@ -12,6 +12,7 @@ class ModelLecturerCourse extends Model
     // protected $dates = ['deleted_at'];
     protected $table = 'lecturer_courses';
     protected $guarded = [];
+    
     public function lecturers() {
         return $this->belongsTo('App\ModelUser');
     }

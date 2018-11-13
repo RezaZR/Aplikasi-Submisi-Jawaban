@@ -147,7 +147,7 @@
 }
 
 .header__wrapper__info p:first-child {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 300;
 }
 
@@ -298,10 +298,11 @@
 
 .crud__wrapper__form--md {
     padding: .5em 1em;
+    margin: .1em 0;
 }
 
 .crud__wrapper__form--md:hover {
-    background-color: #fafafa;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
 }
 
 .crud__wrapper__form--md__title {
@@ -325,6 +326,20 @@
 .crud__wrapper__form--md__body p {
     font-size: 13px;
     line-height: 25px;
+    display: block;
+    overflow: hidden;
+}
+
+.crud__wrapper__form--md__body p span:first-child {
+    font-weight: 600;
+    width: 20%;
+    display: inline-block;
+    float: left;
+}
+
+.crud__wrapper__form--md__body p span:last-child {
+    width: 80%;
+    float: left;
 }
 
 .crud__wrapper__form .form-group label {

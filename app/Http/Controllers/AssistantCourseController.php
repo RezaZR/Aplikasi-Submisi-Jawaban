@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ModelUser;
 use App\ModelCourse;
+use App\ModelAssignment;
 use App\ModelAssistantCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -20,7 +21,7 @@ class AssistantCourseController extends Controller
     public function store(Request $request) {
         $this->validate($request, [
             'assistant_id' => 'required',
-            'course_id' => 'required',
+            'course_id' => 'required|unique:assistant_courses',
         ]);
         $data = new ModelAssistantCourse();
         $data->assistant_id = $request->assistant_id;
@@ -37,9 +38,14 @@ class AssistantCourseController extends Controller
      */
     public function show($id)
     {
-        $assistantCourses = ModelAssistantCourse::find($id);
+        $course = ModelCourse::find($id);
+        $assistantAssignments = ModelAssignment::select('assignments.*')
+                                                    ->leftjoin('courses', 'assignments.course_id', '=', 'courses.id')
+                                                    ->where('course_id', '=', $course->id)
+                                                    ->get()
+                                                    ->sortBy('start_time');
 
-        return view('assistant_courses.show', compact('assistantCourses'));
+        return view('assistant_courses.show', compact('assistantAssignments', 'course'));
     }
 
     /**
@@ -68,7 +74,7 @@ class AssistantCourseController extends Controller
             'assistant_id' => 'required',
             'course_id' => 'required',
         ]);
-        $data = ModelLecturerCourse::find($id);
+        $data = ModelAssitantCourse::find($id);
         $data->assistant_id = $request->assistant_id;
         $data->course_id = $request->course_id;
         $data->save();

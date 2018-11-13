@@ -14,20 +14,6 @@ class LecturerCourseController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    { 
-        $loggedInUser = Auth::user();
-        $lecturerCourses = ModelLecturerCourse::all()->where('lecturer_name', '=', $loggedInUser->id);
-        $lecturerCourseList = ModelCourse::all()->where('id', '=', $lecturerCourses[0]->course_id);
-
-        return view('lecturer_courses.index', compact('courses'));
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -36,7 +22,7 @@ class LecturerCourseController extends Controller
     public function store(Request $request) {
         $this->validate($request, [
             'lecturer_id' => 'required',
-            'course_id' => 'required',
+            'course_id' => 'required|unique:lecturer_courses',
         ]);
         $data = new ModelLecturerCourse();
         $data->lecturer_id = $request->lecturer_id;
@@ -54,9 +40,11 @@ class LecturerCourseController extends Controller
     public function show($id)
     {
         $course = ModelCourse::find($id);
-        $lecturerAssignments = ModelAssignment::select('courses.id as course_id', 'courses.code as course_code','courses.name as course_name', 'assignments.*')
+        $lecturerAssignments = ModelAssignment::select('assignments.*')
                                                     ->leftjoin('courses', 'assignments.course_id', '=', 'courses.id')
-                                                    ->get()->sortBy('start_time');
+                                                    ->where('course_id', '=', $course->id)
+                                                    ->get()
+                                                    ->sortBy('start_time');
 
         return view('lecturer_courses.show', compact('lecturerAssignments', 'course'));
     }

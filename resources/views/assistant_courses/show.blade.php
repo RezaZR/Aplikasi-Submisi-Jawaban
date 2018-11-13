@@ -20,15 +20,10 @@
                     <div class="crud__wrapper shadow--outset">
                         <div class="crud__wrapper__title">
                             <div class="d-flex align-items-center">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="d-flex justify-content-start">
                                         <p>{{ $course->code }} - {{ $course->name }}</p>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="d-flex justify-content-end">
-                                        <a class="btn btn-standard--primary" href="{{ route('assignments.create', $course->id) }}">Buat Tempat Pengumpulan</a>
-                                    </div>  
                                 </div>
                             </div>
                         </div>
@@ -41,24 +36,15 @@
                                 </ul>
                             </div>
                         @endif
-                        @forelse($lecturerAssignments as $assignment)
+                        @forelse($assistantAssignments as $assignment)
                             <div class="crud__wrapper__form--md">
                                 <div class="crud__wrapper__form--md__title">
                                     <div class="d-flex align-items-center">
-                                        <div class="col-md-6 no-padding">
+                                        <div class="col-md-12 no-padding">
                                             <div class="d-flex justify-content-start">
                                                 <p>{{ $assignment->title }}</p>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 no-padding">
-                                            <div class="d-flex justify-content-end">
-                                                <a class="color--black" href="{{ url('/lecturer_courses/' . $course->id . '/assignments/' . $assignment->id . '/edit') }}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
-                                                <form action="{{ url('/lecturer_courses/' . $course->id . '/assignments/' . $assignment->id) }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-standard--transparent color--black" type="submit"><i class="fas fa-trash" title="Hapus"></i></button>
-                                                </form>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

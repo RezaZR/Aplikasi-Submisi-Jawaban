@@ -11,6 +11,7 @@ class ModelAssistantCourse extends Model
 
     // protected $dates = ['deleted_at'];
     protected $table = 'assistant_courses';
+    protected $guarded = [];
 
     public function assistants() {
         return $this->belongsTo('App\ModelUser');

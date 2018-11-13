@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Auth;
 use App\ModelUser;
 use App\ModelCourse;
+use App\ModelAssistantCourse;
 use App\ModelLecturerCourse;
+use App\ModelStudentCourse;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 
@@ -37,6 +39,18 @@ class UserController extends Controller
                                                     ->where('lecturer_id', '=', $loggedInUser->id)
                                                     ->get()->sortBy('course_name');
 
-        return view('index', ['userAssistant' => $userAssistant, 'userLecturer' => $userLecturer, 'userStudent' => $userStudent, 'userAdmin' => $userAdmin, 'courses' => $courses, 'lecturerCourses' => $lecturerCourses]);
+        $assistantCourses = ModelAssistantCourse::select('courses.id as course_id', 'courses.code as course_code','courses.name as course_name')
+                                                    ->leftjoin('courses', 'assistant_courses.course_id', '=', 'courses.id')
+                                                    ->leftjoin('users', 'assistant_courses.assistant_id', '=', 'users.id')
+                                                    ->where('assistant_id', '=', $loggedInUser->id)
+                                                    ->get()->sortBy('course_name');
+
+        $studentCourses = ModelStudentCourse::select('courses.id as course_id', 'courses.code as course_code','courses.name as course_name')
+                                                    ->leftjoin('courses', 'student_courses.course_id', '=', 'courses.id')
+                                                    ->leftjoin('users', 'student_courses.student_id', '=', 'users.id')
+                                                    ->where('student_id', '=', $loggedInUser->id)
+                                                    ->get()->sortBy('course_name');
+
+        return view('index', ['userAssistant' => $userAssistant, 'userLecturer' => $userLecturer, 'userStudent' => $userStudent, 'userAdmin' => $userAdmin, 'courses' => $courses, 'lecturerCourses' => $lecturerCourses, 'assistantCourses' => $assistantCourses, 'studentCourses' => $studentCourses]);
     }
 }

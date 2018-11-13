@@ -322,7 +322,7 @@
                                 </div>
                             </div>
                         </div>
-                    @else
+                    @elseif(Auth::user()->level == 'Lecturer')
                         <div class="home__wrapper__title">
                             <div class="d-flex align-items-center">
                                 <div class="col-6">
@@ -337,6 +337,60 @@
                                 @foreach ($lecturerCourses as $course)
                                     <div class="col-md-3">
                                         <a href="{{ route('lecturer_courses.show', $course->course_id) }}">
+                                            <div class="home__wrapper__box">
+                                                <img class="w-100" src="http://via.placeholder.com/346x148"/>
+                                                <div class="home__wrapper__box__info shadow--outset">
+                                                    <p>{{ $course->course_name }}</p>
+                                                    <p>{{ $course->course_code }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @elseif(Auth::user()->level == 'Assistant')
+                        <div class="home__wrapper__title">
+                            <div class="d-flex align-items-center">
+                                <div class="col-6">
+                                    <div class="d-flex justify-content-start">
+                                        <p class="title">Beranda</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                @foreach ($assistantCourses as $course)
+                                    <div class="col-md-3">
+                                        <a href="{{ route('assistant_courses.show', $course->course_id) }}">
+                                            <div class="home__wrapper__box">
+                                                <img class="w-100" src="http://via.placeholder.com/346x148"/>
+                                                <div class="home__wrapper__box__info shadow--outset">
+                                                    <p>{{ $course->course_name }}</p>
+                                                    <p>{{ $course->course_code }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @elseif(Auth::user()->level == 'Student')
+                        <div class="home__wrapper__title">
+                            <div class="d-flex align-items-center">
+                                <div class="col-6">
+                                    <div class="d-flex justify-content-start">
+                                        <p class="title">Beranda</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                @foreach ($studentCourses as $course)
+                                    <div class="col-md-3">
+                                        <a href="{{ route('student_courses.show', $course->course_id) }}">
                                             <div class="home__wrapper__box">
                                                 <img class="w-100" src="http://via.placeholder.com/346x148"/>
                                                 <div class="home__wrapper__box__info shadow--outset">
