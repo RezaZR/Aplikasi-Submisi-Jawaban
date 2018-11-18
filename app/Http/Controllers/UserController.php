@@ -27,11 +27,11 @@ class UserController extends Controller
 
         $loggedInUser = Auth::user();
         
-        $userAssistant = ModelUser::all()->where('level', '=', 'Assistant')->take(5)->sortBy('created_at');
-        $userLecturer = ModelUser::all()->where('level', '=', 'Lecturer')->take(5)->sortBy('created_at');
-        $userStudent = ModelUser::all()->where('level', '=', 'Student')->take(5)->sortBy('created_at');
-        $userAdmin = ModelUser::all()->where('level', '=', 'Admin')->take(5)->sortBy('created_at');
-        $courses = ModelCourse::all()->take(5)->sortBy('created_at');
+        $userAssistant = ModelUser::all()->where('level', '=', 'Assistant')->take(5)->sortByDesc('created_at');
+        $userLecturer = ModelUser::all()->where('level', '=', 'Lecturer')->take(5)->sortByDesc('created_at');
+        $userStudent = ModelUser::all()->where('level', '=', 'Student')->take(5)->sortByDesc('created_at');
+        $userAdmin = ModelUser::all()->where('level', '=', 'Admin')->take(5)->sortByDesc('created_at');
+        $courses = ModelCourse::all()->take(5)->sortByDesc('created_at');
 
         $lecturerCourses = ModelLecturerCourse::select('courses.id as course_id', 'courses.code as course_code','courses.name as course_name')
                                                     ->leftjoin('courses', 'lecturer_courses.course_id', '=', 'courses.id')

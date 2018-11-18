@@ -6,6 +6,7 @@ use App\ModelUser;
 use App\ModelCourse;
 use App\ModelAssignment;
 use App\ModelStudentCourse;
+use App\ModelUserAssignment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -21,7 +22,7 @@ class StudentCourseController extends Controller
     public function store(Request $request) {
         $this->validate($request, [
             'student_id' => 'required',
-            'course_id|unique:student_courses' => 'required',
+            'course_id' => 'required|unique:student_courses',
         ]);
         $data = new ModelStudentCourse();
         $data->student_id = $request->student_id;
@@ -39,13 +40,14 @@ class StudentCourseController extends Controller
     public function show($id)
     {
         $course = ModelCourse::find($id);
-        $studentAssignments = ModelAssignment::select('assignments.*')
+        $assignments = ModelAssignment::select('assignments.*')
                                                     ->leftjoin('courses', 'assignments.course_id', '=', 'courses.id')
                                                     ->where('course_id', '=', $course->id)
                                                     ->get()
                                                     ->sortBy('start_time');
+        $studentAssignments = ModelUserAssignment::all();
 
-        return view('student_courses.show', compact('studentAssignments', 'course'));
+        return view('student_courses.show', compact('studentAssignments', 'course', 'assignments'));
     }
 
     /**

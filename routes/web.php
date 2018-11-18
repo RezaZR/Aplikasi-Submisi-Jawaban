@@ -21,7 +21,7 @@ Route::group(['middleware' => ['auth']], function() {
         'as' => 'assignments.create', 
         'uses' => 'AssignmentController@create'
     ]);
-    Route::post('assignments', [
+    Route::post('lecturer_courses/{id}/assignments', [
         'as' => 'assignments.store', 
         'uses' => 'AssignmentController@store'
     ]);
@@ -41,8 +41,46 @@ Route::group(['middleware' => ['auth']], function() {
         'as' => 'assignments.destroy', 
         'uses' => 'AssignmentController@destroy'
     ]);
+
+    Route::get('student_courses/{course_id}/assignments/{assignment_id}/student_assignments', [
+        'as' => 'student_assignments.index', 
+        'uses' => 'StudentAssignmentController@index'
+    ]);
+    Route::get('student_courses/{course_id}/assignments/{assignment_id}/student_assignments/create', [
+        'as' => 'student_assignments.create', 
+        'uses' => 'StudentAssignmentController@create'
+    ]);
+    Route::post('student_courses/{course_id}/assignments/{assignment_id}/student_assignments', [
+        'as' => 'student_assignments.store', 
+        'uses' => 'StudentAssignmentController@store'
+    ]);
+    Route::get('student_courses/{course_id}/assignments/{assignment_id}/student_assignments/{user_assignment_id}', [
+        'as' => 'student_assignments.show', 
+        'uses' => 'StudentAssignmentController@show'
+    ]);
+    Route::get('student_courses/{course_id}/assignments/{assignment_id}/student_assignments/{user_assignment_id}/edit', [
+        'as' => 'student_assignments.edit', 
+        'uses' => 'StudentAssignmentController@edit'
+    ]);
+    Route::patch('student_courses/{course_id}/assignments/{assignment_id}/student_assignments/{user_assignment_id}', [
+        'as' => 'student_assignments.update', 
+        'uses' => 'StudentAssignmentController@update'
+    ]);
+    Route::post('student_courses/student_assignments/download', [
+        'as' => 'student_assignments.download', 
+        'uses' => 'StudentAssignmentController@download'
+    ]);
 });
 
-Route::get('/login', ['as' => 'login', 'uses' => 'SessionController@login']);
-Route::post('/session', 'SessionController@store');
-Route::get('/logout', 'SessionController@logout');
+Route::get('/login', 
+    ['as' => 'login', 
+    'uses' => 'SessionController@login'
+]);
+Route::post('/session', 
+    ['as' => 'login', 
+    'uses' => 'SessionController@store'
+]);
+Route::get('/logout', 
+    ['as' => 'login', 
+    'uses' => 'SessionController@logout'
+]);

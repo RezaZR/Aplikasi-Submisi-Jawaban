@@ -2,10 +2,11 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Softdeletes;
 
-class ModelUserAssignments extends Model
+class ModelUserAssignment extends Model
 {
     use SoftDeletes;
     

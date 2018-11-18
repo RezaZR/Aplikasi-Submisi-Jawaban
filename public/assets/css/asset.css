@@ -258,6 +258,7 @@
 }
 
 .home__wrapper__box {
+    margin-bottom: 1em;
     background-color: #fff;
 }
 
@@ -328,6 +329,10 @@
     line-height: 25px;
     display: block;
     overflow: hidden;
+}
+
+.crud__wrapper__form--md__body .last-p {
+    margin-bottom: 3em;
 }
 
 .crud__wrapper__form--md__body p span:first-child {

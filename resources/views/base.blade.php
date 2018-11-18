@@ -87,10 +87,8 @@
                                             <a href="/">Beranda</a>
                                             <a href="{{ route('courses.index')}}">Mata Kuliah</a>
                                             <a href="{{ route('users.index')}}">Pengguna</a>
-                                        @endif
-                                        @if(Auth::user()->level == 'Lecturer')
+                                        @else
                                             <a href="/">Beranda</a>
-                                            <a href="{{ route('courses.index')}}">Mata Kuliah</a>
                                         @endif
                                     </div>
                                 </div>

@@ -8,7 +8,7 @@
                 <div class="col-md-12">
                     <div class="crud__wrapper shadow--outset">
                         <div class="crud__wrapper__title">
-                            <p>Tempat Pengumpulan Baru</p>
+                            <p>{{ $assignment->title }}</p>
                         </div>
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -20,43 +20,18 @@
                             </div>
                         @endif
                         <div class="crud__wrapper__form">
-                            <form action="{{ url('/lecturer_courses/' . $course->id . '/assignments/') }}" method="post">
+                            <form action="{{ url('/student_courses/' . $course->id . '/assignments/' . $assignment-> id . '/student_assignments') }}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                <input class="form-control" id="student_id" name="student_id" type="hidden" value="{{ Auth::user()->id }}"/>
                                 <input class="form-control" id="course_id" name="course_id" type="hidden" value="{{ $course->id }}"/>
                                 <div class="field form-group">
                                     <label class="active" for="course_name">Nama Mata Kuliah</label>
                                     <input class="form-control" id="course_name" name="course_name" type="text" disabled value="{{ $course->name }}"/>
                                 </div>
+                                <input class="form-control" id="assignment_id" name="assignment_id" type="hidden" value="{{ $assignment->id }}"/>
                                 <div class="field form-group">
-                                    <label class="active" for="title">Judul Tempat Pengumpulan</label>
-                                    <input class="form-control" id="title" name="title" type="text"/>
-                                </div>
-                                <div class="field form-group">
-                                    <label class="active" for="description">Deskripsi</label>
-                                    <textarea class="form-control" name="description" id="description" cols="20" rows="10"></textarea>
-                                </div>
-                                <div class="field form-group">
-                                    <label class="active" for="mode">Mode</label>
-                                    <select class="form-control" id="mode" name="mode" value="">
-                                        <option value="Assignment" selected>Tugas</option>
-                                        <option value="Test">Kuis</option>
-                                        <option value="Exam">Ujian</option>
-                                    </select>
-                                </div>
-                                <div class="field form-group">
-                                    <label class="active" for="is_on_time">Status Telat</label>
-                                    <select class="form-control" id="is_on_time" name="is_on_time" value="">
-                                        <option value="true">Diperbolehkan</option>
-                                        <option value="false" selected>Tidak Diperbolehkan</option>
-                                    </select>
-                                </div>
-                                <div class="field form-group">
-                                    <label class="active" for="start_time">Tanggal dan Waktu Mulai</label>
-                                    <input class="form-control" id="start_time" name="start_time" type="datetime-local"/>
-                                </div>
-                                <div class="field form-group">
-                                    <label class="active" for="end_time">Tanggal dan Waktu Selesai</label>
-                                    <input class="form-control" id="end_time" name="end_time" type="datetime-local"/>
+                                    <label class="active" for="file">File</label>
+                                    <input class="form-control" id="file" name="file" type="file"/>
                                 </div>
                                 <div class="field form-group">                 
                                     <div class="d-flex align-items-center">
