@@ -1,0 +1,95 @@
+Topologi
+ -Mesh
+	-saling terhubung
+	-perlu kabel sejumlah n(n-1)/2
+	Kelebihan:
+		-dedicated link-> tiap alat membawa beban data masing-masing
+		-keamanan dan privasi
+	Kelemahan:
+		-mahal
+		-perlu banyak kabel
+ -Star
+	-device terhubung pada central controller seperti hub atau switch
+	-hub juga berfungsi sebagai repeater
+	-data mengalir melalui hub/switch
+	Kelebihan:
+		-lebih murah dibanding mesh
+	Kelemahan:
+		-seluruh jaringan padam jika central controller tidak aktif
+ -Ring
+	-dedicated point-to-point-to-point-to-point-to-p
+	-frame data memiliki source dan destination address
+	-frame data berjalan dari satu point ke point lain untuk mengecek apakah alamat point sesuai dengan alamat destinasi
+	Kelebihan:
+		-instalasi dan konfigurasi mudah
+	Kelemahan:
+		-unidirectional traffic. lebih lama
+		-seluruh jarigan padam jika salah satu kabel rusak
+ -Bus
+	-multipoint
+	-kabel berfungsi sebagai backbone seluruh device
+	-komputer terhubung kepada kabel data utama melalui network tap
+	Kelebihan:
+		-setup dan instalasi mudah
+	Kelemahan:
+		-apabila jaringan padam, susah untuk diidentifikasi masalahnya di mana
+		
+Hosting
+ -On-Premise
+	-data diinstall di tempat serta dikelola oleh tim IT perusahaan
+	-tim IT bertanggung jawab mengelola hardware, backup dan mengupgrade aplikasi
+ -Hosted
+	-data center dikelola oleh  pihak ketiga
+	-data dimiliki oleh costumer
+	-data center bertanggung jawab menjaga hardware
+ -Cloud Solution:
+	-vendor cloud bertanggung jawab mengelola hardware, db dan/atau data mentah
+	
+Cloud Computing di E-Commerce
+ -System as a Service (SaaS)
+	-sering digunakan di online retailers
+	-penjual bisa menjalankan langsung sitem penjualan seperti shoping carts in cloud
+	-tidak perlu download atau install program baru untuk membeli barang
+	Contoh: google apps, dropbox, salesforce
+ -Platform as a Service (PaaS)
+	-tidak terlalu sering digunakan di dunia e-commerce
+	Contoh: azure, google app engineer, openshift
+ -Infrastructure as a Service (IaaS)
+	-fokus dalam menyediakan infrastruktur data center sesuai keinginan
+	Contoh: aws, azure, digital ocean
+	
+Startup
+ -perusahaan rintisan yang sejatinya menyelesaikan suatu masalah yang telah beredar di masyarakat dengan persentase sukses yang beragam.
+ -Instansi:
+	-Inkubator:
+		memberikan bantuan untuk para entrepreneur untuk fase awal dalam bisnis, yaitu konsep bisnis, model bisnis dan pembuatan produk awal
+	-Akselerator:
+		mempercepat pertumbuhan startup dengan menawarkan sejumlah uang, mentor dan konsultasi
+	-Kementerian dan BUMN:
+		Contoh: BEKRAF, Program c-PBBT dan PBBT, Telkom Indonesia
+	-Perusahaan swasta/BUMS
+		Contoh: Venture Capital
+	-NGO & NPO
+	-Komunitas
+	-Individu (private equity investor)
+ -Inovasi
+	-Crowdfunding:
+		-investasi di dunia properti: provesty.id
+		-peer-to-peer lending: modalku, crowdo
+	-E-Retail barang-barang medikal:
+		Contoh: e-medis.id, planetmedika
+		
+Order Management System  (OMS)
+ -alat yang berguna untuk melacak:
+	-penjualan,
+	-pemesanan,
+	-persediaan barang,
+	-pemenuhan
+	
+Inventory Management System (IMS)
+ -sistem yang melacak status persediaan produk di gudang:
+	-melacak persediaan barang dari berbagai gudang
+	-melacak posisi keberadaan produk
+	-integrasi dengan alat seperti barcode scanner untuk mengatur produk masuk dan keluar
+	-menghasilkan laporan secara reguler
+ -tujuan: mencegah jumlah persediaan berlebih atau kurang

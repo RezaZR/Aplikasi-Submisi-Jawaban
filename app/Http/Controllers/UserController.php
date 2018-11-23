@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\ModelLog;
 use App\ModelUser;
 use App\ModelCourse;
 use App\ModelAssistantCourse;
@@ -18,20 +19,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Res ponse
      */
-    public function index() {
-        $i = 0;
-        $j = 0;
-        $k = 0;
-        $l = 0;
-        $m = 0;
-
+    public function index() {   
         $loggedInUser = Auth::user();
         
-        $userAssistant = ModelUser::all()->where('level', '=', 'Assistant')->take(5)->sortByDesc('created_at');
-        $userLecturer = ModelUser::all()->where('level', '=', 'Lecturer')->take(5)->sortByDesc('created_at');
-        $userStudent = ModelUser::all()->where('level', '=', 'Student')->take(5)->sortByDesc('created_at');
-        $userAdmin = ModelUser::all()->where('level', '=', 'Admin')->take(5)->sortByDesc('created_at');
-        $courses = ModelCourse::all()->take(5)->sortByDesc('created_at');
+        $userAssistant = ModelUser::where('level', '=', 'Assistant')->take(5)->latest()->get();
+        $userLecturer = ModelUser::where('level', '=', 'Lecturer')->take(5)->latest()->get();
+        $userStudent = ModelUser::where('level', '=', 'Student')->take(5)->latest()->get();
+        $userAdmin = ModelUser::where('level', '=', 'Admin')->take(5)->latest()->get();
+        $courses = ModelCourse::take(5)->latest()->get();
 
         $lecturerCourses = ModelLecturerCourse::select('courses.id as course_id', 'courses.code as course_code','courses.name as course_name')
                                                     ->leftjoin('courses', 'lecturer_courses.course_id', '=', 'courses.id')
@@ -50,6 +45,13 @@ class UserController extends Controller
                                                     ->leftjoin('users', 'student_courses.student_id', '=', 'users.id')
                                                     ->where('student_id', '=', $loggedInUser->id)
                                                     ->get()->sortBy('course_name');
+        
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->method = "GET";
+        $dataLogs->action = "Mengakses halaman index milik tata usaha.";
+        $dataLogs->save();
 
         return view('index', ['userAssistant' => $userAssistant, 'userLecturer' => $userLecturer, 'userStudent' => $userStudent, 'userAdmin' => $userAdmin, 'courses' => $courses, 'lecturerCourses' => $lecturerCourses, 'assistantCourses' => $assistantCourses, 'studentCourses' => $studentCourses]);
     }

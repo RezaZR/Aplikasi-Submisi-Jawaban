@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\ModelLog;
 use App\ModelAssignment;
 use App\ModelCourse;
+use App\ModelUserAssignment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class AssignmentController extends Controller
+
 {
+
     /**
      * Show the form for creating a new resource.
      *
@@ -60,14 +65,32 @@ class AssignmentController extends Controller
      */
     public function show($course_id, $assignment_id)
     {
+        $loggedInUser = Auth::user();
+
         $course = ModelCourse::find($course_id);
+
         $assignment = ModelAssignment::find($assignment_id);
-        $lecturerAssignments = ModelAssignment::select('courses.id as course_id', 'courses.code as course_code','courses.name as course_name', 'assignments.*')
-                                                    ->leftjoin('courses', 'assignments.course_id', '=', 'courses.id')
-                                                    ->get()
-                                                    ->sortBy('start_time');
+
+        $studentAssignment = $assignment::select('assignments.id as assignment_student_id', 'assignments.title as assignment_title', 'users.id as user_id', 'users.name as user_name', 'user_assignments.student_id','user_assignments.id as user_assignments_id', 'user_assignments.status as file_status', 'user_assignments.file as file', 'user_assignments.grade', 'user_assignments.grader', 'user_assignments.examine_time')
+                                                    ->join('user_assignments', 'assignments.id', '=', 'user_assignments.assignment_id')
+                                                    ->join('users', 'users.id', '=', 'user_assignments.student_id')
+                                                    ->where('user_assignments.assignment_id', '=', $assignment_id)
+                                                    ->where('user_assignments.student_id', '=', $loggedInUser->id)
+                                                    ->first();
+        $fileTokensStudent = explode('/', $studentAssignment->file);
+        $fileShortStudent = $fileTokensStudent[sizeof($fileTokensStudent) - 1];
+        $studentAssignment->file =  $fileShortStudent;
+
+        $willBeGradedAssignments = $assignment::select('assignments.id as assignment_student_id', 'assignments.title as assignment_title', 'users.id as user_id', 'users.name as user_name', 'user_assignments.student_id','user_assignments.id as user_assignments_id', 'user_assignments.status as file_status', 'user_assignments.file as file', 'user_assignments.grade', 'user_assignments.grader', 'user_assignments.examine_time')
+                                            ->join('user_assignments', 'assignments.id', '=', 'user_assignments.assignment_id')
+                                            ->join('users', 'users.id', '=', 'user_assignments.student_id')
+                                            ->where('user_assignments.assignment_id', '=', $assignment_id)
+                                            ->get();
+        $fileTokensGrader = explode('/', $willBeGradedAssignments[0]->file);
+        $fileShortGrader = $fileTokensGrader[sizeof($fileTokensGrader) - 1];
+        $willBeGradedAssignments->file =  $fileShortGrader;
         
-        return view('assignments.show', ['course' => $course, 'assignment' => $assignment]);
+        return view('assignments.show', ['course' => $course, 'assignment' => $assignment, 'studentAssignment' => $studentAssignment, 'fileShortGrader' => $fileShortGrader, 'willBeGradedAssignments' => $willBeGradedAssignments, 'fileShortStudent' => $fileShortStudent]);
     }
 
     /**
@@ -80,7 +103,6 @@ class AssignmentController extends Controller
     {
         $course = ModelCourse::find($course_id);
         $assignment = ModelAssignment::find($assignment_id);
-        // dd($assignment->id);
         $lecturerAssignments = ModelAssignment::select('courses.id as course_id', 'courses.code as course_code','courses.name as course_name', 'assignments.*')
                                                     ->leftjoin('courses', 'assignments.course_id', '=', 'courses.id')
                                                     ->get()

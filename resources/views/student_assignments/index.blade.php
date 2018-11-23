@@ -1,5 +1,5 @@
 @extends('base')
-@section('title', ' - Mata Kuliah: ' . $lecturerCourse->name)
+@section('title', ' - Mata Kuliah: ' . $course->name)
 @section('content')
 
     @if(\Session::has('alert'))
@@ -47,72 +47,142 @@
                                 </div>
                             </div>
                             <div class="crud__wrapper__form--md__body">
-                                @if($studentAssignments != null)
-                                    <p class="color--black"><span>Status Pengumpulan</span>
-                                        @if($studentAssignments->file_status == "Not Submitted")
-                                            <span>: Belum Mengumpulkan</span>
-                                            @elseif($studentAssignments->file_status == "Submitted")
-                                            <span>: Terkumpul</span>
+                                @if(Auth::user()->level == 'Student')
+                                    @if($studentAssignment != null)
+                                        <p class="color--black"><span>Status Pengumpulan</span>
+                                            @if($studentAssignment->file_status == "Not Submitted")
+                                                <span>: Belum Mengumpulkan</span>
+                                                @elseif($studentAssignment->file_status == "Submitted")
+                                                <span>: Terkumpul</span>
+                                            @else
+                                                <span>: Sudah Dinilai</span>
+                                            @endif
+                                        </p>
+                                        <p class="color--black last-p"><span>File</span>
+                                            <span>: 
+                                                <a href="{{ url('/uploads/' . $studentAssignment->file) }}" download>{{ $studentAssignment->file }}</a>
+                                            </span>
+                                        </p>
+                                        @if($studentAssignment->file_status != "Graded")
+                                            <div class="d-flex align-items-center">
+                                                <div class="col-md-6">
+                                                    <div class="d-flex justify-content-end">
+                                                        <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="d-flex justify-content-start">
+                                                        <a class="btn btn-standard--primary "href="{{ url('/user_courses/' . $course->id . '/assignments/' . $assignment->id . '/student_assignments/' . $studentAssignment->user_assignments_id . '/edit') }}">Ubah</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @else
-                                            <span>: Sudah Dinilai</span>
+                                            <div class="d-flex align-items-center">
+                                                <div class="col-md-4">
+                                                    <div class="d-flex justify-content-end">
+                                                        <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="d-flex justify-content-center">
+                                                        <a class="btn btn-standard--primary "href="{{ url('/user_courses/' . $course->id . '/assignments/' . $assignment->id . '/student_assignments/' . $studentAssignment->user_assignments_id . '/edit') }}">Ubah</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="d-flex justify-content-start">
+                                                        <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Lihat Nilai</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endif
-                                    </p>
-                                    <p class="color--black last-p"><span>File</span>
-                                        <span>: 
-                                            <a href="{{ url('/uploads/' . $studentAssignments->file) }}" download>{{ $studentAssignments->file }}</a>
-                                        </span>
-                                    </p>
-                                    @if($studentAssignments->file_status != "Graded")
-                                        <div class="d-flex align-items-center">
-                                            <div class="col-md-6">
-                                                <div class="d-flex justify-content-end">
-                                                    <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="d-flex justify-content-start">
-                                                    <a class="btn btn-standard--primary "href="{{ url('/student_courses/' . $course->id . '/assignments/' . $assignment->id . '/student_assignments/' . $studentAssignments->id . '/edit') }}">Ubah</a>
-                                                </div>
-                                            </div>
-                                        </div>
                                     @else
+                                        <p class="color--black"><span>Status Pengumpulan</span>
+                                            <span>: Belum Mengumpulkan</span>
+                                        </p>
+                                        <p class="color--black last-p"><span>File</span>
+                                            <span>: -</span>
+                                        </p>
                                         <div class="d-flex align-items-center">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="d-flex justify-content-end">
                                                     <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="d-flex justify-content-center">
-                                                    <a class="btn btn-standard--primary "href="{{ url('/student_courses/' . $course->id . '/assignments/' . $assignment->id . '/student_assignments/' . $studentAssignments->id . '/edit') }}">Ubah</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="d-flex justify-content-start">
-                                                    <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Lihat Nilai</a>
+                                                    <a class="btn btn-standard--primary "href="{{ url('/user_courses/' . $course->id . '/assignments/' . $assignment->id . '/student_assignments/create') }}">Submit Jawaban</a>
                                                 </div>
                                             </div>
                                         </div>
                                     @endif
-                                @else
-                                    <p class="color--black"><span>Status Pengumpulan</span>
-                                        <span>: Belum Mengumpulkan</span>
-                                    </p>
-                                    <p class="color--black last-p"><span>File</span>
-                                        <span>: -</span>
-                                    </p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="col-md-6">
-                                            <div class="d-flex justify-content-end">
-                                                <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
+                                @elseif(Auth::user()->level == 'Assistant')
+                                    @if($graderAssignment != null)
+                                        <p class="color--black"><span>Status Pengumpulan</span>
+                                            @if($studentAssignment->file_status == "Not Submitted")
+                                                <span>: Belum Mengumpulkan</span>
+                                                @elseif($studentAssignment->file_status == "Submitted")
+                                                <span>: Terkumpul</span>
+                                            @else
+                                                <span>: Sudah Dinilai</span>
+                                            @endif
+                                        </p>
+                                        <p class="color--black last-p"><span>File</span>
+                                            <span>: 
+                                                <a href="{{ url('/uploads/' . $studentAssignment->file) }}" download>{{ $studentAssignment->file }}</a>
+                                            </span>
+                                        </p>
+                                        @if($studentAssignment->file_status != "Graded")
+                                            <div class="d-flex align-items-center">
+                                                <div class="col-md-6">
+                                                    <div class="d-flex justify-content-end">
+                                                        <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="d-flex justify-content-start">
+                                                        <a class="btn btn-standard--primary "href="{{ url('/user_courses/' . $course->id . '/assignments/' . $assignment->id . '/student_assignments/' . $studentAssignment->user_assignments_id . '/edit') }}">Ubah</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="d-flex align-items-center">
+                                                <div class="col-md-4">
+                                                    <div class="d-flex justify-content-end">
+                                                        <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="d-flex justify-content-center">
+                                                        <a class="btn btn-standard--primary "href="{{ url('/user_courses/' . $course->id . '/assignments/' . $assignment->id . '/student_assignments/' . $studentAssignment->user_assignments_id . '/edit') }}">Ubah</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="d-flex justify-content-start">
+                                                        <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Lihat Nilai</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @else
+                                        <p class="color--black"><span>Status Pengumpulan</span>
+                                            <span>: Belum Mengumpulkan</span>
+                                        </p>
+                                        <p class="color--black last-p"><span>File</span>
+                                            <span>: -</span>
+                                        </p>
+                                        <div class="d-flex align-items-center">
+                                            <div class="col-md-6">
+                                                <div class="d-flex justify-content-end">
+                                                    <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="d-flex justify-content-start">
+                                                    <a class="btn btn-standard--primary "href="{{ url('/user_courses/' . $course->id . '/assignments/' . $assignment->id . '/student_assignments/create') }}">Submit Jawaban</a>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="d-flex justify-content-start">
-                                                <a class="btn btn-standard--primary "href="{{ url('/student_courses/' . $course->id . '/assignments/' . $assignment->id . '/student_assignments/create') }}">Submit Jawaban</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endif
                                 @endif
                             </div>
                         </div>

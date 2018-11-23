@@ -20,15 +20,15 @@
                             </div>
                         @endif
                         <div class="crud__wrapper__form">
-                            <form action="{{ url('/student_courses/' . $course->id . '/assignments/' . $assignment-> id . '/student_assignments') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ url('/user_courses/' . $course->id . '/assignments/' . $assignment-> id . '/student_assignments') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <input class="form-control" id="student_id" name="student_id" type="hidden" value="{{ Auth::user()->id }}"/>
                                 <input class="form-control" id="course_id" name="course_id" type="hidden" value="{{ $course->id }}"/>
+                                <input class="form-control" id="assignment_id" name="assignment_id" type="hidden" value="{{ $assignment->id }}"/>
                                 <div class="field form-group">
                                     <label class="active" for="course_name">Nama Mata Kuliah</label>
                                     <input class="form-control" id="course_name" name="course_name" type="text" disabled value="{{ $course->name }}"/>
                                 </div>
-                                <input class="form-control" id="assignment_id" name="assignment_id" type="hidden" value="{{ $assignment->id }}"/>
                                 <div class="field form-group">
                                     <label class="active" for="file">File</label>
                                     <input class="form-control" id="file" name="file" type="file"/>

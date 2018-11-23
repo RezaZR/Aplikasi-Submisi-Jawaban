@@ -40,11 +40,9 @@
                                 <table cellpadding="10" class="shadow--outset">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>#</th>
                                             <th>Kode Mata Kuliah</th>
                                             <th>Nama Mata Kuliah</th>
-                                            <th>Tanggal Dibuat</th>
-                                            <th>Tanggal Diubah</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -54,8 +52,6 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $course->code }}</td>
                                                 <td>{{ $course->name }}</td>
-                                                <td>{{ $course->created_at }}</td>
-                                                <td>{{ $course->updated_at }}</td>
                                                 <td>
                                                     <a href="{{ route('courses.show', $course->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                     <a href="{{ route('courses.edit', $course->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
@@ -68,7 +64,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td class="empty" colspan="6">Kolom kosong</td>
+                                                <td class="empty" colspan="4">Kolom kosong</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -88,7 +84,7 @@
                                 <table cellpadding="10" class="shadow--outset">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>#</th>
                                             <th>NIK</th>
                                             <th>Nama Pengguna</th>
                                             <th>Email</th>
@@ -97,8 +93,6 @@
                                             <th>Alamat</th>
                                             <th>Tanggal Lahir</th>
                                             <th>Jenis Kelamin</th>
-                                            <th>Tanggal Dibuat</th>
-                                            <th>Tanggal Diubah</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -109,13 +103,21 @@
                                                 <td>{{ $user->nik }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
-                                                <td>{{ $user->level }}</td>
+                                                <td>
+                                                    @if($user->level == "Admin")
+                                                        Tata Usaha
+                                                    @endif
+                                                </td>
                                                 <td>{{ $user->phone_number }}</td>
                                                 <td>{{ $user->address }}</td>
                                                 <td>{{ $user->birth_date }}</td>
-                                                <td>{{ $user->sex }}</td>
-                                                <td>{{ $user->created_at }}</td>
-                                                <td>{{ $user->updated_at }}</td>
+                                                <td>
+                                                    @if($user->sex == "Male")
+                                                        Pria
+                                                    @else
+                                                        Wanita
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                     <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
@@ -128,7 +130,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td class="empty" colspan="12">Kolom kosong</td>
+                                                <td class="empty" colspan="10">Kolom kosong</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -148,7 +150,7 @@
                                 <table cellpadding="10" class="shadow--outset">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>#</th>
                                             <th>NIK</th>
                                             <th>Nama Pengguna</th>
                                             <th>Email</th>
@@ -157,8 +159,6 @@
                                             <th>Alamat</th>
                                             <th>Tanggal Lahir</th>
                                             <th>Jenis Kelamin</th>
-                                            <th>Tanggal Dibuat</th>
-                                            <th>Tanggal Diubah</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -169,13 +169,21 @@
                                                 <td>{{ $user->nik }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
-                                                <td>{{ $user->level }}</td>
+                                                <td>
+                                                    @if($user->level == "Lecturer")
+                                                        Dosen
+                                                    @endif
+                                                </td>
                                                 <td>{{ $user->phone_number }}</td>
                                                 <td>{{ $user->address }}</td>
                                                 <td>{{ $user->birth_date }}</td>
-                                                <td>{{ $user->sex }}</td>
-                                                <td>{{ $user->created_at }}</td>
-                                                <td>{{ $user->updated_at }}</td>
+                                                <td>
+                                                    @if($user->sex == "Male")
+                                                        Pria
+                                                    @else
+                                                        Wanita
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                     <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
@@ -188,7 +196,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td class="empty" colspan="12">Kolom kosong</td>
+                                                <td class="empty" colspan="10">Kolom kosong</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -208,7 +216,7 @@
                                 <table cellpadding="10" class="shadow--outset">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>#</th>
                                             <th>NPM</th>
                                             <th>Nama Pengguna</th>
                                             <th>Email</th>
@@ -217,8 +225,6 @@
                                             <th>Alamat</th>
                                             <th>Tanggal Lahir</th>
                                             <th>Jenis Kelamin</th>
-                                            <th>Tanggal Dibuat</th>
-                                            <th>Tanggal Diubah</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -229,13 +235,21 @@
                                                 <td>{{ $user->npm }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
-                                                <td>{{ $user->level }}</td>
+                                                <td>
+                                                    @if($user->level == "Assistant")
+                                                        Asisten
+                                                    @endif
+                                                </td>
                                                 <td>{{ $user->phone_number }}</td>
                                                 <td>{{ $user->address }}</td>
                                                 <td>{{ $user->birth_date }}</td>
-                                                <td>{{ $user->sex }}</td>
-                                                <td>{{ $user->created_at }}</td>
-                                                <td>{{ $user->updated_at }}</td>
+                                                <td>
+                                                    @if($user->sex == "Male")
+                                                        Pria
+                                                    @else
+                                                        Wanita
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                     <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
@@ -248,7 +262,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td class="empty" colspan="12">Kolom kosong</td>
+                                                <td class="empty" colspan="10">Kolom kosong</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -268,7 +282,7 @@
                                 <table cellpadding="10" class="shadow--outset">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>#</th>
                                             <th>NPM</th>
                                             <th>Nama Pengguna</th>
                                             <th>Email</th>
@@ -277,8 +291,6 @@
                                             <th>Alamat</th>
                                             <th>Tanggal Lahir</th>
                                             <th>Jenis Kelamin</th>
-                                            <th>Tanggal Dibuat</th>
-                                            <th>Tanggal Diubah</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -289,13 +301,21 @@
                                                 <td>{{ $user->npm }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
-                                                <td>{{ $user->level }}</td>
+                                                <td>
+                                                    @if($user->level == "Student")
+                                                        Mahasiswa
+                                                    @endif
+                                                </td>
                                                 <td>{{ $user->phone_number }}</td>
                                                 <td>{{ $user->address }}</td>
                                                 <td>{{ $user->birth_date }}</td>
-                                                <td>{{ $user->sex }}</td>
-                                                <td>{{ $user->created_at }}</td>
-                                                <td>{{ $user->updated_at }}</td>
+                                                <td>
+                                                    @if($user->sex == "Male")
+                                                        Pria
+                                                    @else
+                                                        Wanita
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                     <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
@@ -308,7 +328,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td class="empty" colspan="12">Kolom kosong</td>
+                                                <td class="empty" colspan="10">Kolom kosong</td>
                                             </tr>
                                         @endforelse
                                     </tbody>

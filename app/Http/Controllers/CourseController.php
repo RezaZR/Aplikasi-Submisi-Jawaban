@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\ModelLog;
 use App\ModelCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -17,6 +19,13 @@ class CourseController extends Controller
     { 
         $courses = ModelCourse::all()->take(20);
 
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->method = "GET";
+        $dataLogs->action = "Mengakses halaman index mata kuliah milik tata usaha.";
+        $dataLogs->save();
+
         return view('courses.index', compact('courses'));
     }
 
@@ -26,6 +35,13 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->method = "GET";
+        $dataLogs->action = "Mengakses halaman create mata kuliah milik tata usaha.";
+        $dataLogs->save();
+
         return view('courses.create');
     }
 
@@ -44,6 +60,14 @@ class CourseController extends Controller
         $data->code = $request->code;
         $data->name = $request->name;
         $data->save();
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->method = "POST";
+        $dataLogs->action = "Membuat mata kuliah baru bernama " . $data->name . ".";
+        $dataLogs->save();
+
         return redirect('/')->with('alert-success','Berhasil membuat mata kuliah baru');
     }
 
@@ -57,6 +81,13 @@ class CourseController extends Controller
     {
         $course = ModelCourse::find($id);
 
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->method = "GET";
+        $dataLogs->action = "Mengakses halaman show mata kuliah milik tata usaha.";
+        $dataLogs->save();
+
         return view('courses.show', compact('course'));
     }
 
@@ -69,6 +100,13 @@ class CourseController extends Controller
     public function edit($id)
     {
         $course = ModelCourse::find($id);
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->method = "GET";
+        $dataLogs->action = "Mengakses halaman edit mata kuliah milik tata usaha.";
+        $dataLogs->save();
 
         return view('courses.edit', compact('course'));
     }
@@ -90,6 +128,14 @@ class CourseController extends Controller
         $data->code = $request->code;
         $data->name = $request->name;
         $data->save();
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->method = "PATCH";
+        $dataLogs->action = "Mengubah detail mata kuliah dengan id " . $id . ".";
+        $dataLogs->save();
+
         return redirect('/')->with('alert-success','Berhasil mengubah detail mata kuliah');
     }
 
@@ -101,9 +147,16 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-            $course = ModelCourse::find($id);
-            $course->delete();
+        $course = ModelCourse::find($id);
+        $course->delete();
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->method = "DESTROY";
+        $dataLogs->action = "Menghapus mata kuliah dengan id " . $id . ".";
+        $dataLogs->save();
            
-            return redirect('/')->with('alert-success','Berhasil dihapus');
+        return redirect('/')->with('alert-success','Berhasil dihapus');
     }
 }

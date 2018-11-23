@@ -1,5 +1,5 @@
 @extends('base')
-@section('title', ' - Mata Kuliah: ' . $lecturerCourse->name)
+@section('title', ' - Mata Kuliah: ' . $studentCourse->name)
 @section('content')
 
     @if(\Session::has('alert'))
@@ -42,7 +42,7 @@
                             </div>
                         @endif
                         @forelse($assignments as $assignment)
-                            <a href="{{ url('/student_courses/' . $course->id . '/assignments/' . $assignment->id . '/student_assignments/') }}">
+                            <a href="{{ url('/user_courses/' . $course->id . '/assignments/' . $assignment->id) }}">
                                 <div class="crud__wrapper__form--md">
                                     <div class="crud__wrapper__form--md__title">
                                         <div class="d-flex align-items-center">
@@ -81,7 +81,6 @@
                                 <h6 class="text-center">Tempat pengumpulan masih kosong</h6>
                             </div>
                         @endforelse
-                        <!-- </div> -->
                     </div>
                 </div>
             </div>

@@ -8,14 +8,18 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/', 'UserController@index');
 
+
     Route::resource('users', 'RegisterController');
     
+
     Route::resource('courses', 'CourseController');
+
 
     Route::resource('assigns', 'AssignController');
     Route::resource('lecturer_courses', 'LecturerCourseController', ['except' => ['index']]);
     Route::resource('assistant_courses', 'AssistantCourseController');
     Route::resource('student_courses', 'StudentCourseController');
+
 
     Route::get('lecturer_courses/{id}/assignments/create', [
         'as' => 'assignments.create', 
@@ -24,10 +28,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('lecturer_courses/{id}/assignments', [
         'as' => 'assignments.store', 
         'uses' => 'AssignmentController@store'
-    ]);
-    Route::get('lecturer_courses/{course_id}/assignments/{assignment_id}', [
-        'as' => 'assignments.show', 
-        'uses' => 'AssignmentController@show'
     ]);
     Route::get('lecturer_courses/{course_id}/assignments/{assignment_id}/edit', [
         'as' => 'assignments.edit', 
@@ -42,34 +42,62 @@ Route::group(['middleware' => ['auth']], function() {
         'uses' => 'AssignmentController@destroy'
     ]);
 
-    Route::get('student_courses/{course_id}/assignments/{assignment_id}/student_assignments', [
+
+    Route::get('user_courses/{course_id}/assignments/{assignment_id}', [
+        'as' => 'assignments.show', 
+        'uses' => 'AssignmentController@show'
+    ]);
+
+    
+    Route::get('user_courses/{course_id}/assignments/{assignment_id}/student_assignments', [
         'as' => 'student_assignments.index', 
         'uses' => 'StudentAssignmentController@index'
     ]);
-    Route::get('student_courses/{course_id}/assignments/{assignment_id}/student_assignments/create', [
+    Route::get('user_courses/{course_id}/assignments/{assignment_id}/student_assignments/create', [
         'as' => 'student_assignments.create', 
         'uses' => 'StudentAssignmentController@create'
     ]);
-    Route::post('student_courses/{course_id}/assignments/{assignment_id}/student_assignments', [
+    Route::post('user_courses/{course_id}/assignments/{assignment_id}/student_assignments', [
         'as' => 'student_assignments.store', 
         'uses' => 'StudentAssignmentController@store'
     ]);
-    Route::get('student_courses/{course_id}/assignments/{assignment_id}/student_assignments/{user_assignment_id}', [
+    Route::get('user_courses/{course_id}/assignments/{assignment_id}/student_assignments/{user_assignment_id}', [
         'as' => 'student_assignments.show', 
         'uses' => 'StudentAssignmentController@show'
     ]);
-    Route::get('student_courses/{course_id}/assignments/{assignment_id}/student_assignments/{user_assignment_id}/edit', [
+    Route::get('user_courses/{course_id}/assignments/{assignment_id}/student_assignments/{user_assignment_id}/edit', [
         'as' => 'student_assignments.edit', 
         'uses' => 'StudentAssignmentController@edit'
     ]);
-    Route::patch('student_courses/{course_id}/assignments/{assignment_id}/student_assignments/{user_assignment_id}', [
+    Route::patch('user_courses/{course_id}/assignments/{assignment_id}/student_assignments/{user_assignment_id}', [
         'as' => 'student_assignments.update', 
         'uses' => 'StudentAssignmentController@update'
     ]);
-    Route::post('student_courses/student_assignments/download', [
-        'as' => 'student_assignments.download', 
-        'uses' => 'StudentAssignmentController@download'
+
+
+    Route::get('user_courses/{course_id}/assignments/{assignment_id}/student_assignments/{user_assignment_id}/grade', [
+        'as' => 'grader_assignments.index', 
+        'uses' => 'GraderAssignmentController@index'
     ]);
+    Route::get('user_courses/{course_id}/assignments/{assignment_id}/student_assignments/{user_assignment_id}/grade/create', [
+        'as' => 'grader_assignments.create', 
+        'uses' => 'GraderAssignmentController@create'
+    ]);
+    Route::post('user_courses/{course_id}/assignments/{assignment_id}/student_assignments/{user_assignment_id}/grade', [
+        'as' => 'grader_assignments.store', 
+        'uses' => 'GraderAssignmentController@store'
+    ]);
+    Route::get('user_courses/{course_id}/assignments/{assignment_id}/student_assignments/{user_assignment_id}/grade/edit', [
+        'as' => 'grader_assignments.edit', 
+        'uses' => 'GraderAssignmentController@edit'
+    ]);
+    Route::patch('user_courses/{course_id}/assignments/{assignment_id}/student_assignments/{user_assignment_id}/grade', [
+        'as' => 'grader_assignments.update', 
+        'uses' => 'GraderAssignmentController@update'
+    ]);
+
+    
+    Route::resource('logs', 'LogsController');
 });
 
 Route::get('/login', 
@@ -81,6 +109,6 @@ Route::post('/session',
     'uses' => 'SessionController@store'
 ]);
 Route::get('/logout', 
-    ['as' => 'login', 
+    ['as' => 'logout', 
     'uses' => 'SessionController@logout'
 ]);

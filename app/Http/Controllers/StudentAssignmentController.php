@@ -23,24 +23,19 @@ class StudentAssignmentController extends Controller
     public function index($course_id, $assignment_id)
     { 
         $loggedInUser = Auth::user();
-
         $course = ModelCourse::find($course_id);
         $assignment = ModelAssignment::find($assignment_id);
-        $studentAssignment = $assignment::select('courses.id as course_id', 'courses.code as course_code','courses.name as course_name', 'user_assignments.id', 'user_assignments.status as file_status', 'user_assignments.file as file', 'assignments.id as student_assignment_id')
-                                                    ->leftjoin('courses', 'assignments.course_id', '=', 'courses.id')
-                                                    ->leftjoin('user_assignments', 'assignments.id', '=', 'user_assignments.assignment_id')
+        $studentAssignment = $assignment::select('assignments.id as assignment_student_id', 'users.id as user_id', 'user_assignments.student_id','user_assignments.id as user_assignments_id', 'user_assignments.status as file_status', 'user_assignments.file as file')
+                                                    ->join('user_assignments', 'assignments.id', '=', 'user_assignments.assignment_id')
+                                                    ->join('users', 'users.id', '=', 'user_assignments.student_id')
                                                     ->where('user_assignments.assignment_id', '=', $assignment_id)
-                                                    // ->where('user_assignments.student_id', '=', $loggedInUser)
+                                                    // ->where('user_assignments.student_id', '=', 'users.id')
                                                     ->first();
-        // $result = DB::select( DB::raw('select user_assignments.id, user_assignments.status as file_status, user_assignments.file as file, assignments.id as student_assignment_id from assignments join user_assignments on assignments.id = user_assignments.assignment_id') );
-        // $result = DB::select( DB::raw('select * from assignments') );
-        // dd($result);
-        // $studentAssignments = $assignment->userAssignments;
-        // dd($studentAssignments);
+        
         $file_tokens = explode('/', $studentAssignment->file);
         $studentAssignment->file = $file_tokens[sizeof($file_tokens) - 1];      
         
-        return view('student_assignments.index', ['course' => $course, 'assignment' => $assignment, 'studentAssignments' => $studentAssignment]);
+        return view('student_assignments.index', ['course' => $course, 'assignment' => $assignment, 'studentAssignment' => $studentAssignment]);
     }
 
     /**

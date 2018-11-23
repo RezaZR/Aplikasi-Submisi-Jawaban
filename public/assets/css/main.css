@@ -156,6 +156,18 @@ textarea {
     color: #0b0b0b !important;
 }
 
+.color--red {
+    color: #fa0303 !important;
+}
+
+.color--orange {
+    color: #ffa600 !important;
+}
+
+.color--green {
+    color: #05BE05 !important;
+}
+
 .color--primary {
     color: #0e3490;
 }

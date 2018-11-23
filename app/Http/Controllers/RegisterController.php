@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+Use Auth;
+use App\ModelLog;
 use App\ModelUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -15,16 +17,19 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        $i = 0;
-        $j = 0;
-        $k = 0;
-        $l = 0;
-        $userAssistant = ModelUser::all()->where('level', '=', 'Assistant')->take(5)->sortBy('created_at');
-        $userLecturer = ModelUser::all()->where('level', '=', 'Lecturer')->take(5)->sortBy('created_at');
-        $userStudent = ModelUser::all()->where('level', '=', 'Student')->take(5)->sortBy('created_at');
-        $userAdmin = ModelUser::all()->where('level', '=', 'Admin')->take(5)->sortBy('created_at');
+        $userAssistant = ModelUser::where('level', '=', 'Assistant')->take(5)->latest()->get();
+        $userLecturer = ModelUser::where('level', '=', 'Lecturer')->take(5)->latest()->get();
+        $userStudent = ModelUser::where('level', '=', 'Student')->take(5)->latest()->get();
+        $userAdmin = ModelUser::where('level', '=', 'Admin')->take(5)->latest()->get();
 
-        return view('users.index', ['userAssistant' => $userAssistant, 'userLecturer' => $userLecturer, 'userStudent' => $userStudent, 'userAdmin' => $userAdmin, 'i' => $i, 'j' => $j, 'k' => $k, 'l' => $l]);
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->method = "GET";
+        $dataLogs->action = "Mengakses halaman index pengguna milik tata usaha.";
+        $dataLogs->save();
+
+        return view('users.index', ['userAssistant' => $userAssistant, 'userLecturer' => $userLecturer, 'userStudent' => $userStudent, 'userAdmin' => $userAdmin]);
     }
 
     /**
@@ -34,6 +39,13 @@ class RegisterController extends Controller
      */
     public function create()
     {
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->method = "GET";
+        $dataLogs->action = "Mengakses halaman create pengguna milik tata usaha.";
+        $dataLogs->save();
+
         return view('users.create');
     }
 
@@ -68,6 +80,14 @@ class RegisterController extends Controller
         $data->sex = $request->sex;
         $data->birth_date = $request->birth_date;
         $data->save();
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->method = "POST";
+        $dataLogs->action = "Membuat pengguna baru bernama " . $data->name . ".";
+        $dataLogs->save();
+
         return redirect('/')->with('alert-success','Berhasil registrasi pengguna baru');
     }
 
@@ -80,6 +100,13 @@ class RegisterController extends Controller
     public function show($id)
     {
         $user = ModelUser::find($id);
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->method = "GET";
+        $dataLogs->action = "Mengakses halaman show pengguna milik tata usaha.";
+        $dataLogs->save();
         
         return view('users.show', compact('user'));
     }
@@ -93,6 +120,13 @@ class RegisterController extends Controller
     public function edit($id)
     {
         $user = ModelUser::find($id);
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->method = "GET";
+        $dataLogs->action = "Mengakses halaman edit pengguna milik tata usaha.";
+        $dataLogs->save();
 
         return view('users.edit', compact('user'));
     }
@@ -129,6 +163,14 @@ class RegisterController extends Controller
         $data->sex = $request->sex;
         $data->birth_date = $request->birth_date;
         $data->save();
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->method = "PATCH";
+        $dataLogs->action = "Mengubah detail pengguna dengan id " . $id . ".";
+        $dataLogs->save();
+
         return redirect('/')->with('alert-success','Berhasil mengubah detail pengguna');
     }
 
@@ -142,6 +184,13 @@ class RegisterController extends Controller
     {
         $user = ModelUser::find($id);
         $user->delete();
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->method = "DESTROY";
+        $dataLogs->action = "Menghapus pengguna dengan id " . $id . ".";
+        $dataLogs->save();
            
         return redirect('/')->with('alert-success','Berhasil dihapus');
     }

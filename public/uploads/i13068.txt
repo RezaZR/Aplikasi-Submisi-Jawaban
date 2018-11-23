@@ -1,0 +1,14 @@
+Reza Zacky Ramadan
+2013730068
+
+Saya telah melihat isi dari file tersebut, terdapat 2 variabel yaitu auth_pass dan noname. Tidak jelas apa yang 2 variabel tersebut lakukan, tetapi jika menerka-nerka variabel auth_pass adalah password untuk autentikasi ke dalam software malware tersebut dan variabel noname adalah konten dari software malware tersebut. 
+
+Di bagian paling bawah file terdapat fungsi-fungsi php seperti str_rot13 yang berguna untuk meng-encode string masukkan dan akan menggeser setiap alfabet sebanyak 13 baris, lalu ada gzinflate yang berguna untuk mengkompresi string yang ada dalam parameter dan base64_decode yang berguna untuk men-decode string yang ada dalam parameter. Menurut saya, fungsi-fungsi di bawah tersebut berguna untuk men-decode variabel noname ke dalam base64, lalu menggeser tiap alfabet sebanyak 13 baris, lalu kompres file tersebut dan geser sebanyak 13 baris sekali lagi baru print hasilnya ke dalam layar.
+ 
+Jika saya ubah file menjadi n0name.php dan menaruhnya ke dalam htdocs milik xampp lalu mengaksesnya pada localhost, maka akan keluar Shell untuk upload milik XAI Syndicate dengan tulisan kodingan php yang nampak di sekelilingnya. Pada saat saya mengakses file tersebut tidak banyak kesan yang diberikan, karena keluar alert bertuliskan ("Skid this won't work on Windows") tetapi saya bisa scroll di antara alert yang keluar tiap saya klik "ok" dan melihat kontennya secara terpotong-potong. Tapi tetap, tidak ada kesan apa-apa.
+
+Lalu saya restart laptop dan ganti ke dalam Ubuntu 18.04 dan mengaksesnya lewat htdocs milik xampp. Saya kira akan memperlihatkan sesuatu yang berbeda, ternyanta tetap keluar tulisan alert ("Skid this won't work on Windows").
+
+Karena tidak ada informasi apapun, saya ke google dan mengetik XAI Syndicate dan mengakses blogspot dan melihat video youtube yang mereka sediakan. Di sana ada tutorial cara hack dengan interface yang mirip yang saya telah jalankan di dalam localhost saya. Di dalam video tersebut menjelaskan tentang penggunaan symlink yang disisipkan ke dalam file dan di sana kita dapat mengakses database yang ada di dalam server dan melakukan operasi sql.
+
+Jadi, menurut saya (setelah menerka-nerka) malware tersebut melakukan sql injection attack dengan mengacak-acak isi dari database yang ada di dalam server dan membuat website yang dikelola tersebut memiliki behaviour yang tidak seharusnya.

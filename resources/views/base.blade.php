@@ -87,6 +87,7 @@
                                             <a href="/">Beranda</a>
                                             <a href="{{ route('courses.index')}}">Mata Kuliah</a>
                                             <a href="{{ route('users.index')}}">Pengguna</a>
+                                            <a href="{{ route('logs.index')}}">Logs</a>
                                         @else
                                             <a href="/">Beranda</a>
                                         @endif

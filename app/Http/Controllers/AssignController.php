@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\ModelLog;
 use App\ModelUser;
 use App\ModelCourse;
 use App\ModelLecturerCourse;
@@ -38,5 +40,28 @@ class AssignController extends Controller
         $courses = ModelCourse::all()->sortBy('name');
 
         return view('assigns.create', ['lecturers' => $lecturers, 'assistants' => $assistants, 'students' => $students, 'courses' => $courses]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($course_id, $assignment_id)
+    {
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $course_id, $assignment_id)
+    {
+
     }
 }

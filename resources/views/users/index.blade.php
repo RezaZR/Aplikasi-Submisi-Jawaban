@@ -20,12 +20,12 @@
                     @if(Auth::user()->level == 'Admin')
                         <div class="home__wrapper__title">
                             <div class="d-flex align-items-center">
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <div class="d-flex justify-content-start">
                                         <p class="title">Pengguna</p>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <div class="d-flex justify-content-end">
                                         <a href="{{ route('users.create')}}" class="btn btn-standard--secondary"><i class="fas fa-plus fa-fw"></i>Pengguna Baru</a></a>
                                     </div>
@@ -42,7 +42,7 @@
                                             <table cellpadding="10" class="shadow--outset">
                                                 <thead>
                                                     <tr>
-                                                        <th>ID</th>
+                                                        <th>#</th>
                                                         <th>NIK</th>
                                                         <th>Nama</th>
                                                         <th>Email</th>
@@ -51,15 +51,13 @@
                                                         <th>Alamat</th>
                                                         <th>Tanggal Lahir</th>
                                                         <th>Jenis Kelamin</th>
-                                                        <th>Tanggal Dibuat</th>
-                                                        <th>Tanggal Diubah</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @forelse($userAdmin as $user)
                                                         <tr>
-                                                            <td>{{ ++$i }}</td>
+                                                            <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $user->nik }}</td>
                                                             <td>{{ $user->name }}</td>
                                                             <td>{{ $user->email }}</td>
@@ -67,9 +65,13 @@
                                                             <td>{{ $user->phone_number }}</td>
                                                             <td>{{ $user->address }}</td>
                                                             <td>{{ $user->birth_date }}</td>
-                                                            <td>{{ $user->sex }}</td>
-                                                            <td>{{ $user->created_at }}</td>
-                                                            <td>{{ $user->updated_at }}</td>
+                                                            <td>
+                                                                @if($user->sex == "Male")
+                                                                    Pria
+                                                                @else
+                                                                    Wanita
+                                                                @endif
+                                                            </td>
                                                             <td>
                                                                 <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                                 <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
@@ -109,8 +111,6 @@
                                                         <th>Alamat</th>
                                                         <th>Tanggal Lahir</th>
                                                         <th>Jenis Kelamin</th>
-                                                        <th>Tanggal Dibuat</th>
-                                                        <th>Tanggal Diubah</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -125,9 +125,13 @@
                                                             <td>{{ $user->phone_number }}</td>
                                                             <td>{{ $user->address }}</td>
                                                             <td>{{ $user->birth_date }}</td>
-                                                            <td>{{ $user->sex }}</td>
-                                                            <td>{{ $user->created_at }}</td>
-                                                            <td>{{ $user->updated_at }}</td>
+                                                            <td>
+                                                                @if($user->sex == "Male")
+                                                                    Pria
+                                                                @else
+                                                                    Wanita
+                                                                @endif
+                                                            </td>
                                                             <td>
                                                                 <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                                 <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
@@ -167,8 +171,6 @@
                                                         <th>Alamat</th>
                                                         <th>Tanggal Lahir</th>
                                                         <th>Jenis Kelamin</th>
-                                                        <th>Tanggal Dibuat</th>
-                                                        <th>Tanggal Diubah</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -183,9 +185,13 @@
                                                             <td>{{ $user->phone_number }}</td>
                                                             <td>{{ $user->address }}</td>
                                                             <td>{{ $user->birth_date }}</td>
-                                                            <td>{{ $user->sex }}</td>
-                                                            <td>{{ $user->created_at }}</td>
-                                                            <td>{{ $user->updated_at }}</td>
+                                                            <td>
+                                                                @if($user->sex == "Male")
+                                                                    Pria
+                                                                @else
+                                                                    Wanita
+                                                                @endif
+                                                            </td>
                                                             <td>
                                                                 <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                                 <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
@@ -225,8 +231,6 @@
                                                         <th>Alamat</th>
                                                         <th>Tanggal Lahir</th>
                                                         <th>Jenis Kelamin</th>
-                                                        <th>Tanggal Dibuat</th>
-                                                        <th>Tanggal Diubah</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -241,9 +245,13 @@
                                                             <td>{{ $user->phone_number }}</td>
                                                             <td>{{ $user->address }}</td>
                                                             <td>{{ $user->birth_date }}</td>
-                                                            <td>{{ $user->sex }}</td>
-                                                            <td>{{ $user->created_at }}</td>
-                                                            <td>{{ $user->updated_at }}</td>
+                                                            <td>
+                                                                @if($user->sex == "Male")
+                                                                    Pria
+                                                                @else
+                                                                    Wanita
+                                                                @endif
+                                                            </td>
                                                             <td>
                                                                 <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                                 <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>

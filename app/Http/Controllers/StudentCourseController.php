@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\ModelUser;
 use App\ModelCourse;
 use App\ModelAssignment;
@@ -37,16 +38,14 @@ class StudentCourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($course_id)
     {
-        $course = ModelCourse::find($id);
+        $course = ModelCourse::find($course_id);
         $assignments = ModelAssignment::select('assignments.*')
                                                     ->leftjoin('courses', 'assignments.course_id', '=', 'courses.id')
                                                     ->where('course_id', '=', $course->id)
                                                     ->get()
                                                     ->sortBy('start_time');
-        $studentAssignments = ModelUserAssignment::all();
-
         return view('student_courses.show', compact('studentAssignments', 'course', 'assignments'));
     }
 

@@ -6,6 +6,7 @@ use App\ModelUser;
 use App\ModelCourse;
 use App\ModelAssignment;
 use App\ModelAssistantCourse;
+use App\ModelUserAssignment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -39,13 +40,14 @@ class AssistantCourseController extends Controller
     public function show($id)
     {
         $course = ModelCourse::find($id);
-        $assistantAssignments = ModelAssignment::select('assignments.*')
+        $assignments = ModelAssignment::select('assignments.*')
                                                     ->leftjoin('courses', 'assignments.course_id', '=', 'courses.id')
                                                     ->where('course_id', '=', $course->id)
                                                     ->get()
                                                     ->sortBy('start_time');
+        $assistantAssignments = ModelUserAssignment::all();
 
-        return view('assistant_courses.show', compact('assistantAssignments', 'course'));
+        return view('assistant_courses.show', compact('course', 'assignments', 'assistantAssignments'));
     }
 
     /**

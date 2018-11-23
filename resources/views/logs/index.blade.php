@@ -22,43 +22,42 @@
                             <div class="d-flex align-items-center">
                                 <div class="col-md-6">
                                     <div class="d-flex justify-content-start">
-                                        <p class="title">Mata Kuliah</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="d-flex justify-content-end">
-                                        <a href="{{ route('courses.create')}}" class="btn btn-standard--secondary"><i class="fas fa-plus fa-fw"></i>Mata Kuliah Baru</a></a>
+                                        <p class="title">Logs</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="home__wrapper__table">
-                                <p>List Mata Kuliah</p>
+                                <p>List Aktifitas Pengguna</p>
                                 <table cellpadding="10" class="shadow--outset">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Kode Mata Kuliah</th>
-                                            <th>Nama Mata Kuliah</th>
+                                            <th>Pelaku</th>
+                                            <th>Level</th>
+                                            <th>Method</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($courses as $course)
+                                        @forelse($logs as $log)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $course->code }}</td>
-                                                <td>{{ $course->name }}</td>
+                                                <td>{{ $log->created_by }}</td>
                                                 <td>
-                                                    <a href="{{ route('courses.show', $course->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
-                                                    <a href="{{ route('courses.edit', $course->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
-                                                    <form action="{{ route('courses.destroy', $course->id)}}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-standard--transparent" type="submit"><i class="fas fa-trash" title="Hapus"></i></button>
-                                                    </form>
+                                                    @if($log->user_level == "Admin")
+                                                        Tata Usaha
+                                                    @elseif($log->user_level == "Lecturer")
+                                                        Dosen
+                                                    @elseif($log->user_level == "Assistant")
+                                                        Asisten
+                                                    @elseif($log->user_level == "Student")
+                                                        Mahasiswa
+                                                    @endif
                                                 </td>
+                                                <td>{{ $log->method }}</td>
+                                                <td>{{ $log->action }}</td>
                                             </tr>
                                         @empty
                                             <tr>
@@ -67,6 +66,9 @@
                                         @endforelse
                                     </tbody>
                                 </table>
+                                <div>
+                                    {{ $logs->links() }}
+                                </div>
                             </div>
                         </div>
                     @endif
