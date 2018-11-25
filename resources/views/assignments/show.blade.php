@@ -60,12 +60,10 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <p class="color--black"><span>Status Pengumpulan</span>
-                                                        @if($studentAssignment->file_status == "Not Submitted")
-                                                            <span class="color--red">: Belum mengumpulkan</span>
-                                                        @elseif($studentAssignment->file_status == "Submitted")
-                                                            <span class="color--orange">: Telah mengumpulkan, belum dinilai</span>
+                                                        @if($studentAssignment->file_status == 'Submitted')
+                                                            <span class="color--green">: Telah mengumpulkan</span>
                                                         @else
-                                                            <span class="color--green">: Sudah dinilai</span>
+                                                            <span class="color--red">: Belum mengumpulkan</span>
                                                         @endif
                                                     </p>
                                                     <p class="color--black"><span>File</span>
@@ -73,21 +71,28 @@
                                                             <a title="Unduh berkas milik {{$studentAssignment->user_name}}" href="{{ url('/uploads/' . $fileShortStudent) }}" download>{{ $fileShortStudent }}</a>
                                                         </span>
                                                     </p>
+                                                    <p class="color--black"><span>Status Penilaian</span>
+                                                        @if($studentAssignment->is_graded)
+                                                            <span class="color--green">: Sudah dinilai</span>
+                                                        @else
+                                                            <span class="color--red">: Belum dinilai</span>
+                                                        @endif
+                                                    </p>
                                                     <p class="color--black"><span>Nilai</span>
-                                                        @if($studentAssignment->file_status == "Graded")
+                                                        @if($studentAssignment->is_graded)
                                                             <span>: {{ $studentAssignment->grade }}</span>
                                                         @else
                                                             <span>: -</span>
                                                         @endif
                                                     </p>
                                                     <p class="color--black last-p"><span>Waktu Pemeriksaan</span>
-                                                        @if($studentAssignment->file_status == "Graded")
+                                                        @if($studentAssignment->is_graded)
                                                             <span>: {{ $studentAssignment->examine_time }}</span>
                                                         @else
                                                             <span>: -</span>
                                                         @endif
                                                     </p>
-                                                    @if($studentAssignment->file_status == "Submitted")
+                                                    @if($studentAssignment->file_status == 'Submitted')
                                                         <div class="d-flex align-items-center">
                                                             <div class="col-md-6">
                                                                 <div class="d-flex justify-content-end">
@@ -100,7 +105,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    @elseif($studentAssignment->file_status == "Graded")
+                                                    @else
                                                         <div class="d-flex align-items-center">
                                                             <div class="col-md-12">
                                                                 <div class="d-flex justify-content-center">
@@ -144,28 +149,33 @@
                                                 <div class="col-md-11">
                                                     <p class="color--black"><span>Nama Pengumpul</span> <span>: {{ $willBeGradedAssignment->user_name }}</span></p>
                                                     <p class="color--black"><span>Status Pengumpulan</span>
-                                                        @if($willBeGradedAssignment->file_status == "Not Submitted")
+                                                        @if($willBeGradedAssignment->file_status == "Submitted")
+                                                            <span class="color--green">: Telah mengumpulkan</span>
+                                                        @elseif($willBeGradedAssignment->file_status == "Not Submitted")
                                                             <span class="color--red">: Belum mengumpulkan</span>
-                                                        @elseif($willBeGradedAssignment->file_status == "Submitted")
-                                                            <span class="color--orange">: Telah mengumpulkan, belum dinilai</span>
-                                                        @else
+                                                        @endif
+                                                    </p>
+                                                    <p class="color--black"><span>Status Penilaian</span>
+                                                        @if($willBeGradedAssignment->is_graded)
                                                             <span class="color--green">: Sudah dinilai</span>
+                                                        @else
+                                                            <span class="color--red">: Belum dinilai</span>
                                                         @endif
                                                     </p>
                                                     <p class="color--black"><span>File</span>
                                                         <span>: 
-                                                            <a title="Unduh berkas milik {{$willBeGradedAssignment->user_name}}" href="{{ url('/uploads/' . $fileShortGrader) }}" download>{{ $fileShortGrader }}</a>
+                                                            <a title="Unduh berkas milik {{$willBeGradedAssignment->user_name}}" href="{{ url('/uploads/' . $fileShortGrader) }}" download>{{ $fileShortGrader[0][1] }}</a>
                                                         </span>
                                                     </p>
                                                     <p class="color--black"><span>Nilai</span>
-                                                        @if($willBeGradedAssignment->file_status == "Graded")
+                                                        @if($willBeGradedAssignment->is_graded)
                                                             <span>: {{ $willBeGradedAssignment->grade }}</span>
                                                         @else
                                                             <span>: -</span>
                                                         @endif
                                                     </p>
                                                     <p class="color--black last-p"><span>Waktu Pemeriksaan</span>
-                                                        @if($willBeGradedAssignment->file_status == "Graded")
+                                                        @if($willBeGradedAssignment->is_graded)
                                                             <span>: {{ $willBeGradedAssignment->examine_time }}</span>
                                                         @else
                                                             <span>: -</span>

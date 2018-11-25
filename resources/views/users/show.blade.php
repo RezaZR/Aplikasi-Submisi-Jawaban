@@ -58,16 +58,8 @@
                                 <p>{{ $user->address }}</p>
                             </div>
                             <div class="field form-group">
-                                <label for="sex" class="active">Jenis Kelamin</label>
-                                <p>{{ $user->sex }}</p>
-                            </div>
-                            <div class="field form-group">
-                                <label for="phone_number" class="active">Nomor Telepon</label>
+                                <label for="birth_date" class="active">No. Telpon</label>
                                 <p>{{ $user->phone_number }}</p>
-                            </div>
-                            <div class="field form-group">
-                                <label for="birth_date" class="active">Tanggal Lahir</label>
-                                <p>{{ $user->birth_date }}</p>
                             </div>
                             <div class="field form-group">                 
                                 <div class="d-flex align-items-center">

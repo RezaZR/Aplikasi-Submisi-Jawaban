@@ -49,8 +49,6 @@
                                                         <th>Level</th>
                                                         <th>Nomor Telepon</th>
                                                         <th>Alamat</th>
-                                                        <th>Tanggal Lahir</th>
-                                                        <th>Jenis Kelamin</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -64,14 +62,6 @@
                                                             <td>{{ $user->level }}</td>
                                                             <td>{{ $user->phone_number }}</td>
                                                             <td>{{ $user->address }}</td>
-                                                            <td>{{ $user->birth_date }}</td>
-                                                            <td>
-                                                                @if($user->sex == "Male")
-                                                                    Pria
-                                                                @else
-                                                                    Wanita
-                                                                @endif
-                                                            </td>
                                                             <td>
                                                                 <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                                 <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
@@ -109,8 +99,6 @@
                                                         <th>Level</th>
                                                         <th>Nomor Telepon</th>
                                                         <th>Alamat</th>
-                                                        <th>Tanggal Lahir</th>
-                                                        <th>Jenis Kelamin</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -124,14 +112,6 @@
                                                             <td>{{ $user->level }}</td>
                                                             <td>{{ $user->phone_number }}</td>
                                                             <td>{{ $user->address }}</td>
-                                                            <td>{{ $user->birth_date }}</td>
-                                                            <td>
-                                                                @if($user->sex == "Male")
-                                                                    Pria
-                                                                @else
-                                                                    Wanita
-                                                                @endif
-                                                            </td>
                                                             <td>
                                                                 <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                                 <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
@@ -169,8 +149,6 @@
                                                         <th>Level</th>
                                                         <th>Nomor Telepon</th>
                                                         <th>Alamat</th>
-                                                        <th>Tanggal Lahir</th>
-                                                        <th>Jenis Kelamin</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -184,14 +162,6 @@
                                                             <td>{{ $user->level }}</td>
                                                             <td>{{ $user->phone_number }}</td>
                                                             <td>{{ $user->address }}</td>
-                                                            <td>{{ $user->birth_date }}</td>
-                                                            <td>
-                                                                @if($user->sex == "Male")
-                                                                    Pria
-                                                                @else
-                                                                    Wanita
-                                                                @endif
-                                                            </td>
                                                             <td>
                                                                 <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                                 <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
@@ -229,8 +199,6 @@
                                                         <th>Level</th>
                                                         <th>Nomor Telepon</th>
                                                         <th>Alamat</th>
-                                                        <th>Tanggal Lahir</th>
-                                                        <th>Jenis Kelamin</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -244,14 +212,6 @@
                                                             <td>{{ $user->level }}</td>
                                                             <td>{{ $user->phone_number }}</td>
                                                             <td>{{ $user->address }}</td>
-                                                            <td>{{ $user->birth_date }}</td>
-                                                            <td>
-                                                                @if($user->sex == "Male")
-                                                                    Pria
-                                                                @else
-                                                                    Wanita
-                                                                @endif
-                                                            </td>
                                                             <td>
                                                                 <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                                 <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>

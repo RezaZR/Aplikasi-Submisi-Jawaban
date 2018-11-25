@@ -23,7 +23,7 @@ class StudentCourseController extends Controller
     public function store(Request $request) {
         $this->validate($request, [
             'student_id' => 'required',
-            'course_id' => 'required|unique:student_courses',
+            'course_id' => 'required',
         ]);
         $data = new ModelStudentCourse();
         $data->student_id = $request->student_id;

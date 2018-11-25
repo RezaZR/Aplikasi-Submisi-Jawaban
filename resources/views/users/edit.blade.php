@@ -90,31 +90,15 @@
                                     <label for="address" class="active">Alamat</label>
                                     <input class="form-control" id="address" name="address" type="text" value="{{ $user->address }}" />
                                 </div>
-                                <div class="form-group">
-                                    <label for="sex" class="active">Jenis Kelamin</label>
-                                    <select class="form-control" id="sex" name="sex" value="{{ $user->sex }}">
-                                        @if($user->sex == 'Male')
-                                            <option value="Male" selected>Pria</option>
-                                            <option value="Female">Wanita</option>
-                                        @else
-                                            <option value="Male">Pria</option>
-                                            <option value="Female" selected>Wanita</option>
-                                        @endif
-                                    </select>
-                                </div>
                                 <div class="field form-group">
-                                    <label for="phone_number" class="active">Nomor Telepon</label>
-                                    <input class="form-control" id="phone_number" name="phone_number" type="text" value="{{ $user->phone_number }}" />
-                                </div>
-                                <div class="field form-group">
-                                    <label for="birth_date" class="active">Tanggal Lahir</label>
-                                    <input class="form-control" id="birth_date" name="birth_date" type="date" value="{{ $user->birth_date }}" />
+                                    <label for="birth_date" class="active">No. Telpon</label>
+                                    <input class="form-control" id="phone_number" name="phone_number" type="text" value="{{ $user->phone_number }}">
                                 </div>
                                 <div class="field form-group">                 
                                     <div class="d-flex align-items-center">
                                         <div class="col-md-6">
                                             <div class="d-flex justify-content-end">
-                                                <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
+                                                <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Batal</a>
                                             </div>
                                         </div>
                                         <div class="col-md-6">

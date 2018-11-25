@@ -13,6 +13,9 @@ Route::group(['middleware' => ['auth']], function() {
     
 
     Route::resource('courses', 'CourseController');
+    
+
+    Route::resource('assignments', 'AssignmentController', ['only' => ['index']]);
 
 
     Route::resource('assigns', 'AssignController');
@@ -105,7 +108,7 @@ Route::get('/login',
     'uses' => 'SessionController@login'
 ]);
 Route::post('/session', 
-    ['as' => 'login', 
+    ['as' => 'session', 
     'uses' => 'SessionController@store'
 ]);
 Route::get('/logout', 

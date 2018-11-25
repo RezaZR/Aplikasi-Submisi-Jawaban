@@ -49,7 +49,7 @@ class UserController extends Controller
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "GET";
+        $dataLogs->user_ip = \Request::ip();
         $dataLogs->action = "Mengakses halaman index milik tata usaha.";
         $dataLogs->save();
 

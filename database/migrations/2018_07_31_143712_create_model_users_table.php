@@ -23,8 +23,6 @@ class CreateModelUsersTable extends Migration
             $table->enum('level', ['Admin', 'Lecturer', 'Assistant', 'Student']);
             $table->string('phone_number');
             $table->text('address');
-            $table->date('birth_date');
-            $table->enum('sex', ['Male', 'Female']);
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

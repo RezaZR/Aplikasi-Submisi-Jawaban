@@ -17,7 +17,7 @@ class CreateModelLogsTable extends Migration
             $table->increments('id');
             $table->string('created_by');
             $table->string('user_level');
-            $table->string('method');
+            $table->string('user_ip');
             $table->string('action');
             $table->timestamps();
         });

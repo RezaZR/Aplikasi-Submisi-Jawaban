@@ -20,11 +20,12 @@ class CreateModelUserAssignmentsTable extends Migration
             $table->integer('student_id')->nullable()->unsigned();
             $table->foreign('student_id')->references('id')->on('users');
             $table->text('file')->nullable();
-            $table->integer('grader')->nullable()->unsigned();
-            $table->foreign('grader')->references('id')->on('users');
+            $table->integer('grader_id')->nullable()->unsigned();
+            $table->foreign('grader_id')->references('id')->on('users');
             $table->dateTime('examine_time')->nullable();
             $table->float('grade')->nullable();
-            $table->enum('status', ['Not Submitted', 'Submitted', 'Graded'])->nullable();
+            $table->enum('status', ['Not Submitted', 'Submitted'])->nullable();
+            $table->boolean('is_graded')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

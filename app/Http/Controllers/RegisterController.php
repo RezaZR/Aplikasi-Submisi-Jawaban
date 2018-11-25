@@ -25,7 +25,7 @@ class RegisterController extends Controller
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "GET";
+        $dataLogs->user_ip = \Request::ip();
         $dataLogs->action = "Mengakses halaman index pengguna milik tata usaha.";
         $dataLogs->save();
 
@@ -42,7 +42,7 @@ class RegisterController extends Controller
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "GET";
+        $dataLogs->user_ip = \Request::ip();;
         $dataLogs->action = "Mengakses halaman create pengguna milik tata usaha.";
         $dataLogs->save();
 
@@ -65,8 +65,6 @@ class RegisterController extends Controller
             'level' => 'required',
             'phone_number' => 'required',
             'address' => 'required',
-            'birth_date' => 'required|date',
-            'sex' => 'required',
         ]);
         $data = new ModelUser();
         $data->name = $request->name;
@@ -77,14 +75,12 @@ class RegisterController extends Controller
         $data->level = $request->level;
         $data->phone_number = $request->phone_number;
         $data->address = $request->address;
-        $data->sex = $request->sex;
-        $data->birth_date = $request->birth_date;
         $data->save();
 
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "POST";
+        $dataLogs->user_ip = \Request::ip();
         $dataLogs->action = "Membuat pengguna baru bernama " . $data->name . ".";
         $dataLogs->save();
 
@@ -104,7 +100,7 @@ class RegisterController extends Controller
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "GET";
+        $dataLogs->user_ip = \Request::ip();;
         $dataLogs->action = "Mengakses halaman show pengguna milik tata usaha.";
         $dataLogs->save();
         
@@ -124,7 +120,7 @@ class RegisterController extends Controller
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "GET";
+        $dataLogs->user_ip = \Request::ip();
         $dataLogs->action = "Mengakses halaman edit pengguna milik tata usaha.";
         $dataLogs->save();
 
@@ -148,8 +144,6 @@ class RegisterController extends Controller
             'level' => 'required',
             'phone_number' => 'required',
             'address' => 'required',
-            'birth_date' => 'required|date',
-            'sex' => 'required',
         ]);
         $data = ModelUser::find($id);
         $data->name = $request->name;
@@ -160,14 +154,12 @@ class RegisterController extends Controller
         $data->level = $request->level;
         $data->phone_number = $request->phone_number;
         $data->address = $request->address;
-        $data->sex = $request->sex;
-        $data->birth_date = $request->birth_date;
         $data->save();
 
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "PATCH";
+        $dataLogs->user_ip = \Request::ip();
         $dataLogs->action = "Mengubah detail pengguna dengan id " . $id . ".";
         $dataLogs->save();
 
@@ -188,7 +180,7 @@ class RegisterController extends Controller
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "DESTROY";
+        $dataLogs->user_ip = \Request::ip();
         $dataLogs->action = "Menghapus pengguna dengan id " . $id . ".";
         $dataLogs->save();
            

@@ -13,7 +13,41 @@ use Illuminate\Support\Facades\Session;
 class AssignmentController extends Controller
 
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    { 
+        $courseAssignments = ModelCourse::select('courses.id as course_id', 'courses.code as course_code', 'courses.name as course_name', 'assignments.id as assignment_id', 'assignments.title', 'assignments.mode', 'assignments.start_time', 'assignments.end_time', 'user_assignments.id as user_assignment_id')
+                                                    ->leftjoin('assignments', 'courses.id', '=', 'assignments.course_id')
+                                                    ->leftjoin('user_assignments', 'assignments.id', '=', 'user_assignments.assignment_id')
+                                                    ->whereColumn('courses.id', '=', 'assignments.course_id')
+                                                    // ->where('user_assignments.id', '!=', null)
+                                                    ->get();
 
+        $gradedAssignments = ModelUserAssignment::select('user_assignments.*', 'student_courses.*')
+                                    ->leftjoin('student_courses', 'user_assignments.student_id', '=', 'student_courses.student_id')
+                                    ->where('user_assignments.status', '=', 'Submitted')
+                                    ->get();
+
+        $ungradedAssignments = ModelUserAssignment::select('user_assignments.*', 'student_courses.*')
+                                    ->leftjoin('student_courses', 'user_assignments.student_id', '=', 'student_courses.student_id')
+                                    // ->where('user_assignments.status', '!=', 'Graded')
+                                    ->where('user_assignments.status', '=', 'null')
+                                    ->get();
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Mengakses halaman index tugas milik tata usaha.";
+        $dataLogs->save();
+
+        return view('assignments.index', ['courseAssignments' => $courseAssignments]);
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -71,7 +105,7 @@ class AssignmentController extends Controller
 
         $assignment = ModelAssignment::find($assignment_id);
 
-        $studentAssignment = $assignment::select('assignments.id as assignment_student_id', 'assignments.title as assignment_title', 'users.id as user_id', 'users.name as user_name', 'user_assignments.student_id','user_assignments.id as user_assignments_id', 'user_assignments.status as file_status', 'user_assignments.file as file', 'user_assignments.grade', 'user_assignments.grader', 'user_assignments.examine_time')
+        $studentAssignment = $assignment::select('assignments.id as assignment_student_id', 'assignments.title as assignment_title', 'users.id as user_id', 'users.name as user_name', 'user_assignments.student_id','user_assignments.id as user_assignments_id', 'user_assignments.status as file_status', 'user_assignments.file as file', 'user_assignments.grade', 'user_assignments.grader_id', 'user_assignments.examine_time', 'user_assignments.is_graded')
                                                     ->join('user_assignments', 'assignments.id', '=', 'user_assignments.assignment_id')
                                                     ->join('users', 'users.id', '=', 'user_assignments.student_id')
                                                     ->where('user_assignments.assignment_id', '=', $assignment_id)
@@ -81,14 +115,22 @@ class AssignmentController extends Controller
         $fileShortStudent = $fileTokensStudent[sizeof($fileTokensStudent) - 1];
         $studentAssignment->file =  $fileShortStudent;
 
-        $willBeGradedAssignments = $assignment::select('assignments.id as assignment_student_id', 'assignments.title as assignment_title', 'users.id as user_id', 'users.name as user_name', 'user_assignments.student_id','user_assignments.id as user_assignments_id', 'user_assignments.status as file_status', 'user_assignments.file as file', 'user_assignments.grade', 'user_assignments.grader', 'user_assignments.examine_time')
+        $willBeGradedAssignments = $assignment::select('assignments.id as assignment_student_id', 'assignments.title as assignment_title', 'users.id as user_id', 'users.name as user_name', 'user_assignments.student_id','user_assignments.id as user_assignments_id', 'user_assignments.status as file_status', 'user_assignments.file as file', 'user_assignments.grade', 'user_assignments.grader_id', 'user_assignments.examine_time', 'user_assignments.is_graded')
                                             ->join('user_assignments', 'assignments.id', '=', 'user_assignments.assignment_id')
                                             ->join('users', 'users.id', '=', 'user_assignments.student_id')
                                             ->where('user_assignments.assignment_id', '=', $assignment_id)
-                                            ->get();
-        $fileTokensGrader = explode('/', $willBeGradedAssignments[0]->file);
-        $fileShortGrader = $fileTokensGrader[sizeof($fileTokensGrader) - 1];
-        $willBeGradedAssignments->file =  $fileShortGrader;
+                                            ->get(); 
+        $fileShortGrader = array();
+        foreach($willBeGradedAssignments as $willBeGradedAssignment) {
+            $fileTokensGrader = [
+                                    explode('/', $willBeGradedAssignment->file)
+                                ];
+            $fileShortGrader = [
+                                    $fileTokensGrader[sizeof($fileTokensGrader) - 1]
+                                ];
+            $willBeGradedAssignments->file =  $fileShortGrader;
+        }                                    
+        
         
         return view('assignments.show', ['course' => $course, 'assignment' => $assignment, 'studentAssignment' => $studentAssignment, 'fileShortGrader' => $fileShortGrader, 'willBeGradedAssignments' => $willBeGradedAssignments, 'fileShortStudent' => $fileShortStudent]);
     }

@@ -45,7 +45,7 @@
                                     <div class="d-flex align-items-center">
                                         <div class="col-md-6">
                                             <div class="d-flex justify-content-end">
-                                                <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
+                                                <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Batal</a>
                                             </div>
                                         </div>
                                         <div class="col-md-6">

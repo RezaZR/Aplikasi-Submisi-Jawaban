@@ -22,7 +22,7 @@ class AssistantCourseController extends Controller
     public function store(Request $request) {
         $this->validate($request, [
             'assistant_id' => 'required',
-            'course_id' => 'required|unique:assistant_courses',
+            'course_id' => 'required',
         ]);
         $data = new ModelAssistantCourse();
         $data->assistant_id = $request->assistant_id;

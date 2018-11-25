@@ -22,7 +22,7 @@ class CourseController extends Controller
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "GET";
+        $dataLogs->user_ip = \Request::ip();
         $dataLogs->action = "Mengakses halaman index mata kuliah milik tata usaha.";
         $dataLogs->save();
 
@@ -38,7 +38,7 @@ class CourseController extends Controller
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "GET";
+        $dataLogs->user_ip = \Request::ip();
         $dataLogs->action = "Mengakses halaman create mata kuliah milik tata usaha.";
         $dataLogs->save();
 
@@ -53,8 +53,8 @@ class CourseController extends Controller
      */
     public function store(Request $request) {
         $this->validate($request, [
-            'code' => 'required|unique:courses|max:6',
-            'name' => 'required|max:50',
+            'code' => 'required|unique:courses',
+            'name' => 'required',
         ]);
         $data = new ModelCourse();
         $data->code = $request->code;
@@ -64,7 +64,7 @@ class CourseController extends Controller
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "POST";
+        $dataLogs->user_ip = \Request::ip();
         $dataLogs->action = "Membuat mata kuliah baru bernama " . $data->name . ".";
         $dataLogs->save();
 
@@ -84,7 +84,7 @@ class CourseController extends Controller
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "GET";
+        $dataLogs->user_ip = \Request::ip();
         $dataLogs->action = "Mengakses halaman show mata kuliah milik tata usaha.";
         $dataLogs->save();
 
@@ -104,7 +104,7 @@ class CourseController extends Controller
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "GET";
+        $dataLogs->user_ip = \Request::ip();
         $dataLogs->action = "Mengakses halaman edit mata kuliah milik tata usaha.";
         $dataLogs->save();
 
@@ -121,8 +121,8 @@ class CourseController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'code' => 'required|max:6',
-            'name' => 'required|max:50',
+            'code' => 'required',
+            'name' => 'required',
         ]);
         $data = ModelCourse::find($id);
         $data->code = $request->code;
@@ -132,7 +132,7 @@ class CourseController extends Controller
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "PATCH";
+        $dataLogs->user_ip = \Request::ip();
         $dataLogs->action = "Mengubah detail mata kuliah dengan id " . $id . ".";
         $dataLogs->save();
 
@@ -153,7 +153,7 @@ class CourseController extends Controller
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "DESTROY";
+        $dataLogs->user_ip = \Request::ip();
         $dataLogs->action = "Menghapus mata kuliah dengan id " . $id . ".";
         $dataLogs->save();
            

@@ -129,6 +129,7 @@
     padding: .5em 1em;
     background-color: rgba(255, 255, 255, 0);
     color: #fff;
+    font-size: 15px;
 }
 
 .header__wrapper .col-md-8 a:hover {
@@ -152,6 +153,10 @@
 .header__wrapper__info {
     display: block;
     width: 100%;
+}
+
+.header__wrapper__info p span {
+    font-size: 16px;
 }
 
 .header__wrapper__info p:first-child {
@@ -266,7 +271,7 @@
 }
 
 .home__wrapper__box {
-    margin-bottom: 1em;
+    margin: 1em 0;
     background-color: #fff;
 }
 
@@ -279,8 +284,17 @@
     color: #000;
 }
 
+.home__wrapper__box__info p {
+    padding: .5em;
+}
+
+.home__wrapper__box__info p:first-child {
+    border-bottom: 1px solid #d0d0d0;
+}
+
 .home__wrapper__box__info p:last-child {
     font-size: 14px;
+    font-weight: 600;
 }
 
 .crud__wrapper__title {

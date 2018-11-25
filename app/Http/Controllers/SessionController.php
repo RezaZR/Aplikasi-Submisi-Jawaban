@@ -29,7 +29,7 @@ class SessionController extends Controller
             $dataLogs = new ModelLog();
             $dataLogs->created_by = Auth::user()->name;
             $dataLogs->user_level = Auth::user()->level;
-            $dataLogs->method = "POST";
+            $dataLogs->user_ip = \Request::ip();
             $dataLogs->action = "Melakukan login.";
             $dataLogs->save();
             
@@ -43,7 +43,7 @@ class SessionController extends Controller
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;
         $dataLogs->user_level = Auth::user()->level;
-        $dataLogs->method = "POST";
+        $dataLogs->user_ip = \Request::ip();
         $dataLogs->action = "Melakukan logout.";
         $dataLogs->save();
 

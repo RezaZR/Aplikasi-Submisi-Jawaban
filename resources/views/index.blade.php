@@ -91,8 +91,6 @@
                                             <th>Level</th>
                                             <th>Nomor Telepon</th>
                                             <th>Alamat</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Jenis Kelamin</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -110,14 +108,6 @@
                                                 </td>
                                                 <td>{{ $user->phone_number }}</td>
                                                 <td>{{ $user->address }}</td>
-                                                <td>{{ $user->birth_date }}</td>
-                                                <td>
-                                                    @if($user->sex == "Male")
-                                                        Pria
-                                                    @else
-                                                        Wanita
-                                                    @endif
-                                                </td>
                                                 <td>
                                                     <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                     <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
@@ -130,7 +120,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td class="empty" colspan="10">Kolom kosong</td>
+                                                <td class="empty" colspan="8">Kolom kosong</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -157,8 +147,6 @@
                                             <th>Level</th>
                                             <th>Nomor Telepon</th>
                                             <th>Alamat</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Jenis Kelamin</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -176,14 +164,6 @@
                                                 </td>
                                                 <td>{{ $user->phone_number }}</td>
                                                 <td>{{ $user->address }}</td>
-                                                <td>{{ $user->birth_date }}</td>
-                                                <td>
-                                                    @if($user->sex == "Male")
-                                                        Pria
-                                                    @else
-                                                        Wanita
-                                                    @endif
-                                                </td>
                                                 <td>
                                                     <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                     <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
@@ -196,7 +176,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td class="empty" colspan="10">Kolom kosong</td>
+                                                <td class="empty" colspan="8">Kolom kosong</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -223,8 +203,6 @@
                                             <th>Level</th>
                                             <th>Nomor Telepon</th>
                                             <th>Alamat</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Jenis Kelamin</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -242,14 +220,6 @@
                                                 </td>
                                                 <td>{{ $user->phone_number }}</td>
                                                 <td>{{ $user->address }}</td>
-                                                <td>{{ $user->birth_date }}</td>
-                                                <td>
-                                                    @if($user->sex == "Male")
-                                                        Pria
-                                                    @else
-                                                        Wanita
-                                                    @endif
-                                                </td>
                                                 <td>
                                                     <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                     <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
@@ -262,7 +232,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td class="empty" colspan="10">Kolom kosong</td>
+                                                <td class="empty" colspan="8">Kolom kosong</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -289,8 +259,6 @@
                                             <th>Level</th>
                                             <th>Nomor Telepon</th>
                                             <th>Alamat</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Jenis Kelamin</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -308,14 +276,6 @@
                                                 </td>
                                                 <td>{{ $user->phone_number }}</td>
                                                 <td>{{ $user->address }}</td>
-                                                <td>{{ $user->birth_date }}</td>
-                                                <td>
-                                                    @if($user->sex == "Male")
-                                                        Pria
-                                                    @else
-                                                        Wanita
-                                                    @endif
-                                                </td>
                                                 <td>
                                                     <a href="{{ route('users.show', $user->id)}}"><i class="fas fa-eye" title="Detail"></i></a>
                                                     <a href="{{ route('users.edit', $user->id)}}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
@@ -328,7 +288,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td class="empty" colspan="10">Kolom kosong</td>
+                                                <td class="empty" colspan="8">Kolom kosong</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -358,7 +318,6 @@
                                     <div class="col-md-3">
                                         <a href="{{ route('lecturer_courses.show', $course->course_id) }}">
                                             <div class="home__wrapper__box">
-                                                <img class="w-100" src="http://via.placeholder.com/346x148"/>
                                                 <div class="home__wrapper__box__info shadow--outset">
                                                     <p>{{ $course->course_name }}</p>
                                                     <p>{{ $course->course_code }}</p>
@@ -385,7 +344,6 @@
                                     <div class="col-md-3">
                                         <a href="{{ route('assistant_courses.show', $course->course_id) }}">
                                             <div class="home__wrapper__box">
-                                                <img class="w-100" src="http://via.placeholder.com/346x148"/>
                                                 <div class="home__wrapper__box__info shadow--outset">
                                                     <p>{{ $course->course_name }}</p>
                                                     <p>{{ $course->course_code }}</p>
@@ -412,7 +370,6 @@
                                     <div class="col-md-3">
                                         <a href="{{ route('student_courses.show', $course->course_id) }}">
                                             <div class="home__wrapper__box">
-                                                <img class="w-100" src="http://via.placeholder.com/346x148"/>
                                                 <div class="home__wrapper__box__info shadow--outset">
                                                     <p>{{ $course->course_name }}</p>
                                                     <p>{{ $course->course_code }}</p>

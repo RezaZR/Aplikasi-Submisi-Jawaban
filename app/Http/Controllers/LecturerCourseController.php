@@ -22,7 +22,7 @@ class LecturerCourseController extends Controller
     public function store(Request $request) {
         $this->validate($request, [
             'lecturer_id' => 'required',
-            'course_id' => 'required|unique:lecturer_courses',
+            'course_id' => 'required',
         ]);
         $data = new ModelLecturerCourse();
         $data->lecturer_id = $request->lecturer_id;

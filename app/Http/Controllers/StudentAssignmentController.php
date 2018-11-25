@@ -48,12 +48,11 @@ class StudentAssignmentController extends Controller
 
         $course = ModelCourse::find($course_id);
         $assignment = ModelAssignment::find($assignment_id);
-        $studentAssignments = ModelAssignment::select('courses.id as course_id', 'courses.code as course_code','courses.name as course_name', 'assignments.*')
+        $studentAssignment = $assignment::select('courses.id as course_id', 'courses.code as course_code','courses.name as course_name', 'assignments.*')
                                                     ->leftjoin('courses', 'assignments.course_id', '=', 'courses.id')
-                                                    ->get()
-                                                    ->sortBy('start_time');
+                                                    ->first();
 
-        return view('student_assignments.create', ['course' => $course, 'assignment' => $assignment, 'studentAssignments' => $studentAssignments]);
+        return view('student_assignments.create', ['course' => $course, 'assignment' => $assignment, 'studentAssignment' => $studentAssignment]);
     }
 
     /**
@@ -63,24 +62,20 @@ class StudentAssignmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+
         $this->validate($request, [
             'assignment_id' => 'required',
             'student_id' => 'required',
-            'file' => 'mimes:doc,docx,zip,rar,txt,pdf,image',
+            'file' => 'required|mimes:pdf,docx,zip|file|size:10000',
         ]);
 
         $data = new ModelUserAssignment();
         $data->assignment_id = $request->assignment_id;
         $data->student_id = $request->student_id;
-        // $data->file = $request->file;
         $file = $request->file;
         $file->move('uploads', $file->getClientOriginalName());
         $data->file = public_path("uploads/" . $file->getClientOriginalName());
         $data->status = "Submitted";
-        // \File::put(public_path() . '/' . $data->file, base64_decode($data->file));
-        // if($data->file != "") {
-        //     \Storage::disk('public')->put($data->file, base64_decode($data->file));     
-        // }
         $data->save();
 
         return redirect('/')->with('alert-success','Berhasil mengumpulkan tugas');
@@ -114,38 +109,22 @@ class StudentAssignmentController extends Controller
      */
     public function update(Request $request, $course_id, $assignment_id, $user_assignment_id)
     {
+
         $this->validate($request, [
             'assignment_id' => 'required',
             'student_id' => 'required',
-            'file' => 'mimes:doc,docx,zip,rar,txt,pdf,image',
+            'file' => 'required|mimes:pdf,docx,zip|file|max:10000',
         ]);
-
-        // $file_name = $request->file;
 
         $data = ModelUserAssignment::find($user_assignment_id);
         $data->assignment_id = $request->assignment_id;
         $data->student_id = $request->student_id;
-        // $data->file = $file_name;
         $file = $request->file;
-
-        // $data->file->move('uploads', $data->file->getClientOriginalName());
-        
         $file->move('uploads', $file->getClientOriginalName());
         $data->file = public_path("uploads/" . $file->getClientOriginalName());
-        // $GLOBALS['file_name'] = explode('/', $data->file);
-        // dd($GLOBALS['file_name'])
-        // \File::put(public_path('document') . '/' . $data->file, base64_decode($data->file));
-
-        // if($data->file != "") {
-        //     \Storage::disk('public')->put($data->file, base64_decode($data->file));     
-        // }
+        $data->status = "Submitted";
         $data->save();
-        // dd($data);
 
         return redirect('/')->with('alert-success','Berhasil mengubah');
-    }
-
-    public function download() {
-        return response()->download(public_path('uploads/Tugas Week 5.docx'));
     }
 }

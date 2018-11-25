@@ -20,55 +20,46 @@
                     @if(Auth::user()->level == 'Admin')
                         <div class="home__wrapper__title">
                             <div class="d-flex align-items-center">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="d-flex justify-content-start">
-                                        <p class="title">Aktifitas Pengguna</p>
+                                        <p class="title">Tugas</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="home__wrapper__table">
-                                <p>List Aktifitas Pengguna</p>
+                                <p>List Tugas</p>
                                 <table cellpadding="10" class="shadow--outset">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Pelaku</th>
-                                            <th>Level</th>
-                                            <th>IP</th>
-                                            <th>Aksi</th>
+                                            <th>Kode Mata </th>
+                                            <th>Nama Mata Kuliah</th>
+                                            <th>Judul Tempat Pengumpulan</th>
+                                            <th>Tanggal & Waktu Mulai</th>
+                                            <th>Tanggal & Waktu Selesai</th>
+                                            <th>Mode</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($logs as $log)
+                                        @forelse($courseAssignments as $courseAssignment)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $log->created_by }}</td>
-                                                <td>
-                                                    @if($log->user_level == "Admin")
-                                                        Tata Usaha
-                                                    @elseif($log->user_level == "Lecturer")
-                                                        Dosen
-                                                    @elseif($log->user_level == "Assistant")
-                                                        Asisten
-                                                    @elseif($log->user_level == "Student")
-                                                        Mahasiswa
-                                                    @endif
-                                                </td>
-                                                <td>{{ $log->user_ip }}</td>
-                                                <td>{{ $log->action }}</td>
+                                                <td>{{ $courseAssignment->course_code }}</td>
+                                                <td>{{ $courseAssignment->course_name }}</td>
+                                                <td>{{ $courseAssignment->title }}</td>
+                                                <td>{{ $courseAssignment->start_time }}</td>
+                                                <td>{{ $courseAssignment->end_time }}</td>
+                                                <td>{{ $courseAssignment->mode }}</td>
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td class="empty" colspan="6">Kolom kosong</td>
+                                                <td class="empty" colspan="7">Kolom kosong</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
                                 </table>
-                                <div>
-                                    {{ $logs->links() }}
-                                </div>
                             </div>
                         </div>
                     @endif

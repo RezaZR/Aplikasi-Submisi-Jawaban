@@ -31,7 +31,6 @@ class GraderAssignmentController extends Controller
                                                     ->leftjoin('user_assignments', 'assignments.id', '=', 'user_assignments.assignment_id')
                                                     ->leftjoin('users', 'users.id', '=', 'user_assignments.student_id')
                                                     ->where('user_assignments.assignment_id', '=', $assignment_id)
-                                                    // ->where('user_assignments.student_id', '=', $loggedInUser)
                                                     ->get();
         $file_tokens = explode('/', $studentAssignment->file);
         $studentAssignment->file = $file_tokens[sizeof($file_tokens) - 1];      
@@ -75,10 +74,10 @@ class GraderAssignmentController extends Controller
         ]);
 
         $data = ModelUserAssignment::find($user_assignment_id);
-        $data->grader = Auth::user()->id;
+        $data->grader_id = Auth::user()->id;
         $data->examine_time = Carbon::now();
         $data->grade = (float) $request->grade;
-        $data->status = "Graded";
+        $data->is_graded = true;
         $data->save();
 
         return redirect('/')->with('alert-success','Berhasil menilai tugas');
@@ -124,10 +123,10 @@ class GraderAssignmentController extends Controller
         ]);
 
         $data = ModelUserAssignment::find($user_assignment_id);
-        $data->grader = Auth::user()->id;
+        $data->grader_id = Auth::user()->id;
         $data->examine_time = Carbon::now();
         $data->grade = (float) $request->grade;
-        $data->status = "Graded";
+        $data->is_graded = true;
         $data->save();
         return redirect('/')->with('alert-success','Berhasil mengubah nilai');
     }
