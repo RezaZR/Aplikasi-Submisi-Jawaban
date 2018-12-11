@@ -32,55 +32,57 @@
                                 </ul>
                             </div>
                         @endif
-                        <div class="register__wrapper__form">
-                            <div class="field form-group">
-                                <label for="name" class="active">Nama Lengkap</label>
-                                <p>{{ $user->name }}</p>
-                            </div>
-                            <div class="field form-group">
-                                <label for="npm" class="active">NPM</label>
-                                <p>{{ $user->npm }}</p>
-                            </div>
-                            <div class="field form-group">
-                                <label for="nik" class="active">NIK</label>
-                                <p>{{ $user->nik }}</p>
-                            </div>
-                            <div class="field form-group">
-                                <label for="email" class="active">Email</label>
-                                <p>{{ $user->email }}</p>
-                            </div>
-                            <div class="field form-group">
-                                <label for="level" class="active">Level</label>
-                                <p>{{ $user->level }}</p>
-                            </div>
-                            <div class="field form-group">
-                                <label for="address" class="active">Alamat</label>
-                                <p>{{ $user->address }}</p>
-                            </div>
-                            <div class="field form-group">
-                                <label for="birth_date" class="active">No. Telpon</label>
-                                <p>{{ $user->phone_number }}</p>
-                            </div>
-                            <div class="field form-group">                 
-                                <div class="d-flex align-items-center">
-                                    <div class="col-md-4">
-                                        <div class="d-flex justify-content-end">
-                                            <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
+                        @if(Auth::user()->level == 'Admin')
+                            <div class="register__wrapper__form">
+                                <div class="field form-group">
+                                    <label for="name" class="active">Nama Lengkap</label>
+                                    <p>{{ $user->name }}</p>
+                                </div>
+                                <div class="field form-group">
+                                    <label for="npm" class="active">NPM</label>
+                                    <p>{{ $user->npm }}</p>
+                                </div>
+                                <div class="field form-group">
+                                    <label for="nik" class="active">NIK</label>
+                                    <p>{{ $user->nik }}</p>
+                                </div>
+                                <div class="field form-group">
+                                    <label for="email" class="active">Email</label>
+                                    <p>{{ $user->email }}</p>
+                                </div>
+                                <div class="field form-group">
+                                    <label for="level" class="active">Level</label>
+                                    <p>{{ $user->level }}</p>
+                                </div>
+                                <div class="field form-group">
+                                    <label for="address" class="active">Alamat</label>
+                                    <p>{{ $user->address }}</p>
+                                </div>
+                                <div class="field form-group">
+                                    <label for="birth_date" class="active">No. Telpon</label>
+                                    <p>{{ $user->phone_number }}</p>
+                                </div>
+                                <div class="field form-group">                 
+                                    <div class="d-flex align-items-center">
+                                        <div class="col-md-4">
+                                            <div class="d-flex justify-content-end">
+                                                <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="d-flex justify-content-center">
-                                            <a class="btn btn-standard--primary"href="{{ route('users.edit', $user->id) }}">Ubah</a>
+                                        <div class="col-md-4">
+                                            <div class="d-flex justify-content-center">
+                                                <a class="btn btn-standard--primary"href="{{ route('users.edit', $user->id) }}">Ubah</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="d-flex justify-content-start">
-                                            <button class="btn btn-standard--delete" type="submit">Hapus</button>
+                                        <div class="col-md-4">
+                                            <div class="d-flex justify-content-start">
+                                                <button class="btn btn-standard--delete" type="submit">Hapus</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-2">

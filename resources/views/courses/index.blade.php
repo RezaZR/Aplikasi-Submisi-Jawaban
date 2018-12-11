@@ -35,7 +35,7 @@
                         <div class="col-md-12">
                             <div class="home__wrapper__table">
                                 <p>List Mata Kuliah</p>
-                                <table cellpadding="10" class="shadow--outset">
+                                <table cellpadding="10" class="table shadow--outset">
                                     <thead>
                                         <tr>
                                             <th>#</th>

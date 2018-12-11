@@ -30,11 +30,11 @@
                         <div class="col-md-12">
                             <div class="home__wrapper__table">
                                 <p>List Aktifitas Pengguna</p>
-                                <table cellpadding="10" class="shadow--outset">
+                                <table cellpadding="10" class="table shadow--outset">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Pelaku</th>
+                                            <th>Nama Pengguna</th>
                                             <th>Level</th>
                                             <th>IP</th>
                                             <th>Aksi</th>
@@ -66,9 +66,6 @@
                                         @endforelse
                                     </tbody>
                                 </table>
-                                <div>
-                                    {{ $logs->links() }}
-                                </div>
                             </div>
                         </div>
                     @endif

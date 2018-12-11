@@ -53,9 +53,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="crud__wrapper__form--md__body">
-                                @if(Auth::user()->level == 'Student')
-                                    @if(is_null($studentAssignment->user_assignments_id) == false)
+                            @if(Auth::user()->level == 'Student')
+                                @if(is_null($studentAssignment->user_assignments_id) == false)
+                                    <div class="crud__wrapper__form--md__body">
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -92,7 +92,7 @@
                                                             <span>: -</span>
                                                         @endif
                                                     </p>
-                                                    @if($studentAssignment->file_status == 'Submitted')
+                                                    @if($studentAssignment->is_graded === false)
                                                         <div class="d-flex align-items-center">
                                                             <div class="col-md-6">
                                                                 <div class="d-flex justify-content-end">
@@ -117,7 +117,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @else
+                                    </div>
+                                @else
+                                    <div class="crud__wrapper__form--md__body">
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -140,13 +142,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @endif
+                                    </div>
                                 @endif
-                                @if(Auth::user()->level == 'Assistant')
-                                    @forelse($willBeGradedAssignments as $willBeGradedAssignment)
+                            @endif
+                            @if(Auth::user()->level == 'Lecturer' || Auth::user()->level == 'Assistant')
+                                @forelse($willBeGradedAssignments as $willBeGradedAssignment)
+                                    <div class="crud__wrapper__form--md__body">
                                         <div class="container">
                                             <div class="row">
-                                                <div class="col-md-11">
+                                                <div class="col-md-9">
                                                     <p class="color--black"><span>Nama Pengumpul</span> <span>: {{ $willBeGradedAssignment->user_name }}</span></p>
                                                     <p class="color--black"><span>Status Pengumpulan</span>
                                                         @if($willBeGradedAssignment->file_status == "Submitted")
@@ -161,11 +165,6 @@
                                                         @else
                                                             <span class="color--red">: Belum dinilai</span>
                                                         @endif
-                                                    </p>
-                                                    <p class="color--black"><span>File</span>
-                                                        <span>: 
-                                                            <a title="Unduh berkas milik {{$willBeGradedAssignment->user_name}}" href="{{ url('/uploads/' . $fileShortGrader) }}" download>{{ $fileShortGrader[0][1] }}</a>
-                                                        </span>
                                                     </p>
                                                     <p class="color--black"><span>Nilai</span>
                                                         @if($willBeGradedAssignment->is_graded)
@@ -182,20 +181,20 @@
                                                         @endif
                                                     </p>
                                                 </div>
-                                                <div class="col-md-1">
-                                                    @if($willBeGradedAssignment->file_status == "Submitted")
-                                                        <a class="color--black" href="{{ url('/user_courses/' . $course->id . '/assignments/' . $willBeGradedAssignment->assignment_student_id . '/student_assignments/' . $willBeGradedAssignment->user_assignments_id . '/grade/create') }}"><i class="fas fa-clipboard-list" title="Masukkan nilai"></i></i></a>
-                                                    @elseif($willBeGradedAssignment->file_status == "Graded")
-                                                        <a class="color--black" href="{{ url('/user_courses/' . $course->id . '/assignments/' . $willBeGradedAssignment->assignment_student_id . '/student_assignments/' . $willBeGradedAssignment->user_assignments_id . '/grade/edit') }}"><i class="fas fa-pencil-alt" title="Ubah nilai"></i></a>
+                                                <div class="col-md-3">
+                                                    @if($willBeGradedAssignment->is_graded !== true)
+                                                        <a class="btn btn--sm btn-standard color--black" href="{{ url('/user_courses/' . $course->id . '/assignments/' . $willBeGradedAssignment->assignment_student_id . '/student_assignments/' . $willBeGradedAssignment->user_assignments_id . '/grade/create') }}">Masukkan nilai</a>
+                                                    @elseif($willBeGradedAssignment->is_graded === true)
+                                                        <a class="btn btn--sm btn-standard color--black" href="{{ url('/user_courses/' . $course->id . '/assignments/' . $willBeGradedAssignment->assignment_student_id . '/student_assignments/' . $willBeGradedAssignment->user_assignments_id . '/grade/edit') }}">Ubah Nilai</a>
                                                     @endif
                                                 </div>
                                             </div>
                                         </div>
-                                    @empty
-                                        <p class="text-center">Belum ada Mahasiswa yang mengumpulkan</p>
-                                    @endforelse
-                                @endif
-                            </div>
+                                    </div>
+                                @empty
+                                    <p class="text-center">Belum ada Mahasiswa yang mengumpulkan</p>
+                                @endforelse
+                            @endif
                         </div>
                     </div>
                 </div>

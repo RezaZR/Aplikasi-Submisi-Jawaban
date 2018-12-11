@@ -36,13 +36,15 @@
     
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('assets/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('assets/css/bootstrap-mod.css')}}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{asset('assets/css/datatables.min.css')}}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('assets/css/main.css')}}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('assets/css/asset.css')}}" />
 
     <script src="{{asset('assets/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('assets/js/tether.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-    <script src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"></script>
+    <script src="{{asset('assets/js/datatables.min.js')}}"></script>
+    <script src="{{asset('assets/js/all.min.js')}}"></script>
     <script src="{{asset('assets/js/login-register.js')}}"></script>
     <script src="{{asset('assets/js/layout.js')}}"></script>
 </head>
@@ -52,7 +54,7 @@
             <div class="row">
                 <div class="header__wrapper">
                     <div class="d-flex align-items-center">
-                        <div class="col-md-8 no-padding">
+                        <div class="col-md-10 no-padding">
                             <div class="d-flex align-items-center">
                                 <div class="col-md-5 no-padding">
                                     <div class="d-flex justify-content-start">
@@ -95,12 +97,13 @@
                                             <a href="{{ route('users.index') }}">Pengguna</a>
                                             <a href="{{ route('logs.index') }}">Aktifitas Pengguna</a>
                                             <a href="{{ route('assignments.index' )}}">Tugas</a>
+                                            <a href="{{ route('assigns.index' )}}">Penugasan Pengguna</a>
                                         @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 no-padding">
+                        <div class="col-md-2 no-padding">
                             <div class="d-flex justify-content-end">
                                 <a href="/logout" class="btn btn-standard--transparent"><i class="fas fa-sign-out-alt fa-fw"></i> Keluar</a>
                             </div>

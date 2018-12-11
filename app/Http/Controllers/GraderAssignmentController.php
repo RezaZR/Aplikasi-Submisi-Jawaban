@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Carbon\Carbon;
+use App\ModelLog;
 use App\ModelUserAssignment;
 use App\ModelAssignment;
 use App\ModelCourse;
@@ -33,7 +34,14 @@ class GraderAssignmentController extends Controller
                                                     ->where('user_assignments.assignment_id', '=', $assignment_id)
                                                     ->get();
         $file_tokens = explode('/', $studentAssignment->file);
-        $studentAssignment->file = $file_tokens[sizeof($file_tokens) - 1];      
+        $studentAssignment->file = $file_tokens[sizeof($file_tokens) - 1];    
+        
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Mengakses halaman index penilaian.";
+        $dataLogs->save();
         
         return view('student_assignments.index', ['course' => $course, 'assignment' => $assignment, 'studentAssignments' => $studentAssignment]);
     }
@@ -59,6 +67,13 @@ class GraderAssignmentController extends Controller
         $fileShort = $fileTokens[sizeof($fileTokens) - 1];
         $willBeGradedStudent->file = $fileShort;
 
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Mengakses halaman create nilai.";
+        $dataLogs->save();
+
         return view('grader_assignments.create', ['course' => $course, 'assignment' => $assignment, 'studentAssignments' => $studentAssignments, 'willBeGradedStudent' => $willBeGradedStudent, 'fileShort' => $fileShort]);
     }
 
@@ -79,6 +94,13 @@ class GraderAssignmentController extends Controller
         $data->grade = (float) $request->grade;
         $data->is_graded = true;
         $data->save();
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Memasukkan nilai terhadap tugas mahasiswa.";
+        $dataLogs->save();
 
         return redirect('/')->with('alert-success','Berhasil menilai tugas');
     }
@@ -106,6 +128,13 @@ class GraderAssignmentController extends Controller
         $fileShort = $fileTokens[sizeof($fileTokens) - 1];
         $willBeGradedStudent->file = $fileShort;
 
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Mengakses halaman edit nilai.";
+        $dataLogs->save();
+
         return view('grader_assignments.edit', ['course' => $course, 'assignment' => $assignment, 'studentAssignments' => $studentAssignments, 'willBeGradedStudent' => $willBeGradedStudent, 'fileShort' => $fileShort]);
     }
 
@@ -128,6 +157,14 @@ class GraderAssignmentController extends Controller
         $data->grade = (float) $request->grade;
         $data->is_graded = true;
         $data->save();
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Mengubah detail nilai.";
+        $dataLogs->save();
+
         return redirect('/')->with('alert-success','Berhasil mengubah nilai');
     }
 }

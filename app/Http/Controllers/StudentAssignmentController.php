@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\ModelLog;
 use App\ModelUserAssignment;
 use App\ModelAssignment;
 use App\ModelCourse;
@@ -52,6 +53,13 @@ class StudentAssignmentController extends Controller
                                                     ->leftjoin('courses', 'assignments.course_id', '=', 'courses.id')
                                                     ->first();
 
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Mengakses halaman create tugas mahasiswa.";
+        $dataLogs->save();
+
         return view('student_assignments.create', ['course' => $course, 'assignment' => $assignment, 'studentAssignment' => $studentAssignment]);
     }
 
@@ -66,7 +74,7 @@ class StudentAssignmentController extends Controller
         $this->validate($request, [
             'assignment_id' => 'required',
             'student_id' => 'required',
-            'file' => 'required|mimes:pdf,docx,zip|file|size:10000',
+            'file' => 'required|mimes:pdf,docx,zip|file',
         ]);
 
         $data = new ModelUserAssignment();
@@ -77,6 +85,13 @@ class StudentAssignmentController extends Controller
         $data->file = public_path("uploads/" . $file->getClientOriginalName());
         $data->status = "Submitted";
         $data->save();
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Melakukan pengunggahan file.";
+        $dataLogs->save();
 
         return redirect('/')->with('alert-success','Berhasil mengumpulkan tugas');
     }
@@ -96,6 +111,13 @@ class StudentAssignmentController extends Controller
                                                     ->leftjoin('user_assignments', 'assignments.id', '=', 'user_assignments.assignment_id')
                                                     ->where('user_assignments.assignment_id', '=', $assignment_id)
                                                     ->first();
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Mengakses halaman edit file.";
+        $dataLogs->save();
         
         return view('student_assignments.edit', ['course' => $course, 'assignment' => $assignment, 'studentAssignments' => $studentAssignments]);
     }
@@ -113,7 +135,7 @@ class StudentAssignmentController extends Controller
         $this->validate($request, [
             'assignment_id' => 'required',
             'student_id' => 'required',
-            'file' => 'required|mimes:pdf,docx,zip|file|max:10000',
+            'file' => 'required|mimes:pdf,docx,zip|file',
         ]);
 
         $data = ModelUserAssignment::find($user_assignment_id);
@@ -124,6 +146,13 @@ class StudentAssignmentController extends Controller
         $data->file = public_path("uploads/" . $file->getClientOriginalName());
         $data->status = "Submitted";
         $data->save();
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Mengubah unggahan file dengan id " . $id . ".";
+        $dataLogs->save();
 
         return redirect('/')->with('alert-success','Berhasil mengubah');
     }

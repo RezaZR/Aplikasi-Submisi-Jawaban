@@ -21,34 +21,36 @@
                                 </ul>
                             </div>
                         @endif
-                        <div class="crud__wrapper__form">
-                            <form action="{{ route('courses.update', $course->id) }}" method="post">
-                                @method('PATCH')
-                                @csrf
-                                <div class="field form-group">
-                                    <label for="name" class="active">Nama Mata Kuliah</label>
-                                    <input class="form-control" id="name" name="name" type="text" value="{{ $course->name }}" />
-                                </div>
-                                <div class="field form-group">
-                                    <label for="code" class="active">Kode Mata Kuliah</label>
-                                    <input class="form-control" id="code" name="code" type="text" value="{{ $course->code }}" />
-                                </div>
-                                <div class="field form-group">                 
-                                    <div class="d-flex align-items-center">
-                                        <div class="col-md-6">
-                                            <div class="d-flex justify-content-end">
-                                                <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Batal</a>
+                        @if(Auth::user()->level == 'Admin')
+                            <div class="crud__wrapper__form">
+                                <form action="{{ route('courses.update', $course->id) }}" method="post">
+                                    @method('PATCH')
+                                    @csrf
+                                    <div class="field form-group">
+                                        <label for="name" class="active">Nama Mata Kuliah</label>
+                                        <input class="form-control" id="name" name="name" type="text" value="{{ $course->name }}" />
+                                    </div>
+                                    <div class="field form-group">
+                                        <label for="code" class="active">Kode Mata Kuliah</label>
+                                        <input class="form-control" id="code" name="code" type="text" value="{{ $course->code }}" />
+                                    </div>
+                                    <div class="field form-group">                 
+                                        <div class="d-flex align-items-center">
+                                            <div class="col-md-6">
+                                                <div class="d-flex justify-content-end">
+                                                    <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Batal</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="d-flex justify-content-start">
-                                                <button class="btn btn-standard--primary" type="submit">Ubah</button>
+                                            <div class="col-md-6">
+                                                <div class="d-flex justify-content-start">
+                                                    <button class="btn btn-standard--primary" type="submit">Ubah</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-2">

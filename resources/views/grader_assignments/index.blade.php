@@ -36,47 +36,49 @@
                                 </ul>
                             </div>
                         @endif
-                        <div class="crud__wrapper__form--md">
-                            <div class="crud__wrapper__form--md__title">
-                                <div class="d-flex align-items-center">
-                                    <div class="col-md-6 no-padding">
-                                        <div class="d-flex justify-content-start">
-                                            <p class="color--black">{{ $assignment->title }}</p>
+                        @if(Auth::user()->level == 'Lecturer' || Auth::user()->level == 'Assistant')
+                            <div class="crud__wrapper__form--md">
+                                <div class="crud__wrapper__form--md__title">
+                                    <div class="d-flex align-items-center">
+                                        <div class="col-md-6 no-padding">
+                                            <div class="d-flex justify-content-start">
+                                                <p class="color--black">{{ $assignment->title }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="d-flex justify-content-end">
+                                                <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
+                                            </div>  
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="d-flex justify-content-end">
-                                            <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
-                                        </div>  
-                                    </div>
+                                </div>
+                                <div class="crud__wrapper__form--md__body">
+                                    @if($studentAssignments != null)
+                                        <p class="color--black"><span>Status Pengumpulan</span>
+                                            @if($studentAssignments->file_status == "Not Submitted")
+                                                <span>: Belum Mengumpulkan</span>
+                                                @elseif($studentAssignments->file_status == "Submitted")
+                                                <span>: Terkumpul</span>
+                                            @else
+                                                <span>: Sudah Dinilai</span>
+                                            @endif
+                                        </p>
+                                        <p class="color--black last-p"><span>File</span>
+                                            <span>: 
+                                                <a href="{{ url('/uploads/' . $studentAssignments->file) }}" download>{{ $studentAssignments->file }}</a>
+                                            </span>
+                                        </p>
+                                    @else
+                                        <p class="color--black"><span>Status Pengumpulan</span>
+                                            <span>: Belum Mengumpulkan</span>
+                                        </p>
+                                        <p class="color--black last-p"><span>File</span>
+                                            <span>: -</span>
+                                        </p>
+                                    @endif
                                 </div>
                             </div>
-                            <div class="crud__wrapper__form--md__body">
-                                @if($studentAssignments != null)
-                                    <p class="color--black"><span>Status Pengumpulan</span>
-                                        @if($studentAssignments->file_status == "Not Submitted")
-                                            <span>: Belum Mengumpulkan</span>
-                                            @elseif($studentAssignments->file_status == "Submitted")
-                                            <span>: Terkumpul</span>
-                                        @else
-                                            <span>: Sudah Dinilai</span>
-                                        @endif
-                                    </p>
-                                    <p class="color--black last-p"><span>File</span>
-                                        <span>: 
-                                            <a href="{{ url('/uploads/' . $studentAssignments->file) }}" download>{{ $studentAssignments->file }}</a>
-                                        </span>
-                                    </p>
-                                @else
-                                    <p class="color--black"><span>Status Pengumpulan</span>
-                                        <span>: Belum Mengumpulkan</span>
-                                    </p>
-                                    <p class="color--black last-p"><span>File</span>
-                                        <span>: -</span>
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

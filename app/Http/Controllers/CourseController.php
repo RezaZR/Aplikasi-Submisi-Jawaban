@@ -17,7 +17,7 @@ class CourseController extends Controller
      */
     public function index()
     { 
-        $courses = ModelCourse::all()->take(20);
+        $courses = ModelCourse::all();
 
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;

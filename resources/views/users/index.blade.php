@@ -34,12 +34,12 @@
                         </div>
                         <div class="tabs">
                             <div class="tab">
-                                <label for="tab-1">Tata Usaha</label>
+                                <label class="tab-label" for="tab-1">Tata Usaha</label>
                                 <input id="tab-1" name="tabs" class="link" type="radio" checked="checked">
                                 <div class="tab__content">
                                     <div class="col-md-12">
                                         <div class="home__wrapper__table">
-                                            <table cellpadding="10" class="shadow--outset">
+                                            <table cellpadding="10" class="table shadow--outset">
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
@@ -84,12 +84,12 @@
                                 </div>
                             </div>
                             <div class="tab">
-                                <label for="tab-2">Dosen</label>
+                                <label class="tab-label" for="tab-2">Dosen</label>
                                 <input id="tab-2" name="tabs" class="link" type="radio">
                                 <div class="tab__content">
                                     <div class="col-md-12">
                                         <div class="home__wrapper__table">
-                                            <table cellpadding="10" class="shadow--outset">
+                                            <table cellpadding="10" class="table shadow--outset">
                                                 <thead>
                                                     <tr>
                                                         <th>ID</th>
@@ -134,12 +134,12 @@
                                 </div>
                             </div>
                             <div class="tab">
-                                <label for="tab-3">Asisten</label>
+                                <label class="tab-label" for="tab-3">Asisten</label>
                                 <input id="tab-3" name="tabs" class="link" type="radio">
                                 <div class="tab__content">
                                     <div class="col-md-12">
                                         <div class="home__wrapper__table">
-                                            <table cellpadding="10" class="shadow--outset">
+                                            <table cellpadding="10" class="table shadow--outset">
                                                 <thead>
                                                     <tr>
                                                         <th>ID</th>
@@ -184,12 +184,12 @@
                                 </div>
                             </div>
                             <div class="tab">
-                                <label for="tab-4">Mahasiswa</label>
+                                <label class="tab-label" for="tab-4">Mahasiswa</label>
                                 <input id="tab-4" name="tabs" class="link" type="radio">
                                 <div class="tab__content">
                                     <div class="col-md-12">
                                         <div class="home__wrapper__table">
-                                            <table cellpadding="10" class="shadow--outset">
+                                            <table cellpadding="10" class="table shadow--outset">
                                                 <thead>
                                                     <tr>
                                                         <th>ID</th>

@@ -41,56 +41,58 @@
                                 </ul>
                             </div>
                         @endif
-                        @forelse($lecturerAssignments as $assignment)
-                            <div class="crud__wrapper__form--md">
-                                <div class="crud__wrapper__form--md__title">
-                                    <div class="d-flex align-items-center">
-                                        <div class="col-md-6 no-padding">
-                                            <div class="d-flex justify-content-start">
-                                                <p>{{ $assignment->title }}</p>
+                        @if(Auth::user()->level == 'Lecturer')
+                            @forelse($lecturerAssignments as $assignment)
+                                <div class="crud__wrapper__form--md">
+                                    <div class="crud__wrapper__form--md__title">
+                                        <div class="d-flex align-items-center">
+                                            <div class="col-md-6 no-padding">
+                                                <div class="d-flex justify-content-start">
+                                                    <p>{{ $assignment->title }}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 no-padding">
-                                            <div class="d-flex justify-content-end">
-                                                <a class="color--black" href="{{ url('/lecturer_courses/' . $course->id . '/assignments/' . $assignment->id . '/edit') }}"><i class="fas fa-pencil-alt" title="Ubah"></i></a>
-                                                <form action="{{ url('/lecturer_courses/' . $course->id . '/assignments/' . $assignment->id) }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-standard--transparent color--black" type="submit"><i class="fas fa-trash" title="Hapus"></i></button>
-                                                </form>
+                                            <div class="col-md-6 no-padding">
+                                                <div class="d-flex justify-content-end">
+                                                    <a class="btn btn--sm btn-standard color--black" href="{{ url('/user_courses/' . $course->id . '/assignments/' . $assignment->id) }}">Nilai</a>
+                                                    <a class="btn btn--sm btn-standard color--black" href="{{ url('/lecturer_courses/' . $course->id . '/assignments/' . $assignment->id . '/edit') }}">Ubah</a>
+                                                    <form action="{{ url('/lecturer_courses/' . $course->id . '/assignments/' . $assignment->id) }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn--sm btn-standard color--black" type="submit">Hapus</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="crud__wrapper__form--md__body">
+                                        <p><span>Deskripsi</span> <span>: {{ $assignment->description }}</span></p>
+                                        <p><span>Tanggal dan Waktu Mulai</span> <span>: {{ $assignment->start_time }}</span></p>
+                                        <p><span>Tanggal dan Waktu Selesai</span> <span>: {{ $assignment->end_time }}</span></p>
+                                        <p><span>Mode</span> 
+                                            @if($assignment->mode === "Assignment")
+                                                <span>: Tugas</span>
+                                            @elseif($assignment->mode === "Quiz")
+                                                <span>: Kuis</span>
+                                            @else
+                                                <span>: Ujian</span>
+                                            @endif
+                                        </p>
+                                        <p><span>Status Telat</span> 
+                                            @if($assignment->is_on_time)
+                                                <span>: Diperbolehkan</span>
+                                            @else
+                                                <span>: Tidak diperbolehkan</span>
+                                            @endif
+                                        </p>
+                                        <p><span>Jumlah Pengumpul</span> <span>: {{ $assignment->numberOfSubmittedUser }} / {{ $sizeOfStudents }}</span></p>
+                                    </div>
                                 </div>
+                            @empty
                                 <div class="crud__wrapper__form--md__body">
-                                    <p><span>Deskripsi</span> <span>: {{ $assignment->description }}</span></p>
-                                    <p><span>Tanggal dan Waktu Mulai</span> <span>: {{ $assignment->start_time }}</span></p>
-                                    <p><span>Tanggal dan Waktu Selesai</span> <span>: {{ $assignment->end_time }}</span></p>
-                                    <p><span>Mode</span> 
-                                        @if($assignment->mode === "Assignment")
-                                            <span>: Tugas</span>
-                                        @elseif($assignment->mode === "Quiz")
-                                            <span>: Kuis</span>
-                                        @else
-                                            <span>: Ujian</span>
-                                        @endif
-                                    </p>
-                                    <p><span>Status Telat</span> 
-                                        @if($assignment->is_on_time)
-                                            <span>: Diperbolehkan</span>
-                                        @else
-                                            <span>: Tidak diperbolehkan</span>
-                                        @endif
-                                    </p>
-                                    <p><span>Jumlah Pengumpul</span> <span>: </span></p>
+                                    <h6 class="text-center">Tempat pengumpulan masih kosong</h6>
                                 </div>
-                            </div>
-                        @empty
-                            <div class="crud__wrapper__form--md__body">
-                                <h6 class="text-center">Tempat pengumpulan masih kosong</h6>
-                            </div>
-                        @endforelse
-                        <!-- </div> -->
+                            @endforelse
+                        @endif
                     </div>
                 </div>
             </div>

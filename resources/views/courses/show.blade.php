@@ -21,35 +21,37 @@
                                 </ul>
                             </div>
                         @endif
-                        <div class="crud__wrapper__form">
-                            <div class="field form-group">
-                                <label for="name" class="active">Nama Mata Kuliah</label>
-                                <p>{{ $course->name }}</p>
-                            </div>
-                            <div class="field form-group">
-                                <label for="code" class="active">Kode Mata Kuliah</label>
-                                <p>{{ $course->code }}</p>
-                            </div>
-                            <div class="field form-group">                 
-                                <div class="d-flex align-items-center">
-                                    <div class="col-md-4">
-                                        <div class="d-flex justify-content-end">
-                                            <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
+                        @if(Auth::user()->level == 'Admin')
+                            <div class="crud__wrapper__form">
+                                <div class="field form-group">
+                                    <label for="name" class="active">Nama Mata Kuliah</label>
+                                    <p>{{ $course->name }}</p>
+                                </div>
+                                <div class="field form-group">
+                                    <label for="code" class="active">Kode Mata Kuliah</label>
+                                    <p>{{ $course->code }}</p>
+                                </div>
+                                <div class="field form-group">                 
+                                    <div class="d-flex align-items-center">
+                                        <div class="col-md-4">
+                                            <div class="d-flex justify-content-end">
+                                                <a class="btn btn-standard--primary "href="{{ URL::previous() }}">Kembali</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="d-flex justify-content-center">
-                                            <a class="btn btn-standard--primary"href="{{ route('courses.edit', $course->id) }}">Ubah</a>
+                                        <div class="col-md-4">
+                                            <div class="d-flex justify-content-center">
+                                                <a class="btn btn-standard--primary"href="{{ route('courses.edit', $course->id) }}">Ubah</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="d-flex justify-content-start">
-                                            <button class="btn btn-standard--delete" type="submit">Hapus</button>
+                                        <div class="col-md-4">
+                                            <div class="d-flex justify-content-start">
+                                                <button class="btn btn-standard--delete" type="submit">Hapus</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-2">

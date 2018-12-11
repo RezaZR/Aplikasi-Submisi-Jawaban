@@ -1,0 +1,11 @@
+.alert-success {
+    background-color: #abff88 !important;
+}
+
+.alert-danger {
+    background-color: #ffbfbf !important;
+}
+
+.alert {
+    margin: .5em auto;
+}

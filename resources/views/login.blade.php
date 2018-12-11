@@ -16,6 +16,7 @@
     <link rel="shortcut icon" href="{{asset('assets/images/logo-main.jpg')}}" type="image/x-icon">
     
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('assets/css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{asset('assets/css/bootstrap-mod.css')}}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('assets/css/main.css')}}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('assets/css/asset.css')}}" />
 

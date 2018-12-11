@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Carbon\Carbon;
+use App\ModelLog;
 use App\ModelUser;
 use App\ModelCourse;
 use App\ModelAssignment;
@@ -25,10 +27,19 @@ class StudentCourseController extends Controller
             'student_id' => 'required',
             'course_id' => 'required',
         ]);
+
         $data = new ModelStudentCourse();
         $data->student_id = $request->student_id;
         $data->course_id = $request->course_id;
         $data->save();
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Melakukan penugasan terhadap mahasiswa dengan id " . $data->student_id . " dan mata kuliah dengan id " . $data->course_id . ".";
+        $dataLogs->save();
+
         return redirect('/')->with('alert-success','Berhasil menugaskan pengguna ke dalam mata kuliah');
     }
 
@@ -41,12 +52,21 @@ class StudentCourseController extends Controller
     public function show($course_id)
     {
         $course = ModelCourse::find($course_id);
-        $assignments = ModelAssignment::select('assignments.*')
+        $studentAssignments = ModelAssignment::select('assignments.*')
                                                     ->leftjoin('courses', 'assignments.course_id', '=', 'courses.id')
                                                     ->where('course_id', '=', $course->id)
+                                                    // ->where('end_time', '>', Carbon::now())
                                                     ->get()
                                                     ->sortBy('start_time');
-        return view('student_courses.show', compact('studentAssignments', 'course', 'assignments'));
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Mengakses halaman show course milik mahasiswa.";
+        $dataLogs->save();
+
+        return view('student_courses.show', compact('studentAssignments', 'course'));
     }
 
     /**
@@ -92,6 +112,13 @@ class StudentCourseController extends Controller
     {
             $studentCourses = ModelStudentCourse::find($id);
             $studentCourses->delete();
+
+            $dataLogs = new ModelLog();
+            $dataLogs->created_by = Auth::user()->name;
+            $dataLogs->user_level = Auth::user()->level;
+            $dataLogs->user_ip = \Request::ip();
+            $dataLogs->action = "Melakukan penghapusan penugasan terhadap mahasiswa dengan id " . $id . ".";
+            $dataLogs->save();
            
             return redirect('/')->with('alert-success','Berhasil dihapus');
     }

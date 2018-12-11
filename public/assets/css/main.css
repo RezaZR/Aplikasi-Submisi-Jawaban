@@ -194,3 +194,8 @@ a svg {
 label {
     margin: 0 !important;
 }
+
+.no-arrow::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none;
+}

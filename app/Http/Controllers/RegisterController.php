@@ -17,10 +17,10 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        $userAssistant = ModelUser::where('level', '=', 'Assistant')->take(5)->latest()->get();
-        $userLecturer = ModelUser::where('level', '=', 'Lecturer')->take(5)->latest()->get();
-        $userStudent = ModelUser::where('level', '=', 'Student')->take(5)->latest()->get();
-        $userAdmin = ModelUser::where('level', '=', 'Admin')->take(5)->latest()->get();
+        $userAssistant = ModelUser::where('level', '=', 'Assistant')->latest()->get();
+        $userLecturer = ModelUser::where('level', '=', 'Lecturer')->latest()->get();
+        $userStudent = ModelUser::where('level', '=', 'Student')->latest()->get();
+        $userAdmin = ModelUser::where('level', '=', 'Admin')->latest()->get();
 
         $dataLogs = new ModelLog();
         $dataLogs->created_by = Auth::user()->name;

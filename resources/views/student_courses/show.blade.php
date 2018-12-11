@@ -41,46 +41,87 @@
                                 </ul>
                             </div>
                         @endif
-                        @forelse($assignments as $assignment)
-                            <a href="{{ url('/user_courses/' . $course->id . '/assignments/' . $assignment->id) }}">
-                                <div class="crud__wrapper__form--md">
-                                    <div class="crud__wrapper__form--md__title">
-                                        <div class="d-flex align-items-center">
-                                            <div class="col-md-12 no-padding">
-                                                <div class="d-flex justify-content-start">
-                                                    <p class="color--black">{{ $assignment->title }}</p>
+                        @if(Auth::user()->level == 'Student')
+                            @forelse($studentAssignments as $assignment)
+                                @if($assignment->end_time < \Carbon\Carbon::now())
+                                    @if($assignment->is_on_time === true)
+                                        <a href="{{ url('/user_courses/' . $course->id . '/assignments/' . $assignment->id) }}">
+                                            <div class="crud__wrapper__form--md">
+                                                <div class="crud__wrapper__form--md__title">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="col-md-12 no-padding">
+                                                            <div class="d-flex justify-content-start">
+                                                                <p class="color--black">{{ $assignment->title }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="crud__wrapper__form--md__body">
+                                                    <p class="color--black"><span>Deskripsi</span> <span>: {{ $assignment->description }}</span></p>
+                                                    <p class="color--black"><span>Tanggal dan Waktu Mulai</span> <span>: {{ $assignment->start_time }}</span></p>
+                                                    <p class="color--black"><span>Tanggal dan Waktu Selesai</span> <span>: {{ $assignment->end_time }}</span></p>
+                                                    <p class="color--black"><span>Mode</span> 
+                                                        @if($assignment->mode === "Assignment")
+                                                            <span>: Tugas</span>
+                                                        @elseif($assignment->mode === "Quiz")
+                                                            <span>: Kuis</span>
+                                                        @else
+                                                            <span>: Ujian</span>
+                                                        @endif
+                                                    </p>
+                                                    <p class="color--black"><span>Status Telat</span> 
+                                                        @if($assignment->is_on_time)
+                                                            <span>: Diperbolehkan</span>
+                                                        @else
+                                                            <span>: Tidak diperbolehkan</span>
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             </div>
+                                        </a>
+                                    @endif
+                                @elseif($assignment->end_time > \Carbon\Carbon::now())
+                                    <a href="{{ url('/user_courses/' . $course->id . '/assignments/' . $assignment->id) }}">
+                                        <div class="crud__wrapper__form--md">
+                                            <div class="crud__wrapper__form--md__title">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="col-md-12 no-padding">
+                                                        <div class="d-flex justify-content-start">
+                                                            <p class="color--black">{{ $assignment->title }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="crud__wrapper__form--md__body">
+                                                <p class="color--black"><span>Deskripsi</span> <span>: {{ $assignment->description }}</span></p>
+                                                <p class="color--black"><span>Tanggal dan Waktu Mulai</span> <span>: {{ $assignment->start_time }}</span></p>
+                                                <p class="color--black"><span>Tanggal dan Waktu Selesai</span> <span>: {{ $assignment->end_time }}</span></p>
+                                                <p class="color--black"><span>Mode</span> 
+                                                    @if($assignment->mode === "Assignment")
+                                                        <span>: Tugas</span>
+                                                    @elseif($assignment->mode === "Quiz")
+                                                        <span>: Kuis</span>
+                                                    @else
+                                                        <span>: Ujian</span>
+                                                    @endif
+                                                </p>
+                                                <p class="color--black"><span>Status Telat</span> 
+                                                    @if($assignment->is_on_time)
+                                                        <span>: Diperbolehkan</span>
+                                                    @else
+                                                        <span>: Tidak diperbolehkan</span>
+                                                    @endif
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="crud__wrapper__form--md__body">
-                                        <p class="color--black"><span>Deskripsi</span> <span>: {{ $assignment->description }}</span></p>
-                                        <p class="color--black"><span>Tanggal dan Waktu Mulai</span> <span>: {{ $assignment->start_time }}</span></p>
-                                        <p class="color--black"><span>Tanggal dan Waktu Selesai</span> <span>: {{ $assignment->end_time }}</span></p>
-                                        <p class="color--black"><span>Mode</span> 
-                                            @if($assignment->mode === "Assignment")
-                                                <span>: Tugas</span>
-                                            @elseif($assignment->mode === "Quiz")
-                                                <span>: Kuis</span>
-                                            @else
-                                                <span>: Ujian</span>
-                                            @endif
-                                        </p>
-                                        <p class="color--black"><span>Status Telat</span> 
-                                            @if($assignment->is_on_time)
-                                                <span>: Diperbolehkan</span>
-                                            @else
-                                                <span>: Tidak diperbolehkan</span>
-                                            @endif
-                                        </p>
-                                    </div>
+                                    </a>
+                                @endif
+                            @empty
+                                <div class="crud__wrapper__form--md__body">
+                                    <h6 class="text-center">Tempat pengumpulan masih kosong</h6>
                                 </div>
-                            </a>
-                        @empty
-                            <div class="crud__wrapper__form--md__body">
-                                <h6 class="text-center">Tempat pengumpulan masih kosong</h6>
-                            </div>
-                        @endforelse
+                            @endforelse
+                        @endif
                     </div>
                 </div>
             </div>

@@ -30,11 +30,11 @@
                         <div class="col-md-12">
                             <div class="home__wrapper__table">
                                 <p>List Tugas</p>
-                                <table cellpadding="10" class="shadow--outset">
+                                <table cellpadding="10" class="table shadow--outset">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Kode Mata </th>
+                                            <th>Kode Mata Kuliah</th>
                                             <th>Nama Mata Kuliah</th>
                                             <th>Judul Tempat Pengumpulan</th>
                                             <th>Tanggal & Waktu Mulai</th>

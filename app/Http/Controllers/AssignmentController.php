@@ -20,11 +20,10 @@ class AssignmentController extends Controller
      */
     public function index()
     { 
-        $courseAssignments = ModelCourse::select('courses.id as course_id', 'courses.code as course_code', 'courses.name as course_name', 'assignments.id as assignment_id', 'assignments.title', 'assignments.mode', 'assignments.start_time', 'assignments.end_time', 'user_assignments.id as user_assignment_id')
+        $courseAssignments = ModelCourse::select('courses.id as course_id', 'courses.code as course_code', 'courses.name as course_name', 'assignments.id as assignment_id', 'assignments.title', 'assignments.mode', 'assignments.start_time', 'assignments.end_time')
                                                     ->leftjoin('assignments', 'courses.id', '=', 'assignments.course_id')
-                                                    ->leftjoin('user_assignments', 'assignments.id', '=', 'user_assignments.assignment_id')
                                                     ->whereColumn('courses.id', '=', 'assignments.course_id')
-                                                    // ->where('user_assignments.id', '!=', null)
+                                                    ->where('assignments.deleted_at', '=', null)
                                                     ->get();
 
         $gradedAssignments = ModelUserAssignment::select('user_assignments.*', 'student_courses.*')
@@ -34,8 +33,7 @@ class AssignmentController extends Controller
 
         $ungradedAssignments = ModelUserAssignment::select('user_assignments.*', 'student_courses.*')
                                     ->leftjoin('student_courses', 'user_assignments.student_id', '=', 'student_courses.student_id')
-                                    // ->where('user_assignments.status', '!=', 'Graded')
-                                    ->where('user_assignments.status', '=', 'null')
+                                    ->where('user_assignments.status', '=', 'Graded')
                                     ->get();
 
         $dataLogs = new ModelLog();
@@ -55,6 +53,13 @@ class AssignmentController extends Controller
      */
     public function create($id) {
         $course = ModelCourse::find($id);
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Mengakses halaman create pembuatan tugas baru.";
+        $dataLogs->save();
 
         return view('assignments.create', ['course' => $course]);
     }
@@ -87,6 +92,13 @@ class AssignmentController extends Controller
         $data->end_time = $request->end_time;
         $data->course_id = $request->course_id;
         $data->save();
+        
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Melakukan pembuatan tugas baru.";
+        $dataLogs->save();
 
         return redirect('/')->with('alert-success','Berhasil membuat tempat pengumpulan baru');
     }
@@ -131,6 +143,12 @@ class AssignmentController extends Controller
             $willBeGradedAssignments->file =  $fileShortGrader;
         }                                    
         
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Mengakses halaman show tugas.";
+        $dataLogs->save();
         
         return view('assignments.show', ['course' => $course, 'assignment' => $assignment, 'studentAssignment' => $studentAssignment, 'fileShortGrader' => $fileShortGrader, 'willBeGradedAssignments' => $willBeGradedAssignments, 'fileShortStudent' => $fileShortStudent]);
     }
@@ -149,6 +167,13 @@ class AssignmentController extends Controller
                                                     ->leftjoin('courses', 'assignments.course_id', '=', 'courses.id')
                                                     ->get()
                                                     ->sortBy('start_time');
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Mengakses halaman edit tugas.";
+        $dataLogs->save();
 
         return view('assignments.edit', ['course' => $course, 'assignment' => $assignment]);
     }
@@ -184,6 +209,13 @@ class AssignmentController extends Controller
         $data->course_id = $request->course_id;
         $data->save();
 
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Mengubah detail tugas dengan id " . $id . ".";
+        $dataLogs->save();
+
         return redirect('/')->with('alert-success','Berhasil mengubah detail tempat pengumpulan');
     }
 
@@ -195,9 +227,16 @@ class AssignmentController extends Controller
      */
     public function destroy($course_id, $assignment_id)
     {
-            $course = ModelAssignment::find($assignment_id);
-            $course->delete();
+        $course = ModelAssignment::find($assignment_id);
+        $course->delete();
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Menghapus tugas dengan id " . $id . ".";
+        $dataLogs->save();
            
-            return redirect('/')->with('alert-success','Berhasil dihapus');
+        return redirect('/')->with('alert-success','Tugas berhasil dihapus');
     }
 }

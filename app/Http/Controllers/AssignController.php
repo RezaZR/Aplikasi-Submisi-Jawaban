@@ -21,11 +21,32 @@ class AssignController extends Controller
      */
     public function index()
     { 
-        $lecturerCourses = ModelLecturerCourse::all()->take(5)->sortBy('created_at');
-        $assistantCourses = ModelAssistantCourse::all()->take(5)->sortBy('created_at');
-        $studentCourses = ModelStudentCourse::all()->take(5)->sortBy('created_at');
+        $assignedAssistants = ModelCourse::select('assistant_courses.id', 'users.name as user_name', 'courses.code', 'courses.name as course_name')
+                                    ->join('assistant_courses', 'courses.id', '=', 'assistant_courses.course_id')
+                                    ->join('users', 'users.id', '=', 'assistant_courses.assistant_id')
+                                    ->get()
+                                    ->sortBy('user_name');
+                                    
+        $assignedLecturers = ModelCourse::select('lecturer_courses.id', 'users.name as user_name', 'courses.code', 'courses.name as course_name')
+                                    ->join('lecturer_courses', 'courses.id', '=', 'lecturer_courses.course_id')
+                                    ->join('users', 'users.id', '=', 'lecturer_courses.lecturer_id')
+                                    ->get()
+                                    ->sortBy('user_name');
 
-        return view('assigns.index',  ['lecturerCourses' => $lecturerCourses, 'assistantCourses' => $assistantCourses, 'studentCourses' => $studentCourses]);
+        $assignedStudents = ModelCourse::select('student_courses.id', 'users.name as user_name', 'courses.code', 'courses.name as course_name')
+                                    ->join('student_courses', 'courses.id', '=', 'student_courses.course_id')
+                                    ->join('users', 'users.id', '=', 'student_courses.student_id')
+                                    ->get()
+                                    ->sortBy('user_name');
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Mengakses halaman index penugasan pengguna kepada mata kuliah.";
+        $dataLogs->save();
+
+        return view('assigns.index',  ['assignedAssistants' => $assignedAssistants, 'assignedLecturers' => $assignedLecturers, 'assignedStudents' => $assignedStudents, ]);
     }
 
     /**
@@ -34,34 +55,29 @@ class AssignController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $lecturers = ModelUser::all()->where('level', '=', 'Lecturer')->sortBy('name');
-        $assistants = ModelUser::all()->where('level', '=', 'Assistant')->sortBy('name');
-        $students = ModelUser::all()->where('level', '=', 'Student')->sortBy('name');
-        $courses = ModelCourse::all()->sortBy('name');
+        $lecturers = ModelUser::all()
+                                    ->where('level', '=', 'Lecturer')
+                                    ->where('deleted_at', '=', null)
+                                    ->sortBy('name');
+        $assistants = ModelUser::all()
+                                    ->where('level', '=', 'Assistant')
+                                    ->where('deleted_at', '=', null)
+                                    ->sortBy('name');
+        $students = ModelUser::all()
+                                ->where('level', '=', 'Student')
+                                ->where('deleted_at', '=', null)
+                                ->sortBy('name');
+        $courses = ModelCourse::all()
+                                ->where('deleted_at', '=', null)
+                                ->sortBy('name');
+
+        $dataLogs = new ModelLog();
+        $dataLogs->created_by = Auth::user()->name;
+        $dataLogs->user_level = Auth::user()->level;
+        $dataLogs->user_ip = \Request::ip();
+        $dataLogs->action = "Mengakses halaman create penugasan pengguna kepada mata kuliah.";
+        $dataLogs->save();
 
         return view('assigns.create', ['lecturers' => $lecturers, 'assistants' => $assistants, 'students' => $students, 'courses' => $courses]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($course_id, $assignment_id)
-    {
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $course_id, $assignment_id)
-    {
-
     }
 }
